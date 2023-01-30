@@ -100,7 +100,7 @@ const useStyles = createStyles((theme) => ({
 
 const header_height = 60;
 
-export default function nav() {
+export default function Nav() {
 	// const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const [opened, { toggle, close }] = useDisclosure(false);
 	const [modal, openModal] = useState(false);
