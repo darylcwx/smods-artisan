@@ -64,7 +64,10 @@ export default function Home() {
 				</Text>
 				<Grid id="faq-grid" py="xl">
 					<Col span={12} sm={6}>
-						<Image src="stealth rg naut.jpg"></Image>
+						<Image
+							src="stealth rg naut.jpg"
+							alt="SeikoNaut with Rose Gold details"
+						></Image>
 					</Col>
 					<Col span={12} sm={6}>
 						<Title order={2} px="sm" pb="sm">
