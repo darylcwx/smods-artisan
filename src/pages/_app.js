@@ -6,7 +6,7 @@ import {
 	ColorScheme,
 } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-import Nav from "@/pages/nav.js";
+import Nav from "@/pages/Nav.js";
 
 export default function App({ Component, pageProps }) {
 	const [colorScheme, setColorScheme] = useState(ColorScheme);

@@ -1,7 +1,7 @@
 import { Badge, Button, MantineProvider } from "@mantine/core";
 import Head from "next/head";
 
-export default function Home() {
+export default function Shop() {
 	return (
 		<>
 			<Head>
