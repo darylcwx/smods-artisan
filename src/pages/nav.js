@@ -202,8 +202,8 @@ export default function Nav() {
 
 									var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
 									let api = new XMLHttpRequest();
-									// api.open("GET", url, true);
-									// api.send();
+									api.open("GET", url, true);
+									api.send();
 									showNotification({
 										icon: <IconCheck size={16} />,
 										title: "Success!",
@@ -211,7 +211,7 @@ export default function Nav() {
 										message:
 											"I've received a notification with regards to your message.\n\nI'll get back to you shortly!",
 									});
-									// form.reset();
+									form.reset();
 									openModal(false);
 								})}
 							>
