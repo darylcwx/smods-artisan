@@ -90,6 +90,7 @@ export default function Watch(watch) {
 						}}
 						className={classes.card}
 						withBorder
+						key={watch.name}
 					>
 						<Flex direction="column" justify="flex-end" sx={{ height: "100%" }}>
 							<Title order={3}>"{watch.name}"</Title>
