@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
 		backgroundSize: "cover",
 		backgroundPosition: "center",
 		minHeight: "calc( 100vh - 60px )",
-		zIndex: "-2",
+		zIndex: "0",
 	},
 	inner: {
 		position: "relative",
@@ -49,23 +49,19 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className={classes.image}>
-				<Overlay color="#000" opacity={0.65} zIndex={-1} />
+				<Overlay color="#000" opacity={0.65} zIndex={0} />
 				<Container className={classes.inner}>
 					<Title tt="uppercase" className={classes.title}>
-						fk your apple watch
+						fuck your apple watch
 					</Title>
 					<Text py="lg" size="xl" className={classes.text}>
-						Welcome to our world of custom-made Seiko watches. We take pride in
-						building high-quality, exclusive timepieces using only the finest
-						aftermarket parts and OEM Seiko movements.
+						Welcome to our world of custom-made Seiko watches.
 						<br></br>
-						<br></br>
-						Each watch is carefully assembled to ensure that it meets our high
-						standards for quality and reliability. Whether you're looking for a
-						unique, one-of-a-kind watch or a personalized timepiece, we have
-						something for everyone.
+						<br></br> We take pride in building high-quality, exclusive
+						timepieces using only the finest aftermarket parts and OEM Seiko
+						movements.
 					</Text>
-					<Group spacing="xl">
+					<Group spacing="xl" sx={{ zIndex: "100" }}>
 						<Link href="/shop">
 							<Button
 								variant="filled"
