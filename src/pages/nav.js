@@ -14,7 +14,7 @@ import {
 	Textarea,
 	SimpleGrid,
 	Title,
-	Alert,
+	Menu,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSun, IconMoonStars, IconCheck, IconAt } from "@tabler/icons-react";
@@ -22,7 +22,7 @@ import Link from "next/link";
 import { useForm } from "@mantine/form";
 import Script from "next/script";
 import { showNotification } from "@mantine/notifications";
-
+import { useHover } from "@mantine/hooks";
 const useStyles = createStyles((theme) => ({
 	root: {
 		position: "relative",
@@ -105,7 +105,7 @@ export default function Nav() {
 	const [opened, { toggle, close }] = useDisclosure(false);
 	const [modal, openModal] = useState(false);
 	const { classes } = useStyles();
-
+	const { hovered, ref } = useHover();
 	const form = useForm({
 		initialValues: {
 			name: "",
@@ -179,6 +179,44 @@ export default function Nav() {
 						<Link href="/shop" className={classes.link}>
 							Shop
 						</Link>
+						{/* <Menu shadow="md" width={200} ref={ref} trigger="hover">
+							<Menu.Target>
+								<Link href="/shop" className={classes.link}>
+									Shop
+								</Link>
+							</Menu.Target>
+							<Menu.Dropdown>
+								<Menu.Item>
+									<Link
+										href={{
+											pathname: "/shop",
+											query: { filter: "Bezel Inserts" },
+										}}
+										className={classes.link}
+									>
+										Bezel Inserts
+									</Link>
+								</Menu.Item>
+								<Menu.Item>
+									<Link
+										href={{
+											pathname: "/shop",
+											query: { filter: "Chapter Rings" },
+										}}
+										className={classes.link}
+									>
+										Chapter Rings
+									</Link>
+								</Menu.Item>
+								<Menu.Item>Cases</Menu.Item>
+								<Menu.Item>Crowns</Menu.Item>
+								<Menu.Item>Hands</Menu.Item>
+								<Menu.Item>Dials</Menu.Item>
+								<Menu.Item>Movements</Menu.Item>
+								<Menu.Item>Straps</Menu.Item>
+								<Menu.Item>Clasps</Menu.Item>
+							</Menu.Dropdown>
+						</Menu> */}
 						<Link href="/about" className={classes.link}>
 							About
 						</Link>

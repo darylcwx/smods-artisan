@@ -66,6 +66,28 @@ export default function Watch(watch) {
 			strap: "Standard 316L oyster strap",
 			clasp: "Standard 316L clasp, middle gloss finish, sides brushed finish",
 		},
+		{
+			name: "301",
+			image: "301" + ".png",
+			movement: "NH35A",
+			dial: "Seiko dial resembling Patek Aquanaut",
+			hands: "Sword hands",
+			shell: "Case resembling Patek Aquanaut",
+			crown: "Crown resembling Patek Aquanaut",
+			strap: "Strap resembling Patek Aquanaut",
+			clasp: "Butterfly clasp",
+		},
+		{
+			name: "701",
+			image: "701" + ".png",
+			movement: "NH36A",
+			dial: "Steatlh Seiko dial",
+			hands: "Syringe hands",
+			cRing: "Red hour markers",
+			shell: "SKX007 case in black",
+			crown: "Seiko crown",
+			strap: "",
+		},
 	];
 	return (
 		<>
@@ -86,7 +108,7 @@ export default function Watch(watch) {
 							backgroundRepeat: "no-repeat",
 							backgroundPosition: "center -400%",
 							height: 600,
-							maxWidth: 400,
+							maxWidth: 500,
 						}}
 						className={classes.card}
 						withBorder

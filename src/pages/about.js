@@ -21,8 +21,6 @@ const useStyles = createStyles((theme) => ({
 		textDecoration: "none",
 	},
 }));
-const placeholder =
-	"It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.";
 
 export default function Home() {
 	const { classes } = useStyles();
@@ -64,7 +62,7 @@ export default function Home() {
 				<Grid id="faq-grid" py="xl">
 					<Col span={12} sm={6}>
 						<Image
-							src="watches/stealth rg naut.jpg"
+							src="watches/311.jpg"
 							alt="SeikoNaut with Rose Gold details"
 						></Image>
 					</Col>
@@ -131,6 +129,38 @@ export default function Home() {
 									timepiece, tailored to your personal style and preferences.
 									<br></br>
 									<br></br>
+									<Text fs="italic">"I'm confused, what do you mean?"</Text>
+									Feel free to check these links for inspiration.
+									<List listStyleType="disc">
+										<List.Item>
+											<Link
+												className={classes.contact}
+												href="https://www.instagram.com/seikomods"
+												target="_blank"
+											>
+												@seikomods
+											</Link>
+										</List.Item>
+										<List.Item>
+											<Link
+												className={classes.contact}
+												href="https://www.instagram.com/bbmod_france/?hl=en"
+												target="_blank"
+											>
+												@bbmod_france
+											</Link>
+										</List.Item>
+										<List.Item>
+											<Link
+												className={classes.contact}
+												href="https://www.bbmodfrance.com/en/boutique/"
+												target="_blank"
+											>
+												Bbmod's website
+											</Link>
+										</List.Item>
+									</List>
+									<br></br>
 									Feel free to&nbsp;
 									<Link
 										className={classes.contact}
@@ -182,13 +212,6 @@ export default function Home() {
 										</List.Item>
 									</List>
 								</Accordion.Panel>
-							</Accordion.Item>
-
-							<Accordion.Item className={classes.item} value="5">
-								<Accordion.Control>
-									What payment systems to you work with?
-								</Accordion.Control>
-								<Accordion.Panel>{placeholder}</Accordion.Panel>
 							</Accordion.Item>
 						</Accordion>
 					</Col>
