@@ -25,7 +25,7 @@ import { showNotification } from "@mantine/notifications";
 import { useHover } from "@mantine/hooks";
 const useStyles = createStyles((theme) => ({
 	root: {
-		position: "relative",
+		position: "fixed",
 		zIndex: 1,
 	},
 	links: {
@@ -332,7 +332,6 @@ export default function Nav() {
 					</ActionIcon> */}
 					</Group>
 				</Container>
-				<Script src="/contact.js" />
 			</Header>
 		</>
 	);

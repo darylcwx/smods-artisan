@@ -1,23 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	Container,
 	Text,
-	Tooltip,
 	Button,
 	Flex,
 	Popover,
 	NativeSelect,
 } from "@mantine/core";
+
 import { useDisclosure } from "@mantine/hooks";
 import Head from "next/head";
 import Watch from "@/pages/watch.js";
 import { useRouter } from "next/router";
-
+import { nprogress, NavigationProgress } from "@mantine/nprogress";
 export default function Shop() {
 	const router = useRouter();
-	var q = router.query;
 	const [opened, { close, open }] = useDisclosure(false);
-
+	const [scroll, setScrollPosition] = useState(0);
+	useEffect(() => {
+		const handleScroll = (event) => {
+			setScrollPosition(window.scrollY);
+			const totalHeight =
+				document.documentElement.scrollHeight - window.innerHeight;
+			const percentage = window.scrollY / totalHeight;
+			nprogress.set(percentage * 100);
+		};
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	});
+	var q = router.query;
 	return (
 		<>
 			<Head>
@@ -28,15 +41,24 @@ export default function Shop() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Container my="xl" sx={{ maxWidth: 700 }}>
+			<NavigationProgress color="dark.0" />
+			<Container py="xl">
 				<Text ta="center" fw={500}>
 					Please note that this business is in it's early stage and
-					therefore I have limited photos.
+					therefore I have limited photos. With more orders, rest
+					assured higher quality photos will be taken.
 				</Text>
-				<Text ta="center" c="dimmed">
+
+				<Text ta="center" c="dimmed" mb="xl">
 					In the near future, there will be more models — seikoNauts,
 					seikOaks, open balance wheels, skeleton dials, and female
 					models personally made and thereafter displayed here.
+				</Text>
+
+				<Text ta="center">
+					For GMT models, I offer the option of having an actual GMT
+					movement with the fourth GMT hand (others simply do the GMT
+					bezel insert)
 				</Text>
 				<Flex justify="center" mt="xl">
 					<Popover
@@ -73,7 +95,7 @@ export default function Shop() {
 									<li>Movement</li>
 								</ol>
 								You can also hover over the details to see which
-								part it refers to.
+								watch part it refers to.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -106,14 +128,7 @@ export default function Shop() {
 					onChange={(event) => setValue(event.currentTarget.value)}
 				></NativeSelect>
 			</Container> */}
-			<Container
-				my="md"
-				sx={{
-					display: "flex",
-					flexDirection: "row",
-				}}
-				justify="space-between"
-			>
+			<Container size="xl">
 				<Watch />
 				{/* <Watch {...watches["001"]} /> */}
 			</Container>

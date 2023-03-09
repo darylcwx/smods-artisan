@@ -29,35 +29,49 @@ export default function Home() {
 		<>
 			<Head>
 				<title>About</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<Container size="sm">
+			<Container size="xl">
 				<Title pt="xl">Hello!</Title>
 				<Text pb="xs">
-					Welcome to our world of custom-made Seiko watches. I take pride in
-					building high-quality, exclusive timepieces using only the finest
-					aftermarket parts and OEM Seiko movements.
+					Welcome to our world of custom Seiko mods. I take pride in
+					building high-quality, exclusive timepieces using only the
+					finest aftermarket parts and Seiko movements.
 				</Text>
 				<Text pb="xl">
-					Each watch is carefully assembled to ensure that it meets high
-					standards for quality and reliability. Whether you're looking for a
-					template or a unique and personalized timepiece, we have something for
-					everyone.
+					Each watch is carefully assembled to ensure that it meets
+					high standards for quality and reliability. Whether you're
+					looking for a template or a unique and personalized
+					timepiece, we have something for everyone.
 				</Text>
 				<Title pt="xl">History</Title>
 				<Text pb="xs">
 					My journey as a watchmaker began as a hobby, crafting unique
-					timepieces for family and friends. The positive response I received to
-					my work encouraged me to explore the opportunity to bring my passion
-					for watchmaking to a wider audience.
+					timepieces for family and friends. The positive response I
+					received to my work encouraged me to explore the opportunity
+					to bring my passion for watchmaking to a wider audience.
 				</Text>
 				<Text pb="xl">
-					Driven by a desire to offer high-quality, custom-made watches at an
-					affordable price, I decided to specialize in the creation of
-					one-of-a-kind timepieces for individuals seeking a truly personalized
-					accessory.
+					Driven by a desire to offer high-quality, custom-made
+					watches at an affordable price, I decided to specialize in
+					the creation of one-of-a-kind timepieces for individuals
+					seeking a truly personalized accessory.
+				</Text>
+				<Title pt="xl">Why me?</Title>
+				<Text pb="xl">
+					As a professional custom watchmaker, I stand behind the
+					craftsmanship of every watch I create with a 6-month
+					warranty. I offer a unique option of a fourth GMT hand,
+					setting my services apart from the competition. I value my
+					customers' loyalty and offer a 10% discount to returning
+					buyers. Additionally, my extensive research and deep
+					understanding of the industry ensure that I can deliver
+					high-quality timepieces at a fair price.
 				</Text>
 				<Grid id="faq-grid" py="xl">
 					<Col span={12} sm={6}>
@@ -75,20 +89,25 @@ export default function Home() {
 							chevronPosition="right"
 							defaultValue="0"
 							variant="separated"
+							sx={{ lineHeight: 1.55 }}
 						>
 							<Accordion.Item className={classes.item} value="1">
 								<Accordion.Control>
 									Where are your parts from?
 								</Accordion.Control>
 								<Accordion.Panel>
-									I source my parts from a variety of reputable suppliers in the
-									aftermarket industry. I carefully select my suppliers to
-									ensure that they provide high-quality parts that meet strict
-									standards for quality and reliability.<br></br>
-									<br></br> I use original equipment manufacturer (OEM)
-									movements, which are made by the same manufacturer that makes
-									the movement for the original watch brand. This ensures that
-									my watches are powered by reliable and accurate mechanisms.
+									I source my parts from a variety of
+									reputable suppliers in the aftermarket
+									industry. I carefully select my suppliers to
+									ensure that they provide high-quality parts
+									that meet strict standards for quality and
+									reliability.<br></br>
+									<br></br> I use different movements
+									depending on requirements, that makes the
+									replacement or compatible movements for the
+									original watch brand. This ensures that my
+									watches are powered by reliable and accurate
+									mechanisms.
 									<br></br>
 									<br></br>I have zero affiliation with Seiko.
 								</Accordion.Panel>
@@ -96,41 +115,52 @@ export default function Home() {
 
 							<Accordion.Item className={classes.item} value="2">
 								<Accordion.Control>
-									How long do I need to wait to receive a timepiece upon placing
-									an order?
+									How long do I need to wait to receive a
+									timepiece upon placing an order?
 								</Accordion.Control>
 								<Accordion.Panel>
-									I typically need about a month to build a watch. This is due
-									to sourcing and procuring of parts, as well as taking the time
-									to carefully assemble each watch to ensure that it meets the
-									standards for quality and reliability.
+									I typically need about a month to build a
+									watch. This is due to sourcing and procuring
+									of parts, as well as taking the time to
+									carefully assemble each watch to ensure that
+									it meets the standards for quality and
+									reliability.
 									<br></br>
-									<br></br>I want to ensure that you receive a watch that is not
-									only beautiful but also a functional and durable timepiece. I
-									apologize for any inconvenience this may cause and I will keep
-									you updated on the progress of your watch.
+									<br></br>I want to ensure that you receive a
+									watch that is not only beautiful but also a
+									functional and durable timepiece. I
+									apologize for any inconvenience this may
+									cause and I will keep you updated on the
+									progress of your watch.
 								</Accordion.Panel>
 							</Accordion.Item>
 
 							<Accordion.Item className={classes.item} value="3">
 								<Accordion.Control>
-									Can I send you a picture of a watch I like for you to build it
-									for me?
+									Are there any more available designs?
 								</Accordion.Control>
 								<Accordion.Panel>
-									I will be elated to build your dream watch. However, assuming
-									that I am able to source for the exact parts, I will require
-									extra time and effort to do so.
+									I will be elated to build your dream watch.
+									However, assuming that I am able to source
+									for the exact parts, I will require extra
+									time and effort to do so.
 									<br></br>
 									<br></br>
-									As such, I will be charging a premium for this service. I
-									understand that this may be an additional cost for you, but I
-									believe that the end result will be a unique and exclusive
-									timepiece, tailored to your personal style and preferences.
+									As such, I will be charging a small premium
+									of $20 for this service. I understand that
+									this may be an additional cost for you, but
+									I believe that the end result will be a
+									unique and exclusive timepiece, tailored to
+									your personal style and preferences.
 									<br></br>
 									<br></br>
-									<Text fs="italic">"I'm confused, what do you mean?"</Text>
-									Feel free to check these links for inspiration.
+									<Text fs="italic">
+										"I'm confused, what do you mean?"
+									</Text>
+									Feel free to check these links for
+									inspiration. I might be able to build a
+									watch you like from any of these other
+									modders.
 									<List listStyleType="disc">
 										<List.Item>
 											<Link
@@ -169,7 +199,7 @@ export default function Home() {
 									>
 										contact me
 									</Link>
-									&nbsp;to discuss further.
+									&nbsp;to ask more questions.
 									<br></br>
 								</Accordion.Panel>
 							</Accordion.Item>
@@ -180,35 +210,43 @@ export default function Home() {
 								</Accordion.Control>
 								<Accordion.Panel>
 									<Text>
-										I stand behind the quality of my work and would love for you
-										to be completely satisfied with your purchase. I offer a
-										6-month warranty on all of my watches, covering any defects
-										in materials and workmanship. This however, does not cover
-										wear and tear.
+										I stand behind the quality of my work
+										and would love for you to be completely
+										satisfied with your purchase. I offer a
+										6-month warranty on all of my watches,
+										covering any defects in materials and
+										workmanship. This however, does not
+										cover wear and tear.
 										<br></br>
-										<br></br> In the event of an issue or defect, depending on
-										the situation, I will:
+										<br></br> In the event of an issue or
+										defect, depending on the situation, I
+										will:
 									</Text>
 									<List type="ordered">
 										<List.Item>
-											Repair the watch using new or spare parts{" "}
+											Repair the watch using new or spare
+											parts{" "}
 										</List.Item>
-										<List.Item>Exchange the watch with a new one</List.Item>
 										<List.Item>
-											Refund the purchase price of the watch
+											Exchange the watch with a new one
+										</List.Item>
+										<List.Item>
+											Refund the purchase price of the
+											watch
 										</List.Item>
 									</List>
 									<br></br>
 									This warranty does not cover:<br></br>
 									<List>
 										<List.Item>
-											Improper care, negligence, normal wear and tear, or the
-											natural breakdown of colors and materials over extended
-											time and use.
+											Improper care, negligence, normal
+											wear and tear, or the natural
+											breakdown of colors and materials
+											over extended time and use.
 										</List.Item>
 										<List.Item>
-											Watches that have been damaged by unauthorized repair or
-											modification.
+											Watches that have been damaged by
+											unauthorized repair or modification.
 										</List.Item>
 									</List>
 								</Accordion.Panel>

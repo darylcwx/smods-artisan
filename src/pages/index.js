@@ -51,17 +51,17 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className={classes.image}>
+			<div className={classes.image} >
 				<Overlay color="#000" opacity={0.65} zIndex={0} />
 				<Container className={classes.inner}>
 					<Title tt="uppercase" className={classes.title}>
 						Affordable luxury, handcrafted to perfection
 					</Title>
 					<Text py="lg" size="xl" className={classes.text}>
-						Welcome to our world of custom-made Seiko watches.
+						Welcome to our world of custom Seiko mods.
 						<br></br> We take pride in building high-quality,
 						exclusive timepieces using only the finest aftermarket
-						parts and OEM Seiko movements.
+						parts and Seiko movements.
 					</Text>
 					<Group spacing="xl" sx={{ zIndex: "100" }}>
 						<Link href="/shop">
