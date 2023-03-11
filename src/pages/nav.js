@@ -32,7 +32,6 @@ const useStyles = createStyles((theme) => ({
 	root: {
 		position: "fixed",
 		zIndex: 1,
-		opacity: 0.85,
 	},
 	links: {
 		[theme.fn.smallerThan("sm")]: {
