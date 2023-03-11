@@ -16,7 +16,7 @@ import Link from "next/link";
 const useStyles = createStyles((theme) => ({
 	title: {},
 
-	item: {},
+	item: { height: "30px", display: "flex", alignItems: "center" },
 	contact: {
 		textDecoration: "none",
 	},
@@ -89,11 +89,12 @@ export default function Home() {
 							chevronPosition="right"
 							defaultValue="0"
 							variant="separated"
-							sx={{ lineHeight: 1.55 }}
 						>
-							<Accordion.Item className={classes.item} value="1">
+							<Accordion.Item value="1">
 								<Accordion.Control>
-									Where are your parts from?
+									<div className={classes.item}>
+										Where are your parts from?
+									</div>
 								</Accordion.Control>
 								<Accordion.Panel>
 									I source my parts from a variety of
@@ -113,10 +114,12 @@ export default function Home() {
 								</Accordion.Panel>
 							</Accordion.Item>
 
-							<Accordion.Item className={classes.item} value="2">
+							<Accordion.Item value="2">
 								<Accordion.Control>
-									How long do I need to wait to receive a
-									timepiece upon placing an order?
+									<div className={classes.item}>
+										How long do I need to wait to receive a
+										timepiece upon placing an order?
+									</div>
 								</Accordion.Control>
 								<Accordion.Panel>
 									I typically need about a month to build a
@@ -135,9 +138,11 @@ export default function Home() {
 								</Accordion.Panel>
 							</Accordion.Item>
 
-							<Accordion.Item className={classes.item} value="3">
+							<Accordion.Item value="3">
 								<Accordion.Control>
-									Are there any more available designs?
+									<div className={classes.item}>
+										Are there any more available designs?
+									</div>
 								</Accordion.Control>
 								<Accordion.Panel>
 									I will be elated to build your dream watch.
@@ -199,14 +204,16 @@ export default function Home() {
 									>
 										contact me
 									</Link>
-									&nbsp;to ask more questions.
+									&nbsp;to clarify any questions you may have.
 									<br></br>
 								</Accordion.Panel>
 							</Accordion.Item>
 
-							<Accordion.Item className={classes.item} value="4">
+							<Accordion.Item value="4">
 								<Accordion.Control>
-									What is your warranty policy?
+									<div className={classes.item}>
+										What is your warranty policy?
+									</div>
 								</Accordion.Control>
 								<Accordion.Panel>
 									<Text>
@@ -249,6 +256,42 @@ export default function Home() {
 											unauthorized repair or modification.
 										</List.Item>
 									</List>
+								</Accordion.Panel>
+							</Accordion.Item>
+
+							<Accordion.Item value="5">
+								<Accordion.Control>
+									<div className={classes.item}>
+										How do I adjust the day and date and/or
+										time?
+									</div>
+								</Accordion.Control>
+								<Accordion.Panel>
+									<Image src="setting.png"></Image>
+									<Title order={3}>0</Title>
+									<Text>
+										The watch crown should be screwed in and
+										locked. Unscrew it and turn clockwise to
+										wind the watch.
+									</Text>
+									<Title mt="md" order={3}>
+										1
+									</Title>
+									<Text>
+										1 click out will allow you to set the
+										<b> day</b> and <b>date</b>.<br></br>-
+										Turning clockwise will set the
+										<b> day</b> (only for NH36 movements)
+										<br></br>- Turning counterclockwise will
+										set the <b>date</b>.
+									</Text>
+									<Title mt="md" order={3}>
+										2
+									</Title>
+									<Text>
+										2 clicks out will allow you to set the
+										<b> time</b>.
+									</Text>
 								</Accordion.Panel>
 							</Accordion.Item>
 						</Accordion>
