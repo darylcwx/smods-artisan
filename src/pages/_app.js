@@ -7,7 +7,6 @@ import {
 	Button,
 	Text,
 } from "@mantine/core";
-
 import Nav from "@/pages/nav.js";
 
 export default function App({ Component, pageProps }) {
