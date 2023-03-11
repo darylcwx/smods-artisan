@@ -14,7 +14,7 @@ import {
 const useStyles = createStyles((theme) => ({
 	title: {
 		color: "white",
-		fontSize: 50,
+		fontSize: 48,
 		maxWidth: 600,
 	},
 	image: {
@@ -51,13 +51,13 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className={classes.image} >
+			<div className={classes.image}>
 				<Overlay color="#000" opacity={0.65} zIndex={0} />
 				<Container className={classes.inner}>
 					<Title tt="uppercase" className={classes.title}>
 						Affordable luxury, handcrafted to perfection
 					</Title>
-					<Text py="lg" size="xl" className={classes.text}>
+					<Text py="lg" size="lg" className={classes.text}>
 						Welcome to our world of custom Seiko mods.
 						<br></br> We take pride in building high-quality,
 						exclusive timepieces using only the finest aftermarket
