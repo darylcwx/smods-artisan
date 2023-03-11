@@ -28,6 +28,11 @@ export default function App({ Component, pageProps }) {
 				withNormalizeCSS
 				theme={{
 					colorScheme: "dark",
+					globalStyles: (theme) => ({
+						body: {
+							marginTop: "60px",
+						},
+					}),
 				}}
 			>
 				<Nav />
@@ -35,11 +40,6 @@ export default function App({ Component, pageProps }) {
 				<Component {...pageProps} />
 			</MantineProvider>
 
-			<style jsx global>
-				{`body {
-						margin-top: 60px;
-					}`}
-			</style>
 			{/* </ColorSchemeProvider> */}
 		</>
 	);
