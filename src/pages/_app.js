@@ -36,11 +36,9 @@ export default function App({ Component, pageProps }) {
 			</MantineProvider>
 
 			<style jsx global>
-				{`
-					body {
+				{`body {
 						margin-top: 60px;
-					}
-				`}
+					}`}
 			</style>
 			{/* </ColorSchemeProvider> */}
 		</>

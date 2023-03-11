@@ -104,7 +104,7 @@ export default function Watch(watch) {
 		{
 			name: "601",
 			price: "269",
-			image: "601" + ".jpg",
+			image: "601.jpg",
 			insert: "Embossed Black Submariner",
 			shell: "SKX007 case in black",
 			crown: "Seiko crown",
