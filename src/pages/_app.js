@@ -11,8 +11,6 @@ import {
 import Nav from "@/pages/nav.js";
 
 export default function App({ Component, pageProps }) {
-	
-
 	const [colorScheme, setColorScheme] = useState(ColorScheme);
 	// const toggleColorScheme = () =>
 	// 	setColorScheme(colorScheme === "dark" ? "light" : "dark");
@@ -34,7 +32,7 @@ export default function App({ Component, pageProps }) {
 				}}
 			>
 				<Nav />
-				
+
 				<Component {...pageProps} />
 			</MantineProvider>
 
@@ -42,9 +40,6 @@ export default function App({ Component, pageProps }) {
 				{`
 					body {
 						margin-top: 60px;
-					}
-					.mantine-Progress-root {
-						opacity: 1;
 					}
 				`}
 			</style>

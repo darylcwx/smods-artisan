@@ -21,7 +21,6 @@ import React from "react";
 import { useState } from "react";
 
 const useStyles = createStyles((theme) => ({
-	sizes: { xxl: "24px", xxxl: "28px", xxxxl: "32px" },
 	card: {},
 	category: {},
 	title: {},
@@ -60,7 +59,7 @@ export default function Watch(watch) {
 		{
 			name: "001",
 			price: "269",
-			image: "001.png",
+			image: "ym.jpg",
 			insert: "Embossed Black Submariner",
 			shell: "Standard 316L oyster case",
 			crown: "Standard 316L crown",
@@ -105,7 +104,7 @@ export default function Watch(watch) {
 		{
 			name: "601",
 			price: "269",
-			image: "test" + ".jpg",
+			image: "601" + ".jpg",
 			insert: "Embossed Black Submariner",
 			shell: "SKX007 case in black",
 			crown: "Seiko crown",
@@ -174,6 +173,7 @@ export default function Watch(watch) {
 									borderTopLeftRadius: "12px",
 									borderTopRightRadius: "12px",
 									overflow: "hidden",
+									background: "#faf0e6",
 								}}
 							></Image>
 							<Box
@@ -281,10 +281,15 @@ export default function Watch(watch) {
 									>
 										<Text size="xl">${watch.price}</Text>
 										<Modal
-											overlayOpacity={0.6}
-											overlayBlur={2}
-											transition="pop"
-											exitTransitionDuration={300}
+											overlayProps={{
+												opacity: 0.15,
+												blur: 2,
+											}}
+											transitionProps={{
+												transition: "fade",
+												timingFunction: "ease",
+												duration: 100,
+											}}
 											opened={modalOpen}
 											size="md"
 											onClose={closeModal}

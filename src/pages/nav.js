@@ -17,16 +17,22 @@ import {
 	Menu,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSun, IconMoonStars, IconCheck, IconAt } from "@tabler/icons-react";
+import {
+	IconSun,
+	IconMoonStars,
+	IconCheck,
+	IconAt,
+	IconBrandTelegram,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
-import Script from "next/script";
 import { showNotification } from "@mantine/notifications";
 import { useHover } from "@mantine/hooks";
 const useStyles = createStyles((theme) => ({
 	root: {
 		position: "fixed",
 		zIndex: 1,
+		opacity: 0.85,
 	},
 	links: {
 		[theme.fn.smallerThan("sm")]: {
@@ -57,7 +63,10 @@ const useStyles = createStyles((theme) => ({
 
 		[theme.fn.smallerThan("sm")]: {
 			borderRadius: 0,
-			padding: theme.spacing.md,
+			height: "60px",
+			display: "flex",
+			alignItems: "center",
+			padding: "10px 20px",
 		},
 	},
 	dropdown: {
@@ -65,12 +74,9 @@ const useStyles = createStyles((theme) => ({
 		top: header_height,
 		left: 0,
 		right: 0,
-		zIndex: 0,
-		borderTopRightRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopWidth: 0,
-		overflow: "hidden",
-
+		border: "none",
+		borderBottomLeftRadius: "10px",
+		borderBottomRightRadius: "10px",
 		[theme.fn.largerThan("sm")]: {
 			display: "none",
 		},
@@ -99,6 +105,7 @@ const useStyles = createStyles((theme) => ({
 			justifyContent: "end",
 		},
 	},
+	styles: {},
 }));
 
 const header_height = 60;
@@ -138,18 +145,13 @@ export default function Nav() {
 						className={classes.burger}
 						size="sm"
 					/>
-					{/* for dropdown in future */}
 					<Transition
 						transition="scale-y"
-						duration={200}
+						duration={300}
 						mounted={opened}
 					>
-						{(styles) => (
-							<Paper
-								className={classes.dropdown}
-								withBorder
-								style={styles}
-							>
+						{(event) => (
+							<Paper className={classes.dropdown} style={event}>
 								<Link href="/" className={classes.link}>
 									Home
 								</Link>
@@ -159,6 +161,19 @@ export default function Nav() {
 								<Link href="/about" className={classes.link}>
 									About
 								</Link>
+								<Button
+									onClick={() => openModal(true)}
+									sx={{
+										height: "60px",
+										width: "100%",
+										borderRadius: "0",
+										borderBottomLeftRadius: "15px",
+										borderBottomRightRadius: "15px",
+									}}
+									rightIcon={<IconBrandTelegram />}
+								>
+									Contact me!
+								</Button>
 								{/* <ActionIcon
 								onClick={() => toggleColorScheme()}
 								size="lg"

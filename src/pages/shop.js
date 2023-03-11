@@ -74,6 +74,7 @@ export default function Shop() {
 								onMouseLeave={close}
 								variant="outline"
 								size="sm"
+								sx={{ width: "250px" }}
 							>
 								What am I looking at?
 							</Button>
