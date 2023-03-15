@@ -16,7 +16,7 @@ import Link from "next/link";
 const useStyles = createStyles((theme) => ({
 	title: {},
 
-	item: { height: "30px", display: "flex", alignItems: "center" },
+	item: { height: "40px", display: "flex", alignItems: "center" },
 	contact: {
 		textDecoration: "none",
 	},
@@ -73,14 +73,14 @@ export default function Home() {
 					understanding of the industry ensure that I can deliver
 					high-quality timepieces at a fair price.
 				</Text>
-				<Grid id="faq-grid" py="xl">
-					<Col span={12} sm={6}>
+				<Grid id="faq-grid">
+					<Col span={12} sm={6} py="xl">
 						<Image
 							src="watches/311.jpg"
 							alt="SeikoNaut with Rose Gold details"
 						></Image>
 					</Col>
-					<Col span={12} sm={6}>
+					<Col span={12} sm={6} py="xl">
 						<Title order={2} px="sm" pb="sm">
 							Frequently Asked Questions
 						</Title>
