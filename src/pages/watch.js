@@ -119,7 +119,7 @@ export default function Watch(watch) {
 		{
 			name: "701",
 			price: "269",
-			image: "701" + ".JPG",
+			image: "701.jpeg",
 			insert: "Embossed Black Submariner",
 			shell: "SKX007 case in black",
 			crown: "Seiko crown",
@@ -134,7 +134,7 @@ export default function Watch(watch) {
 		{
 			name: "R001 (NFS)",
 			price: " -",
-			image: "R001" + ".JPG",
+			image: "R001.jpeg",
 			insert: "Embossed Black Submariner",
 			shell: "SKX007 case in black",
 			strap: "Rubber strap",
