@@ -46,7 +46,8 @@ export default function Shop() {
 				<Text ta="center" fw={500}>
 					Please note that this business is in it's early stage and
 					therefore I have limited photos. With more orders, rest
-					assured higher quality photos will be taken.
+					assured higher quality photos will be taken. All photos are
+					personally taken.
 				</Text>
 
 				<Text ta="center" c="dimmed" mb="xl">
@@ -57,8 +58,9 @@ export default function Shop() {
 
 				<Text ta="center">
 					For GMT models, I offer the option of having an actual GMT
-					movement with the fourth GMT hand (others simply do the GMT
-					bezel insert)
+					movement with the fourth GMT hand (other modders primarily
+					only do the GMT bezel insert without the GMT hand nor the
+					function)
 				</Text>
 				<Flex justify="center" mt="xl">
 					<Popover
@@ -81,8 +83,15 @@ export default function Shop() {
 						</Popover.Target>
 						<Popover.Dropdown>
 							<Text size="md">
-								Details of each watch will be displayed in their
-								respective cards in the following order:{" "}
+								Each watch belongs to a certain category seen in
+								the first number of its code. Watches starting
+								with 'R' are repair jobs, whereby the components
+								listed are the only parts <b>I personally </b>{" "}
+								replaced or changed.
+								<br></br>
+								<br></br>Details of each watch will be displayed
+								in their respective cards in the following
+								order:{" "}
 								<ol>
 									<li>Bezel Insert</li>
 									<li>Cases</li>
