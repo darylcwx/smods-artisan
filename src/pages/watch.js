@@ -59,7 +59,7 @@ export default function Watch(watch) {
 		{
 			name: "001",
 			price: "269",
-			image: "001.jpg",
+			image: "001.jpeg",
 			insert: "Embossed Black Submariner",
 			shell: "Standard 316L oyster case",
 			crown: "Standard 316L crown",
@@ -104,7 +104,7 @@ export default function Watch(watch) {
 		{
 			name: "601",
 			price: "269",
-			image: "601.jpg",
+			image: "601.jpeg",
 			insert: "Ceramic Black-Brown 12 hour GMT bezel insert",
 			shell: "Standard 316L oyster case",
 			crown: "Seiko gold crown",
