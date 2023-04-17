@@ -58,7 +58,7 @@ export default function Watch(watch) {
 	const watches = [
 		{
 			name: "001",
-			price: "269",
+			price: "249",
 			image: "001.jpeg",
 			insert: "Embossed Black Submariner",
 			shell: "Standard 316L oyster case",
@@ -73,7 +73,7 @@ export default function Watch(watch) {
 		},
 		{
 			name: "003",
-			price: "269",
+			price: "249",
 			image: "003" + ".png",
 			insert: "Black Submariner w additional decals",
 			shell: "Standard 316L oyster case",
@@ -88,7 +88,7 @@ export default function Watch(watch) {
 		},
 		{
 			name: "301",
-			price: "269",
+			price: "249",
 			image: "301" + ".JPG",
 			insert: "",
 			shell: "Case resembling Patek Aquanaut",
@@ -103,7 +103,7 @@ export default function Watch(watch) {
 		},
 		{
 			name: "601",
-			price: "269",
+			price: "249",
 			image: "601.jpeg",
 			insert: "Ceramic Black-Brown 12 hour GMT bezel insert",
 			shell: "Standard 316L oyster case",
@@ -118,7 +118,7 @@ export default function Watch(watch) {
 		},
 		{
 			name: "701",
-			price: "269",
+			price: "249",
 			image: "701.jpeg",
 			insert: "Embossed Black Submariner",
 			shell: "SKX007 case in black",

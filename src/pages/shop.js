@@ -1,21 +1,36 @@
 import { useState, useEffect } from "react";
 import {
+	createStyles,
 	Container,
 	Text,
 	Button,
 	Flex,
 	Popover,
 	NativeSelect,
+	Image,
+	List,
+	Link,
 } from "@mantine/core";
+import { Carousel } from "@mantine/carousel";
 
 import { useDisclosure } from "@mantine/hooks";
 import Head from "next/head";
 import Watch from "@/pages/watch.js";
 import { useRouter } from "next/router";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
+
+const useStyles = createStyles((theme) => ({
+	contact: {
+		textDecoration: "none",
+	},
+	underline: {
+		textDecoration: "underline",
+	},
+}));
+
 export default function Shop() {
+	const { classes } = useStyles();
 	const router = useRouter();
-	const [opened, { close, open }] = useDisclosure(false);
 	const [scroll, setScrollPosition] = useState(0);
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -45,9 +60,10 @@ export default function Shop() {
 			<Container py="xl">
 				<Text ta="center" fw={500}>
 					Please note that this business is in it's early stage and
-					therefore I have limited photos. With more orders, rest
-					assured higher quality photos will be taken. All photos are
-					personally taken.
+					therefore I have limited photos. The watches displayed here
+					are those personally built so far. This means it doesn't
+					include watches that I{" "}
+					<span className={classes.underline}>can</span> build.
 				</Text>
 
 				<Text ta="center" c="dimmed" mb="xl">
@@ -55,29 +71,161 @@ export default function Shop() {
 					seikOaks, open balance wheels, skeleton dials, and female
 					models personally made and thereafter displayed here.
 				</Text>
-
-				<Text ta="center">
-					For GMT models, I offer the option of having an actual GMT
-					movement with the fourth GMT hand (other modders primarily
-					only do the GMT bezel insert without the GMT hand nor the
-					function)
-				</Text>
-				<Flex justify="center" mt="xl">
+				<Flex
+					justify="center"
+					align="center"
+					direction="row"
+					gap="md"
+					wrap="wrap"
+				>
 					<Popover
 						width={450}
 						position="bottom"
 						withArrow
 						shadow="md"
-						opened={opened}
 					>
 						<Popover.Target>
-							<Button
-								onMouseEnter={open}
-								onMouseLeave={close}
-								variant="outline"
-								size="sm"
-								sx={{ width: "250px" }}
-							>
+							<Button variant="outline" size="sm">
+								That's all...?
+							</Button>
+						</Popover.Target>
+						<Popover.Dropdown>
+							<Text size="md">
+								As mentioned above, the watches displayed here
+								are only those personally built so far.
+								Depending on the intricacy, parts involved, and
+								availability of said parts, I might be able to
+								build them.
+								<br></br>
+								<br></br>
+								Feel free to check these links for design
+								inspiration. I might be able to build a watch
+								you like from any of these other modders.
+								<List>
+									<List.Item>
+										<a
+											href="https://www.instagram.com/seikomods"
+											target="_blank"
+										>
+											@seikomods
+										</a>
+									</List.Item>
+									<List.Item>
+										<a
+											href="https://www.instagram.com/bbmod_france/"
+											target="_blank"
+										>
+											@bbmod_france
+										</a>
+									</List.Item>
+									<List.Item>
+										<a
+											href="https://www.instagram.com/bbmod_watches"
+											target="_blank"
+										>
+											@bbmod_watches
+										</a>
+									</List.Item>
+									<List.Item>
+										<a
+											href="https://www.instagram.com/jack_hypoxia/?hl=en"
+											target="_blank"
+										>
+											@jack_hypoxia
+										</a>
+									</List.Item>
+								</List>
+							</Text>
+						</Popover.Dropdown>
+					</Popover>
+					<Popover
+						width={450}
+						position="bottom"
+						withArrow
+						shadow="md"
+					>
+						<Popover.Target>
+							<Button variant="outline" size="sm">
+								Ladies version?
+							</Button>
+						</Popover.Target>
+
+						<Popover.Dropdown>
+							<Text size="md">
+								As stated, they are not displayed here (yet) but
+								I am able to build them.
+								<br></br>
+								<br></br>
+								Yes! It's a WIP right now but it's essentially
+								the same style with 36mm cases instead. Stay
+								tuned for a 36mm jubilee DateJust by July.
+								<br></br>
+								<br></br>
+								Ladies' watches will be priced at $239.
+							</Text>
+						</Popover.Dropdown>
+					</Popover>
+					<Popover
+						width={450}
+						position="bottom"
+						withArrow
+						shadow="md"
+					>
+						<Popover.Target>
+							<Button variant="outline" size="sm">
+								GMT?
+							</Button>
+						</Popover.Target>
+						<Popover.Dropdown>
+							<Text size="md">
+								As stated, they are not displayed here (yet) but
+								I am able to build them.
+								<br></br>
+								<br></br>
+								For GMT models, I offer the option of having an
+								actual GMT movement with the fourth GMT hand
+								(other modders primarily only do the GMT bezel
+								insert without the GMT hand nor the function).
+								<br></br>
+								<br></br>
+								However, if you'd like just the GMT bezel with 3
+								hands, that's fine too!
+								<br></br>
+								<br></br>
+								Functional GMTs are priced at $299.
+							</Text>
+						</Popover.Dropdown>
+					</Popover>
+					<Popover
+						width={450}
+						position="bottom"
+						withArrow
+						shadow="md"
+					>
+						<Popover.Target>
+							<Button variant="outline" size="sm">
+								Daytona/Chronographs?
+							</Button>
+						</Popover.Target>
+						<Popover.Dropdown>
+							<Text size="md">
+								I'm currently still exploring the intricacies of
+								a chronograph movement. Stay tuned for more!
+								<br></br>
+								<br></br>
+								{/* <br></br><br></br> */}
+								Functional chronographs will be priced at $349.
+							</Text>
+						</Popover.Dropdown>
+					</Popover>
+					<Popover
+						width={450}
+						position="bottom"
+						withArrow
+						shadow="md"
+					>
+						<Popover.Target>
+							<Button variant="outline" size="sm">
 								What am I looking at?
 							</Button>
 						</Popover.Target>

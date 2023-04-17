@@ -151,17 +151,14 @@ export default function Home() {
 									time and effort to do so.
 									<br></br>
 									<br></br>
-									As such, I will be charging a small premium
-									of $20 for this service. I understand that
+									As such, I might or might not charge a small
+									premium for this service. I understand that
 									this may be an additional cost for you, but
 									I believe that the end result will be a
 									unique and exclusive timepiece, tailored to
 									your personal style and preferences.
 									<br></br>
 									<br></br>
-									<Text fs="italic">
-										"I'm confused, what do you mean?"
-									</Text>
 									Feel free to check these links for
 									inspiration. I might be able to build a
 									watch you like from any of these other
@@ -179,7 +176,7 @@ export default function Home() {
 										<List.Item>
 											<Link
 												className={classes.contact}
-												href="https://www.instagram.com/bbmod_france/?hl=en"
+												href="https://www.instagram.com/bbmod_france/"
 												target="_blank"
 											>
 												@bbmod_france
@@ -188,10 +185,20 @@ export default function Home() {
 										<List.Item>
 											<Link
 												className={classes.contact}
-												href="https://www.bbmodfrance.com/en/boutique/"
+												href="https://www.instagram.com/bbmod_watches"
 												target="_blank"
 											>
-												Bbmod's website
+												@bbmod_watches
+											</Link>
+										</List.Item>
+
+										<List.Item>
+											<Link
+												className={classes.contact}
+												href="https://www.instagram.com/jack_hypoxia/?hl=en"
+												target="_blank"
+											>
+												@jack_hypoxia
 											</Link>
 										</List.Item>
 									</List>

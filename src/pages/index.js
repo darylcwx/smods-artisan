@@ -15,27 +15,33 @@ const useStyles = createStyles((theme) => ({
 	title: {
 		color: "white",
 		fontSize: 48,
-		maxWidth: 600,
 	},
 	image: {
 		position: "relative",
 		backgroundImage: "url(bg2-2.jpg)",
 		backgroundSize: "cover",
 		backgroundPosition: "center",
-		minHeight: "calc( 100vh )",
-		paddingBottom: 150,
+		height: "100vh",
 		zIndex: "0",
 	},
-	inner: {
+	outer: {
 		position: "relative",
 		zIndex: "1",
 		display: "flex",
+		justifyContent: "flex-start",
+		minHeight: "90vh",
+		alignItems: "center",
+		textAlign: "left",
+		maxWidth: "80rem",
+	},
+	inner: {
+		display: "flex",
 		flexDirection: "column",
-		justifyContent: "flex-end",
-		minHeight: 700,
+		maxWidth: "40rem",
+		marginLeft: 0,
 	},
 	text: {
-		maxWidth: 500,
+		maxWidth: "500px",
 	},
 }));
 
@@ -53,33 +59,35 @@ export default function Home() {
 			</Head>
 			<div className={classes.image}>
 				<Overlay color="#000" opacity={0.65} zIndex={0} />
-				<Container className={classes.inner}>
-					<Title tt="uppercase" className={classes.title}>
-						Affordable luxury, handcrafted to perfection
-					</Title>
-					<Text py="lg" size="lg" className={classes.text}>
-						Welcome to our world of custom Seiko mods.
-						<br></br> We take pride in building high-quality,
-						exclusive timepieces using only the finest aftermarket
-						parts and Seiko movements.
-					</Text>
-					<Group spacing="xl" sx={{ zIndex: "100" }}>
-						<Link href="/shop">
-							<Button
-								variant="filled"
-								radius="xl"
-								uppercase
-								rightIcon={<IconChevronRight size={18} />}
-							>
-								<Text size="xs">buy now</Text>
-							</Button>
-						</Link>
-						<Link href="/about">
-							<Button variant="outline" radius="xl" uppercase>
-								<Text size="xs">read more</Text>
-							</Button>
-						</Link>
-					</Group>
+				<Container className={classes.outer}>
+					<Container className={classes.inner}>
+						<Title tt="uppercase" className={classes.title}>
+							Affordable luxury, handcrafted to perfection
+						</Title>
+						<Text py="lg" size="lg" className={classes.text}>
+							Welcome to our world of custom Seiko mods.
+							<br></br> We take pride in building high-quality,
+							exclusive timepieces using only the finest
+							aftermarket parts and Seiko movements.
+						</Text>
+						<Group spacing="xl" sx={{ zIndex: "100" }}>
+							<Link href="/shop">
+								<Button
+									variant="filled"
+									radius="xl"
+									uppercase
+									rightIcon={<IconChevronRight size={18} />}
+								>
+									<Text size="xs">buy now</Text>
+								</Button>
+							</Link>
+							<Link href="/about">
+								<Button variant="outline" radius="xl" uppercase>
+									<Text size="xs">read more</Text>
+								</Button>
+							</Link>
+						</Group>
+					</Container>
 				</Container>
 			</div>
 		</>
