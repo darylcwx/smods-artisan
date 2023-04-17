@@ -9,11 +9,9 @@ import {
 	NativeSelect,
 	Image,
 	List,
-	Link,
 } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
-
-import { useDisclosure } from "@mantine/hooks";
+import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/pages/watch.js";
 import { useRouter } from "next/router";
@@ -103,36 +101,36 @@ export default function Shop() {
 								you like from any of these other modders.
 								<List>
 									<List.Item>
-										<a
+										<Link
 											href="https://www.instagram.com/seikomods"
 											target="_blank"
 										>
 											@seikomods
-										</a>
+										</Link>
 									</List.Item>
 									<List.Item>
-										<a
+										<Link
 											href="https://www.instagram.com/bbmod_france/"
 											target="_blank"
 										>
 											@bbmod_france
-										</a>
+										</Link>
 									</List.Item>
 									<List.Item>
-										<a
+										<Link
 											href="https://www.instagram.com/bbmod_watches"
 											target="_blank"
 										>
 											@bbmod_watches
-										</a>
+										</Link>
 									</List.Item>
 									<List.Item>
-										<a
+										<Link
 											href="https://www.instagram.com/jack_hypoxia/?hl=en"
 											target="_blank"
 										>
 											@jack_hypoxia
-										</a>
+										</Link>
 									</List.Item>
 								</List>
 							</Text>
