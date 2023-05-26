@@ -59,7 +59,7 @@ export default function Watch(watch) {
 		{
 			name: "001",
 			price: "249",
-			image: "001.jpeg",
+			image: "001.jpg",
 			insert: "Embossed Black Submariner",
 			shell: "Standard 316L oyster case",
 			crown: "Standard 316L crown",

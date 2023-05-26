@@ -76,7 +76,7 @@ export default function Home() {
 				<Grid id="faq-grid">
 					<Col span={12} sm={6} py="xl">
 						<Image
-							src="watches/311.jpg"
+							src="movement.jpg"
 							alt="SeikoNaut with Rose Gold details"
 						></Image>
 					</Col>
