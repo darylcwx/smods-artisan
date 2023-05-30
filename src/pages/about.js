@@ -103,6 +103,9 @@ export default function Home() {
 									ensure that they provide high-quality parts
 									that meet strict standards for quality and
 									reliability.<br></br>
+									<br></br>
+									<Image src={"/lume.JPG"} sx={{}}></Image>
+									<br></br>
 									<br></br> I use different movements
 									depending on requirements, that makes the
 									replacement or compatible movements for the

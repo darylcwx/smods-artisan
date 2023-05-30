@@ -150,16 +150,11 @@ export default function Shop() {
 
 						<Popover.Dropdown>
 							<Text size="md">
-								As stated, they are not displayed here (yet) but
-								I am able to build them.
+								I made my first 36mm watch recently! Check out
+								F01 below!
 								<br></br>
 								<br></br>
-								Yes! It's a WIP right now but it's essentially
-								the same style with 36mm cases instead. Stay
-								tuned for a 36mm jubilee DateJust by July.
-								<br></br>
-								<br></br>
-								Ladies' watches will be priced at $239.
+								Ladies' watches will be priced at $179.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -190,7 +185,7 @@ export default function Shop() {
 								hands, that's fine too!
 								<br></br>
 								<br></br>
-								Functional GMTs are priced at $299.
+								Functional GMTs are priced at $209.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -211,8 +206,6 @@ export default function Shop() {
 								a chronograph movement. Stay tuned for more!
 								<br></br>
 								<br></br>
-								{/* <br></br><br></br> */}
-								Functional chronographs will be priced at $349.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -232,12 +225,12 @@ export default function Shop() {
 								Each watch belongs to a certain category seen in
 								the first number of its code. Watches starting
 								with 'R' are repair jobs, whereby the components
-								listed are the only parts <b>I personally </b>{" "}
+								listed are the only parts <b>I personally </b>
 								replaced or changed.
 								<br></br>
 								<br></br>Details of each watch will be displayed
 								in their respective cards in the following
-								order:{" "}
+								order:
 								<ol>
 									<li>Bezel Insert</li>
 									<li>Cases</li>
