@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { IconChevronRight } from "@tabler/icons-react";
 import {
+	MediaQuery,
 	createStyles,
 	Container,
 	Button,
@@ -10,11 +11,16 @@ import {
 	Text,
 	Overlay,
 } from "@mantine/core";
+import { NodeNextRequest } from "next/dist/server/base-http/node";
 
 const useStyles = createStyles((theme) => ({
 	title: {
 		color: "white",
 		fontSize: 48,
+	},
+	titleMobile: {
+		color: "white",
+		fontSize: 32,
 	},
 	image: {
 		position: "relative",
@@ -61,9 +67,25 @@ export default function Home() {
 				<Overlay color="#000" opacity={0.65} zIndex={0} />
 				<Container className={classes.outer}>
 					<Container className={classes.inner}>
-						<Title tt="uppercase" className={classes.title}>
-							Affordable luxury, handcrafted to perfection
-						</Title>
+						<MediaQuery
+							largerThan="md"
+							styles={{ display: "none" }}
+						>
+							<Title
+								tt="uppercase"
+								className={classes.titleMobile}
+							>
+								Affordable luxury, handcrafted to perfection
+							</Title>
+						</MediaQuery>
+						<MediaQuery
+							smallerThan="md"
+							styles={{ display: "none" }}
+						>
+							<Title tt="uppercase" className={classes.title}>
+								Affordable luxury, handcrafted to perfection
+							</Title>
+						</MediaQuery>
 						<Text py="lg" size="lg" className={classes.text}>
 							Welcome to our world of custom Seiko mods.
 							<br></br> We take pride in building high-quality,
