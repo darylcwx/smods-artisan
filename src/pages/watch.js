@@ -74,7 +74,7 @@ export default function Watch(watch) {
 		{
 			name: "003",
 			price: "209",
-			image: "003" + ".JPG",
+			image: "003.JPG",
 			insert: "Black Submariner w additional decals",
 			shell: "Standard 316L oyster case",
 			crown: "Standard 316L crown",
@@ -89,7 +89,7 @@ export default function Watch(watch) {
 		{
 			name: "301",
 			price: "209",
-			image: "301" + ".JPG",
+			image: "301.JPG",
 			insert: "",
 			shell: "Case resembling Patek Aquanaut",
 			crown: "Crown resembling Patek Aquanaut",
@@ -104,7 +104,7 @@ export default function Watch(watch) {
 		{
 			name: "601",
 			price: "209",
-			image: "601.jpeg",
+			image: "601.JPG",
 			insert: "Ceramic Black-Brown 12 hour GMT bezel insert",
 			shell: "Standard 316L oyster case",
 			crown: "Seiko gold crown",
