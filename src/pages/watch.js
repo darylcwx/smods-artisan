@@ -191,7 +191,7 @@ export default function Watch(watch) {
 							sx={{ height: "100%" }}
 						>
 							<Image
-								src={"/watches/" + watch.image}
+								src={"/static/watches/" + watch.image}
 								fit="cover"
 								sx={{
 									borderTopLeftRadius: "12px",
@@ -199,6 +199,7 @@ export default function Watch(watch) {
 									overflow: "hidden",
 									background: "#faf0e6",
 								}}
+								alt={watch.name}
 							></Image>
 							<Box
 								ma="0"
