@@ -12,10 +12,8 @@ import {
 } from "@mantine/core";
 import Head from "next/head";
 import Link from "next/link";
-
+import { useState } from "react";
 const useStyles = createStyles((theme) => ({
-	title: {},
-
 	item: { height: "40px", display: "flex", alignItems: "center" },
 	contact: {
 		textDecoration: "none",
@@ -25,6 +23,10 @@ const useStyles = createStyles((theme) => ({
 export default function Home() {
 	const { classes } = useStyles();
 
+	const [openIndex, setOpenIndex] = useState(-1);
+	const handleAccordionToggle = (index) => {
+		setOpenIndex(index === openIndex ? -1 : index);
+	};
 	return (
 		<>
 			<Head>
@@ -76,8 +78,8 @@ export default function Home() {
 				<Grid id="faq-grid">
 					<Col span={12} sm={6} py="xl">
 						<Image
-							src="movement.JPG"
-							alt="SeikoNaut with Rose Gold details"
+							src="static/background/movement.JPG"
+							alt="movement"
 						></Image>
 					</Col>
 					<Col span={12} sm={6} py="xl">
@@ -91,7 +93,14 @@ export default function Home() {
 							variant="separated"
 						>
 							<Accordion.Item value="1">
-								<Accordion.Control>
+								<Accordion.Control
+									className={
+										openIndex
+											? "bg-accent-hover text-white rounded-lg"
+											: ""
+									}
+									onClick={() => handleAccordionToggle(0)}
+								>
 									<div className={classes.item}>
 										Where are your parts from?
 									</div>
@@ -104,7 +113,10 @@ export default function Home() {
 									that meet strict standards for quality and
 									reliability.<br></br>
 									<br></br>
-									<Image src={"/lume.JPG"} sx={{}}></Image>
+									<Image
+										src={"/static/background/lume.JPG"}
+										sx={{}}
+									></Image>
 									<br></br>
 									<br></br> I use different movements
 									depending on requirements, that makes the
@@ -118,7 +130,14 @@ export default function Home() {
 							</Accordion.Item>
 
 							<Accordion.Item value="2">
-								<Accordion.Control>
+								<Accordion.Control
+									className={
+										openIndex
+											? "bg-accent-hover text-white rounded-lg"
+											: ""
+									}
+									onClick={() => handleAccordionToggle(1)}
+								>
 									<div className={classes.item}>
 										How long do I need to wait to receive a
 										timepiece upon placing an order?
@@ -142,7 +161,9 @@ export default function Home() {
 							</Accordion.Item>
 
 							<Accordion.Item value="3">
-								<Accordion.Control>
+								<Accordion.Control
+									onClick={() => handleAccordionToggle(2)}
+								>
 									<div className={classes.item}>
 										Are there any more available designs?
 									</div>
@@ -220,7 +241,9 @@ export default function Home() {
 							</Accordion.Item>
 
 							<Accordion.Item value="4">
-								<Accordion.Control>
+								<Accordion.Control
+									onClick={() => handleAccordionToggle(3)}
+								>
 									<div className={classes.item}>
 										What is your warranty policy?
 									</div>
@@ -270,14 +293,16 @@ export default function Home() {
 							</Accordion.Item>
 
 							<Accordion.Item value="5">
-								<Accordion.Control>
+								<Accordion.Control
+									onClick={() => handleAccordionToggle(4)}
+								>
 									<div className={classes.item}>
 										How do I adjust the day and date and/or
 										time?
 									</div>
 								</Accordion.Control>
 								<Accordion.Panel>
-									<Image src="setting.png"></Image>
+									<Image src="/static/background/setting.png"></Image>
 									<Title order={3}>0</Title>
 									<Text>
 										The watch crown should be screwed in and

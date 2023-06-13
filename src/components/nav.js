@@ -60,19 +60,6 @@ const useStyles = createStyles((theme) => ({
 			padding: "10px 20px",
 		},
 	},
-	cart: {
-		textDecoration: "none",
-		color:
-			theme.colorScheme === "dark"
-				? theme.colors.dark[0]
-				: theme.colors.gray[7],
-		"&:hover": {
-			backgroundColor:
-				theme.colorScheme === "dark"
-					? theme.colors.dark[6]
-					: theme.colors.gray[0],
-		},
-	},
 	dropdown: {
 		position: "absolute",
 		top: header_height,
@@ -85,19 +72,6 @@ const useStyles = createStyles((theme) => ({
 			display: "none",
 		},
 	},
-	linkActive: {
-		"&, &:hover": {
-			backgroundColor: theme.fn.variant({
-				variant: "light",
-				color: theme.primaryColor,
-			}).background,
-			color: theme.fn.variant({
-				variant: "light",
-				color: theme.primaryColor,
-			}).color,
-		},
-	},
-	styles: {},
 }));
 const header_height = 60;
 export default function Nav() {
@@ -129,50 +103,60 @@ export default function Nav() {
 		<>
 			<Header height={header_height} className={classes.root}>
 				<Container className="h-full max-w-none flex items-center">
-					<Burger
-						opened={opened}
-						onClick={toggle}
-						className="inline md:hidden"
-						size="sm"
-					/>
-					<Transition
-						transition="scale-y"
-						duration={300}
-						mounted={opened}
-					>
-						{(event) => (
-							<Paper className={classes.dropdown} style={event}>
-								<Link href="/" className={classes.link}>
-									Home
-								</Link>
-								<Link href="/shop" className={classes.link}>
-									Shop
-								</Link>
-								<Link href="/about" className={classes.link}>
-									About
-								</Link>
-								<Link href="/cart" className={classes.link}>
-									<span style={{ paddingRight: "0.5rem" }}>
-										Cart
-									</span>
-									{<IconShoppingCart />}
-								</Link>
-								<Button
-									onClick={() => openModal(true)}
-									sx={{
-										height: "60px",
-										width: "100%",
-										borderRadius: "0",
-										borderBottomLeftRadius: "15px",
-										borderBottomRightRadius: "15px",
-									}}
-									rightIcon={<IconBrandTelegram />}
+					<Box className="flex md:hidden items-center justify-between w-full">
+						<Burger
+							opened={opened}
+							onClick={toggle}
+							className="inline md:hidden"
+							size="sm"
+						/>
+
+						{/* Dropdown for mobile*/}
+						<Transition
+							transition="scale-y"
+							duration={300}
+							exitDuration={300}
+							mounted={opened}
+						>
+							{(event) => (
+								<Paper
+									className={classes.dropdown}
+									style={event}
 								>
-									Contact me!
-								</Button>
-							</Paper>
-						)}
-					</Transition>
+									<Link href="/" className={classes.link}>
+										Home
+									</Link>
+									<Link href="/shop" className={classes.link}>
+										Shop
+									</Link>
+									<Link
+										href="/about"
+										className={classes.link}
+									>
+										About
+									</Link>
+									<Link href="/cart" className={classes.link}>
+										<span
+											style={{ paddingRight: "0.5rem" }}
+										>
+											Cart
+										</span>
+										{<IconShoppingCart />}
+									</Link>
+									<Button
+										onClick={() => openModal(true)}
+										className="h-14 w-full bg-accent hover:bg-accent-hover rounded-none"
+										rightIcon={<IconBrandTelegram />}
+									>
+										Contact me!
+									</Button>
+								</Paper>
+							)}
+						</Transition>
+						<Link href="/" className="">
+							<Image src="/svgs/v1.svg" width={48} />
+						</Link>
+					</Box>
 					<Box className="hidden md:flex row justify-between h-full w-full ">
 						<Group className="">
 							<Link href="/" className="">
@@ -183,7 +167,8 @@ export default function Nav() {
 							<Link href="/shop" className={classes.link}>
 								Shop
 							</Link>
-							{/* <Menu shadow="md" width={200} ref={ref} trigger="hover">
+							{/* Shop list of items? 
+							<Menu shadow="md" width={200} ref={ref} trigger="hover">
 							<Menu.Target>
 								<Link href="/shop" className={classes.link}>
 									Shop

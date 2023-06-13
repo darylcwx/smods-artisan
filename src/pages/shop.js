@@ -4,18 +4,16 @@ import {
 	Container,
 	Text,
 	Button,
-	Flex,
+	Box,
 	Popover,
 	NativeSelect,
 	SimpleGrid,
 	Image,
 	List,
 } from "@mantine/core";
-import { Carousel } from "@mantine/carousel";
 import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/components/watch.js";
-import { useRouter } from "next/router";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
 import priceList from "@/constants/pricelist.js";
 const useStyles = createStyles((theme) => ({
@@ -127,7 +125,6 @@ const watches = [
 ];
 export default function Shop() {
 	const { classes } = useStyles();
-	const router = useRouter();
 	const [scroll, setScrollPosition] = useState(0);
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -142,7 +139,6 @@ export default function Shop() {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	});
-	var q = router.query;
 	return (
 		<>
 			<Head>
@@ -160,7 +156,6 @@ export default function Shop() {
 					built so far. This means it doesn't include watches that I{" "}
 					<span className={"underline"}>can</span> build.
 				</Text>
-
 				<Text ta="center" c="dimmed" mb="lg">
 					In the near future, there will be more models — seikoNauts,
 					seikOaks, open balance wheels, skeleton dials, and female
@@ -171,21 +166,14 @@ export default function Shop() {
 					what is displayed here, so don't be shy, drop me a text to
 					discuss what exact parts or the exact watch you'd like! 😀
 				</Text>
-				<Flex
-					justify="center"
-					align="center"
-					direction="row"
-					gap="md"
-					wrap="wrap"
-				>
-					<Popover
-						width={450}
-						position="bottom"
-						withArrow
-						shadow="md"
-					>
+				<Box className="flex row justify-center items-center gap-2 flex-wrap">
+					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
-							<Button variant="outline" size="sm">
+							<Button
+								variant="outline"
+								size="sm"
+								className="text-accent border-accent hover:bg-accent/10"
+							>
 								That's all...?
 							</Button>
 						</Popover.Target>
@@ -238,14 +226,13 @@ export default function Shop() {
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
-					<Popover
-						width={450}
-						position="bottom"
-						withArrow
-						shadow="md"
-					>
+					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
-							<Button variant="outline" size="sm">
+							<Button
+								variant="outline"
+								size="sm"
+								className="text-accent border-accent hover:bg-accent/10"
+							>
 								Ladies version?
 							</Button>
 						</Popover.Target>
@@ -261,14 +248,13 @@ export default function Shop() {
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
-					<Popover
-						width={450}
-						position="bottom"
-						withArrow
-						shadow="md"
-					>
+					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
-							<Button variant="outline" size="sm">
+							<Button
+								variant="outline"
+								size="sm"
+								className="text-accent border-accent hover:bg-accent/10"
+							>
 								GMT?
 							</Button>
 						</Popover.Target>
@@ -293,14 +279,13 @@ export default function Shop() {
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
-					<Popover
-						width={450}
-						position="bottom"
-						withArrow
-						shadow="md"
-					>
+					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
-							<Button variant="outline" size="sm">
+							<Button
+								variant="outline"
+								size="sm"
+								className="text-accent border-accent hover:bg-accent/10"
+							>
 								Daytona/Chronographs?
 							</Button>
 						</Popover.Target>
@@ -311,14 +296,13 @@ export default function Shop() {
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
-					<Popover
-						width={450}
-						position="bottom"
-						withArrow
-						shadow="md"
-					>
+					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
-							<Button variant="outline" size="sm">
+							<Button
+								variant="outline"
+								size="sm"
+								className="text-accent border-accent hover:bg-accent/10"
+							>
 								What am I looking at?
 							</Button>
 						</Popover.Target>
@@ -350,7 +334,7 @@ export default function Shop() {
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
-				</Flex>
+				</Box>
 			</Container>
 			<Container px="xl" size="md">
 				<SimpleGrid
@@ -370,6 +354,7 @@ export default function Shop() {
 							verticalSpacing: "xl",
 						},
 					]}
+					className="pb-6"
 				>
 					{watches.map((watch) => (
 						<Watch key={watch} {...watch} />

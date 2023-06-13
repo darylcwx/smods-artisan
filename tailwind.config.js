@@ -25,6 +25,8 @@ module.exports = {
 			colors: {
 				accent: "#B59640",
 				"accent-hover": "#977D35",
+				"accent-hover-outlined": "#FFEADFC3",
+				paper: "#3C3115",
 				// accent: "#3b82f6",
 				//"accent-hover": "#1d4ed8",
 			},

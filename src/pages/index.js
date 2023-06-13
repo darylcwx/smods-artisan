@@ -41,15 +41,13 @@ export default function Home() {
 				size="md"
 				px="xl"
 			>
-				<Title tt="uppercase" className="w-full sm:w-3/4">
-					Affordable luxury, <br />
-					handcrafted to perfection
+				<Title order={1} className="w-full sm:w-3/4 text-white">
+					Welcome to SMods Artisan.
 				</Title>
 				<Text size="lg" className="py-3 w-full sm:w-3/4">
-					Welcome to our world of custom Seiko mods.
-					<br></br> We take pride in building high-quality, exclusive
-					timepieces using only the finest aftermarket parts and Seiko
-					movements.
+					We take pride in handcrafting high-quality, exclusive yet
+					affordable timepieces using only the finest aftermarket
+					parts.
 				</Text>
 				<Group
 					spacing="xl"

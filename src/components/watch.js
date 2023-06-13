@@ -67,17 +67,17 @@ export default function Watch({
 	return (
 		<>
 			<Paper
-				className="p-0 rounded-xxl drop-shadow-2xl transition ease-in-out hover:shadow-xl hover:shadow-white/75 hover:scale-105 hover:duration-200"
+				className="p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
 				key={name}
 			>
-				<Flex className="flex flex-col justify-start h-full">
+				<Box className="flex flex-col justify-start h-full">
 					<Image
 						src={"/static/watches/" + image}
 						fit="cover"
-						className="rounded-t-xxl overflow-hidden"
+						className="rounded-t-xl overflow-hidden"
 						alt={name}
 					></Image>
-					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between bg-gray-800">
+					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">
 						<Box>
 							<Tooltip
 								label="Name"
@@ -302,6 +302,7 @@ export default function Watch({
 									Reserve 1 now
 								</Button> */}
 								<Button
+									className="bg-accent hover:bg-accent-hover"
 									onClick={() =>
 										increaseCartQuantity(name, image, price)
 									}
@@ -311,7 +312,7 @@ export default function Watch({
 							</Flex>
 						</Box>
 					</Box>
-				</Flex>
+				</Box>
 			</Paper>
 		</>
 	);
