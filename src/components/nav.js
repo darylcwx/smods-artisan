@@ -38,16 +38,6 @@ const useStyles = createStyles((theme) => ({
 		position: "fixed",
 		zIndex: 1,
 	},
-	links: {
-		[theme.fn.smallerThan("sm")]: {
-			display: "none",
-		},
-	},
-	burger: {
-		[theme.fn.largerThan("sm")]: {
-			display: "none",
-		},
-	},
 	link: {
 		display: "block",
 		lineHeight: 1,
@@ -141,11 +131,11 @@ export default function Nav() {
 	return (
 		<>
 			<Header height={header_height} className={classes.root}>
-				<Container className="h-full max-w-none">
+				<Container className="h-full max-w-none flex items-center">
 					<Burger
 						opened={opened}
 						onClick={toggle}
-						className={classes.burger}
+						className="inline md:hidden"
 						size="sm"
 					/>
 					<Transition
@@ -186,7 +176,7 @@ export default function Nav() {
 							</Paper>
 						)}
 					</Transition>
-					<Box className="flex row justify-between m-0 h-full">
+					<Box className="hidden md:flex row justify-between h-full w-full ">
 						<Group className="">
 							<Link href="/" className="">
 								<Image src="/svgs/gold.svg" width={48} />

@@ -373,7 +373,7 @@ export default function Shop() {
 					]}
 				>
 					{watches.map((watch) => (
-						<Watch {...watch} />
+						<Watch key={watch} {...watch} />
 					))}
 				</SimpleGrid>
 			</Container>
