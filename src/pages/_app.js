@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
 					content="minimum-scale=1, initial-scale=1, width=device-width"
 				/>
 			</Head>
-
+			{/* <CartProvider> */}
 			<MantineProvider
 				withGlobalStyles
 				withNormalizeCSS
@@ -37,14 +37,12 @@ export default function App({ Component, pageProps }) {
 					}),
 				}}
 			>
-				<CartProvider>
-					<Notifications />
-					<Nav />
+				<Nav />
+				<Notifications />
 
-					<Component {...pageProps} />
-				</CartProvider>
+				<Component {...pageProps} />
 			</MantineProvider>
-
+			{/* </CartProvider> */}
 			{/* </ColorSchemeProvider> */}
 		</>
 	);
