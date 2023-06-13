@@ -125,7 +125,6 @@ const watches = [
 		clasp: "Rose gold clasp",
 	},
 ];
-const size = "28px";
 export default function Shop() {
 	const { classes } = useStyles();
 	const router = useRouter();
@@ -155,7 +154,7 @@ export default function Shop() {
 				<link rel="icon" href="/svgs/gold.svg" />
 			</Head>
 			<NavigationProgress color="dark.0" />
-			<Container py="xl">
+			<Container p="xl" size="md">
 				<Text ta="center" fw={500}>
 					Please note the watches displayed here are those personally
 					built so far. This means it doesn't include watches that I{" "}
@@ -353,22 +352,22 @@ export default function Shop() {
 					</Popover>
 				</Flex>
 			</Container>
-			<Container size="xl">
+			<Container px="xl" size="md">
 				<SimpleGrid
 					cols={3}
-					spacing={size}
-					verticalSpacing={size}
+					spacing="xl"
+					verticalSpacing="xl"
 					breakpoints={[
 						{
 							maxWidth: "md",
 							cols: 2,
-							spacing: { size },
-							verticalSpacing: { size },
+							spacing: "xl",
+							verticalSpacing: "xl",
 						},
 						{
 							maxWidth: "sm",
 							cols: 1,
-							verticalSpacing: { size },
+							verticalSpacing: "xl",
 						},
 					]}
 				>

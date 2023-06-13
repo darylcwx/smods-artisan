@@ -23,8 +23,10 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				accent: "#3b82f6",
-				"accent-hover": "#1d4ed8",
+				accent: "#B59640",
+				"accent-hover": "#977D35",
+				// accent: "#3b82f6",
+				//"accent-hover": "#1d4ed8",
 			},
 		},
 	},

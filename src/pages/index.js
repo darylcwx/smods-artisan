@@ -20,12 +20,11 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>SMods Artisan</title>
+				<title>SA</title>
 				<meta
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
-				<link rel="icon" href="/svgs/gold.svg" />
 			</Head>
 			<Image
 				src={"/static/background/bg2-2.jpg"}
@@ -40,6 +39,7 @@ export default function Home() {
 					height: "calc(100vh - 60px)",
 				}}
 				size="md"
+				px="xl"
 			>
 				<Title tt="uppercase" className="w-full sm:w-3/4">
 					Affordable luxury, <br />
@@ -60,7 +60,7 @@ export default function Home() {
 						<Button
 							uppercase
 							rightIcon={<IconChevronRight size={18} />}
-							//className="bg-accent hover:bg-accent-hover rounded-full"
+							className="bg-accent hover:bg-accent-hover rounded-full"
 						>
 							<Text size="xs">buy now</Text>
 						</Button>
@@ -69,7 +69,7 @@ export default function Home() {
 						<Button
 							uppercase
 							variant="outline"
-							//className="text-accent border-accent hover:bg-accent-hover hover:text-white rounded-full"
+							className="text-accent border-accent hover:bg-accent-hover hover:text-white hover:border-accent-hover rounded-full"
 						>
 							<Text size="xs">read more</Text>
 						</Button>

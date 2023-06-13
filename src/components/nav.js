@@ -44,16 +44,13 @@ const useStyles = createStyles((theme) => ({
 		padding: "10px 20px",
 		borderRadius: theme.radius.sm,
 		textDecoration: "none",
-		color:
-			theme.colorScheme === "dark"
-				? theme.colors.dark[0]
-				: theme.colors.gray[7],
-		"&:hover": {
-			backgroundColor:
-				theme.colorScheme === "dark"
-					? theme.colors.dark[6]
-					: theme.colors.gray[0],
-		},
+		color: theme.colorScheme === "dark" ? "white" : theme.colors.gray[7],
+		// "&:hover": {
+		// 	backgroundColor:
+		// 		theme.colorScheme === "dark"
+		// 			? theme.colors.dark[6]
+		// 			: theme.colors.gray[0],
+		// },
 
 		[theme.fn.smallerThan("sm")]: {
 			borderRadius: 0,
@@ -179,7 +176,7 @@ export default function Nav() {
 					<Box className="hidden md:flex row justify-between h-full w-full ">
 						<Group className="">
 							<Link href="/" className="">
-								<Image src="/svgs/gold.svg" width={48} />
+								<Image src="/svgs/v1.svg" width={48} />
 							</Link>
 						</Group>
 						<Group className="flex">
@@ -227,12 +224,14 @@ export default function Nav() {
 							<Link href="/about" className={classes.link}>
 								About
 							</Link>
-
+							<Button
+								className="bg-accent hover:bg-accent-hover"
+								onClick={() => openModal(true)}
+							>
+								Contact me
+							</Button>
 							<Modal
-								overlayOpacity={0.6}
-								overlayBlur={2}
 								transition="pop"
-								exitTransitionDuration={300}
 								opened={modal}
 								size="md"
 								onClose={() => openModal(false)}
@@ -263,7 +262,7 @@ export default function Nav() {
 									})}
 								>
 									<Title size="h2" align="center">
-										Get in touch
+										Ask me anything!
 									</Title>
 
 									<SimpleGrid
@@ -314,15 +313,16 @@ export default function Nav() {
 									/>
 
 									<Group position="center" mt="xl">
-										<Button type="submit" size="md">
+										<Button
+											type="submit"
+											size="md"
+											className="bg-accent hover:bg-accent-hover"
+										>
 											Send message
 										</Button>
 									</Group>
 								</form>
 							</Modal>
-							<Button onClick={() => openModal(true)}>
-								Contact me!
-							</Button>
 
 							{/* <ActionIcon
 						className={classes.link}
@@ -336,7 +336,7 @@ export default function Nav() {
 						)}
 					</ActionIcon> */}
 							<Button
-								className="relative rounded-full p-1 w-10 h-10"
+								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-9 h-9"
 								onClick={openCart}
 							>
 								{<IconShoppingCart className="text-white" />}

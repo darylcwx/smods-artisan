@@ -36,7 +36,7 @@ export default function Home() {
 				<link rel="icon" href="/svgs/gold.svg" />
 			</Head>
 
-			<Container size="xl">
+			<Container size="md" px="xl">
 				<Title pt="xl">Hello!</Title>
 				<Text pb="xs">
 					Welcome to our world of custom Seiko mods. I take pride in

@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }) {
 					name="viewport"
 					content="minimum-scale=1, initial-scale=1, width=device-width"
 				/>
+				<link rel="icon" href="/svgs/filled v2.svg" />
 			</Head>
 			{/* <CartProvider> */}
 			<MantineProvider
