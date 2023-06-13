@@ -7,8 +7,10 @@ import {
 	Button,
 	Text,
 } from "@mantine/core";
-import Nav from "@/pages/nav.js";
-
+import { Notifications } from "@mantine/notifications";
+import Nav from "@/components/nav.js";
+import "../styles/globals.css";
+import { CartProvider } from "@/context/cartContext.js";
 export default function App({ Component, pageProps }) {
 	const [colorScheme, setColorScheme] = useState(ColorScheme);
 	// const toggleColorScheme = () =>
@@ -35,9 +37,12 @@ export default function App({ Component, pageProps }) {
 					}),
 				}}
 			>
-				<Nav />
+				<CartProvider>
+					<Notifications />
+					<Nav />
 
-				<Component {...pageProps} />
+					<Component {...pageProps} />
+				</CartProvider>
 			</MantineProvider>
 
 			{/* </ColorSchemeProvider> */}

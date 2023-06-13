@@ -7,25 +7,125 @@ import {
 	Flex,
 	Popover,
 	NativeSelect,
+	SimpleGrid,
 	Image,
 	List,
 } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import Link from "next/link";
 import Head from "next/head";
-import Watch from "@/pages/watch.js";
+import Watch from "@/components/watch.js";
 import { useRouter } from "next/router";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
-
+import priceList from "@/constants/pricelist.js";
 const useStyles = createStyles((theme) => ({
 	contact: {
 		textDecoration: "none",
 	},
-	underline: {
-		textDecoration: "underline",
-	},
 }));
 
+const watches = [
+	{
+		name: "001",
+		price: priceList.regular,
+		image: "001.JPG",
+		insert: "Embossed Black Submariner",
+		shell: "Standard 316L oyster case",
+		crown: "Standard 316L crown",
+		strap: "Rubber oyster strap",
+		clasp: "Standard 316L clasp, center gloss finish",
+		crystal: "Flat sapphire",
+		cRing: "",
+		dial: "Seiko Marine Master",
+		hands: "Mercedes hands",
+		movement: "NH35A",
+	},
+	{
+		name: "003",
+		price: priceList.regular,
+		image: "003.JPG",
+		insert: "Black Submariner w additional decals",
+		shell: "Standard 316L oyster case",
+		crown: "Standard 316L crown",
+		strap: "Standard 316L oyster strap",
+		clasp: "Standard 316L clasp",
+		crystal: "Flat sapphire crystal",
+		cRing: "Built-in rehaut",
+		dial: "Seiko slanted double bars in blue",
+		hands: "Sword hands",
+		movement: "NH35A with white date wheel",
+	},
+	{
+		name: "301",
+		price: priceList.regular,
+		image: "301.JPG",
+		insert: "",
+		shell: "Case resembling Patek Aquanaut",
+		crown: "Crown resembling Patek Aquanaut",
+		strap: "Strap resembling Patek Aquanaut",
+		clasp: "Butterfly clasp",
+		crystal: "Flat sapphire",
+		cRing: "",
+		dial: "Seiko dial resembling Patek Aquanaut w Date",
+		hands: "Sword hands",
+		movement: "NH35A",
+	},
+	{
+		name: "601",
+		price: priceList.regular,
+		image: "601.JPG",
+		insert: "Ceramic Black-Brown 12 hour GMT bezel insert",
+		shell: "Standard 316L oyster case",
+		crown: "Seiko gold crown",
+		strap: "Silver and gold jubilee strap",
+		clasp: "Silver and gold seiko clasp",
+		crystal: "Flat sapphire crystal",
+		cRing: "Built-in rehaut",
+		dial: "Seiko Automatic Diver's",
+		hands: "Syringe hands",
+		movement: "NH35A with black date wheel",
+	},
+	{
+		name: "701",
+		price: priceList.regular,
+		image: "701.jpeg",
+		insert: "Embossed Black Submariner",
+		shell: "SKX007 case in black",
+		crown: "Seiko crown",
+		strap: "Rubber strap",
+		clasp: "Buckle",
+		crystal: "Double domed with blue AR",
+		cRing: "White + Black",
+		dial: "Off-White stealth Seiko Day Date",
+		hands: "Black mercedes hands",
+		movement: "NH36A",
+	},
+	{
+		name: "F01",
+		price: priceList.ladies,
+		image: "F01.JPG",
+		insert: "Fluted bezel",
+		shell: "Standard 316L 36mm oyster case",
+		crown: "Standard 316L crown",
+		strap: "Standard 316L jubilee strap",
+		clasp: "Standard 316L clasp",
+		crystal: "Double domed with blue AR",
+		cRing: "White + Black",
+		dial: "Off-White stealth Seiko Day Date",
+		hands: "Black mercedes hands",
+		movement: "NH36A",
+	},
+	{
+		name: "R001 (NFS)",
+		price: " -",
+		image: "R001.jpeg",
+		insert: "Embossed Black Submariner",
+		shell: "SKX007 case in black",
+		strap: "Rubber strap",
+		clasp: "Rose gold clasp",
+	},
+];
+const size = "28px";
 export default function Shop() {
 	const { classes } = useStyles();
 	const router = useRouter();
@@ -52,22 +152,25 @@ export default function Shop() {
 					name="viewport"
 					content="width=device-width, initial-scale=1"
 				/>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/svgs/gold.svg" />
 			</Head>
 			<NavigationProgress color="dark.0" />
 			<Container py="xl">
 				<Text ta="center" fw={500}>
-					Please note that this business is in it's early stage and
-					therefore I have limited photos. The watches displayed here
-					are those personally built so far. This means it doesn't
-					include watches that I{" "}
-					<span className={classes.underline}>can</span> build.
+					Please note the watches displayed here are those personally
+					built so far. This means it doesn't include watches that I{" "}
+					<span className={"underline"}>can</span> build.
 				</Text>
 
-				<Text ta="center" c="dimmed" mb="xl">
+				<Text ta="center" c="dimmed" mb="lg">
 					In the near future, there will be more models — seikoNauts,
 					seikOaks, open balance wheels, skeleton dials, and female
 					models personally made and thereafter displayed here.
+				</Text>
+				<Text ta="center" mb="xl">
+					Also, more often than not, I don't get stock orders from
+					what is displayed here, so don't be shy, drop me a text to
+					discuss what exact parts or the exact watch you'd like! 😀
 				</Text>
 				<Flex
 					justify="center"
@@ -154,7 +257,8 @@ export default function Shop() {
 								F01 below!
 								<br></br>
 								<br></br>
-								Ladies' watches will be priced at $179.
+								Ladies' watches will be priced at $
+								{priceList.ladies}.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -182,10 +286,11 @@ export default function Shop() {
 								<br></br>
 								<br></br>
 								However, if you'd like just the GMT bezel with 3
-								hands, that's fine too!
+								hands, that's fine too! It'll be classified as
+								part of the normal range at ${priceList.regular}
+								.<br></br>
 								<br></br>
-								<br></br>
-								Functional GMTs are priced at $209.
+								Functional GMTs are priced at ${priceList.gmt}.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -204,8 +309,6 @@ export default function Shop() {
 							<Text size="md">
 								I'm currently still exploring the intricacies of
 								a chronograph movement. Stay tuned for more!
-								<br></br>
-								<br></br>
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -250,36 +353,29 @@ export default function Shop() {
 					</Popover>
 				</Flex>
 			</Container>
-
-			{/* <Container
-				my="md"
-				sx={{
-					display: "flex",
-					flexDirection: "row",
-					justifyContent: "center",
-				}}
-			>
-				<NativeSelect
-					id="filter"
-					data={[
-						"Bezel Inserts",
-						"Chapter Rings",
-						"Cases",
-						"Crowns",
-						"Hands",
-						"Dials",
-						"Movements",
-						"Straps",
-						"Clasps",
-					]}
-					label="Filter by"
-					value={value}
-					onChange={(event) => setValue(event.currentTarget.value)}
-				></NativeSelect>
-			</Container> */}
 			<Container size="xl">
-				<Watch />
-				{/* <Watch {...watches["001"]} /> */}
+				<SimpleGrid
+					cols={3}
+					spacing={size}
+					verticalSpacing={size}
+					breakpoints={[
+						{
+							maxWidth: "md",
+							cols: 2,
+							spacing: { size },
+							verticalSpacing: { size },
+						},
+						{
+							maxWidth: "sm",
+							cols: 1,
+							verticalSpacing: { size },
+						},
+					]}
+				>
+					{watches.map((watch) => (
+						<Watch {...watch} />
+					))}
+				</SimpleGrid>
 			</Container>
 		</>
 	);
