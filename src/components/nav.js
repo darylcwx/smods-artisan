@@ -120,7 +120,7 @@ export default function Nav() {
 						>
 							{(event) => (
 								<Paper
-									className={classes.dropdown}
+									className="absolute top-[60px] left-0 right-0 border-none hidden sm:block"
 									style={event}
 								>
 									<Link href="/" className={classes.link}>

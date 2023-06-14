@@ -166,7 +166,7 @@ export default function Shop() {
 					what is displayed here, so don't be shy, drop me a text to
 					discuss what exact parts or the exact watch you'd like! 😀
 				</Text>
-				<Box className="flex row justify-center items-center gap-2 flex-wrap">
+				<Box className="flex row justify-center items-center gap-2 flex-wrap pb-6">
 					<Popover width={450} position="bottom" withArrow>
 						<Popover.Target>
 							<Button
@@ -335,8 +335,10 @@ export default function Shop() {
 						</Popover.Dropdown>
 					</Popover>
 				</Box>
-			</Container>
-			<Container px="xl" size="md">
+				{/* <Box className="pb-10">
+					Filter by:
+					<input />
+				</Box> */}
 				<SimpleGrid
 					cols={3}
 					spacing="xl"
