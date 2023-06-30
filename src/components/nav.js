@@ -34,17 +34,13 @@ import { showNotification } from "@mantine/notifications";
 import { useHover } from "@mantine/hooks";
 import { useCart } from "@/context/cartContext.js";
 const useStyles = createStyles((theme) => ({
-	root: {
-		position: "fixed",
-		zIndex: 1,
-	},
 	link: {
 		display: "block",
 		lineHeight: 1,
 		padding: "10px 20px",
 		borderRadius: theme.radius.sm,
 		textDecoration: "none",
-		color: theme.colorScheme === "dark" ? "white" : theme.colors.gray[7],
+		color: "white",
 		// "&:hover": {
 		// 	backgroundColor:
 		// 		theme.colorScheme === "dark"
@@ -101,7 +97,7 @@ export default function Nav() {
 	const { openCart, cartQuantity } = useCart();
 	return (
 		<>
-			<Header height={header_height} className={classes.root}>
+			<Header height={header_height} className="fixed">
 				<Container className="h-full max-w-none flex items-center">
 					<Box className="flex md:hidden items-center justify-between w-full">
 						<Burger
