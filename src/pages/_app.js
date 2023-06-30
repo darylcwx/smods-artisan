@@ -25,25 +25,25 @@ export default function App({ Component, pageProps }) {
 				/>
 				<link rel="icon" href="/svgs/filled v2.svg" />
 			</Head>
-			{/* <CartProvider> */}
-			<MantineProvider
-				withGlobalStyles
-				withNormalizeCSS
-				theme={{
-					colorScheme: "dark",
-					globalStyles: (theme) => ({
-						body: {
-							marginTop: "60px",
-						},
-					}),
-				}}
-			>
-				<Nav />
-				<Notifications />
+			<CartProvider>
+				<MantineProvider
+					withGlobalStyles
+					withNormalizeCSS
+					theme={{
+						colorScheme: "dark",
+						globalStyles: (theme) => ({
+							body: {
+								marginTop: "60px",
+							},
+						}),
+					}}
+				>
+					<Nav />
+					<Notifications />
 
-				<Component {...pageProps} />
-			</MantineProvider>
-			{/* </CartProvider> */}
+					<Component {...pageProps} />
+				</MantineProvider>
+			</CartProvider>
 			{/* </ColorSchemeProvider> */}
 		</>
 	);

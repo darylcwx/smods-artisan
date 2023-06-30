@@ -1,15 +1,14 @@
 import { useState, createContext, useContext } from "react";
 import Cart from "@/components/cart.js";
-import useLocalStorage from "@/hooks/useLocalStorage.js";
 const CartContext = createContext({});
 
 export function useCart() {
 	return useContext(CartContext);
 }
 
-export function CartProvider({ children }) {
+export const CartProvider = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [cartItems, setCartItems] = useLocalStorage("cart", []);
+	const [cartItems, setCartItems] = useState([]);
 
 	const openCart = () => {
 		setIsOpen(true);
@@ -25,7 +24,6 @@ export function CartProvider({ children }) {
 	// 	return quantity;
 	// };
 	const increaseCartQuantity = (name, image, price) => {
-		console.log("increase qty");
 		setCartItems((currItems) => {
 			if (currItems.find((item) => item.name === name) == null) {
 				return [...currItems, { name, quantity: 1, image, price }];
@@ -70,7 +68,7 @@ export function CartProvider({ children }) {
 		(quantity, item) => item.quantity + quantity,
 		0
 	);
-
+	console.log(cartItems);
 	return (
 		<CartContext.Provider
 			value={{
@@ -83,8 +81,8 @@ export function CartProvider({ children }) {
 				closeCart,
 			}}
 		>
-			{children}
+			{props.children}
 			<Cart isOpen={isOpen} />
 		</CartContext.Provider>
 	);
-}
+};
