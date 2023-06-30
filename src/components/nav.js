@@ -316,7 +316,7 @@ export default function Nav() {
 							<IconMoonStars size={20} />
 						)}
 					</ActionIcon> */}
-							<Button
+							{/* <Button
 								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-9 h-9"
 								onClick={openCart}
 							>
@@ -326,7 +326,7 @@ export default function Nav() {
 										{cartQuantity}
 									</div>
 								)}
-							</Button>
+							</Button> */}
 						</Group>
 					</Box>
 				</Container>
