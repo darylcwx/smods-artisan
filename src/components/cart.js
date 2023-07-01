@@ -83,6 +83,7 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 							<a
 								href="https://t.me/damnsope"
 								target="_blank"
+								rel="noopener noreferrer"
 								className="no-underline text-blue-300"
 							>
 								here
@@ -106,7 +107,7 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 					ease: "easeInOut",
 					duration: 0.15,
 				}}
-				className="bg-main fixed top-[60px] right-0 h-full pb-[60px] w-[600px] p-4 overflow-auto"
+				className="bg-main fixed top-[60px] right-0 h-full pb-[80px] w-[600px] p-4 overflow-auto"
 				ref={ref}
 			>
 				{cartItems.length === 0 ? (

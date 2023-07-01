@@ -130,7 +130,7 @@ export default function Home() {
 									<br></br>
 									<Image
 										src={"/static/background/lume.JPG"}
-										sx={{}}
+										alt="lume"
 									></Image>
 									<br></br>
 									<br></br> I use different movements
@@ -311,6 +311,7 @@ export default function Home() {
 									<Image
 										src="/static/background/setting.png"
 										mb="md"
+										alt="settings"
 									></Image>
 									<Title order={3}>0</Title>
 									<Text mb="md">

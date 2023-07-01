@@ -26,6 +26,7 @@ export default function Home() {
 			</Head>
 			<Image
 				src={"/static/background/bg2-2.jpg"}
+				alt="background"
 				fit="cover"
 				height="calc(100vh - 60px)"
 				className="absolute bg-center"

@@ -199,7 +199,7 @@ export default function Nav() {
 							)}
 						</AnimatePresence>
 						<Link href="/" className="">
-							<Image src="/svgs/v1.svg" width={48} />
+							<Image src="/svgs/v1.svg" alt="logo" width={48} />
 						</Link>
 					</Box>
 
@@ -207,7 +207,11 @@ export default function Nav() {
 					<Box className="hidden md:flex row justify-between h-full w-full">
 						<Group>
 							<Link href="/">
-								<Image src="/svgs/v1.svg" width={48} />
+								<Image
+									src="/svgs/v1.svg"
+									alt="logo"
+									width={48}
+								/>
 							</Link>
 						</Group>
 						<Group className="flex">
