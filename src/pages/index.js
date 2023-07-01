@@ -79,10 +79,7 @@ export default function Home() {
 					}}
 					transition={{ duration: 0.75, delay: 0.6 }}
 				>
-					<Box
-						sx={{ zIndex: "100" }}
-						className="flex gap-6 w-full sm:w-3/4 justify-center sm:justify-normal"
-					>
+					<Box className="flex gap-6 w-full sm:w-3/4 justify-center sm:justify-normal">
 						<Link href="/shop">
 							<Button
 								uppercase

@@ -110,6 +110,7 @@ export default function Nav() {
 		<>
 			<Header height={header_height} className="fixed">
 				<Container className="h-full max-w-none flex items-center">
+					{/* Hamburger and side nav for mobile */}
 					<Box className="flex md:hidden items-center justify-between w-full">
 						<Burger
 							ref={setNavButton}
@@ -121,8 +122,6 @@ export default function Nav() {
 							className="inline"
 							size="sm"
 						/>
-
-						{/* Dropdown for mobile*/}
 						<AnimatePresence>
 							{navOpen && (
 								<>
@@ -203,9 +202,11 @@ export default function Nav() {
 							<Image src="/svgs/v1.svg" width={48} />
 						</Link>
 					</Box>
-					<Box className="hidden md:flex row justify-between h-full w-full ">
-						<Group className="">
-							<Link href="/" className="">
+
+					{/* Normal nav bar */}
+					<Box className="hidden md:flex row justify-between h-full w-full">
+						<Group>
+							<Link href="/">
 								<Image src="/svgs/v1.svg" width={48} />
 							</Link>
 						</Group>
@@ -266,6 +267,8 @@ export default function Nav() {
 								opened={modal}
 								size="md"
 								onClose={() => openModal(false)}
+								centered
+								zIndex={1001}
 							>
 								<form
 									onSubmit={form.onSubmit((values) => {
@@ -386,28 +389,17 @@ export default function Nav() {
 									</Group>
 								</form>
 							</Modal>
-
-							{/* <ActionIcon
-						className={classes.link}
-						onClick={() => toggleColorScheme()}
-						size="lg"
-					>
-						{colorScheme === "dark" ? (
-							<IconSun size={20} />
-						) : (
-							<IconMoonStars size={20} />
-						)}
-					</ActionIcon> */}
+							{/* Cart */}
 							<Button
 								ref={setCartButton}
-								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-9 h-9"
+								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-10 h-10"
 								onClick={() => {
 									setCartOpen(!cartOpen);
 								}}
 							>
 								{<IconShoppingCart className="text-white" />}
 								{cartQuantity > 0 && (
-									<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 translate-x-1/4 translate-y-1/4 bottom-0 right-0 rounded-full">
+									<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 top-1/2 left-1/2 rounded-full">
 										{cartQuantity}
 									</div>
 								)}
