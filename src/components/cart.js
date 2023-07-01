@@ -164,4 +164,5 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 		</>
 	);
 });
+Cart.displayName = "Cart";
 export default Cart;

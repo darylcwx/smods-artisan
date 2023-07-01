@@ -316,6 +316,7 @@ export default function Nav() {
 															<a
 																href="https://t.me/damnsope"
 																target="_blank"
+																rel="noopener noreferrer"
 																className="no-underline text-blue-300"
 															>
 																here
