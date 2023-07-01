@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
 	useMantineColorScheme,
 	createStyles,
@@ -23,14 +23,14 @@ import {
 	IconSun,
 	IconMoonStars,
 	IconCheck,
+	IconX,
 	IconAt,
 	IconBrandTelegram,
 	IconShoppingCart,
 } from "@tabler/icons-react";
+import { notifications } from "@mantine/notifications";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
-import { showNotification } from "@mantine/notifications";
-import { useHover } from "@mantine/hooks";
 import { useCart } from "@/context/cartContext.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Cart from "@/components/cart.js";
@@ -72,11 +72,19 @@ const useStyles = createStyles((theme) => ({
 }));
 const header_height = 60;
 export default function Nav() {
-	// const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const [navOpen, setNavOpen] = useState(false);
 	const [cartOpen, setCartOpen] = useState(false);
-	const navRef = useClickOutside(() => setNavOpen(false));
-	const cartRef = useClickOutside(() => setCartOpen(false));
+
+	// Set button as state for use-click-outside hook
+	const [navButton, setNavButton] = useState(null);
+	const [cartButton, setCartButton] = useState(null);
+	const [cart, setCart] = useState(null);
+	const navRef = useClickOutside(() => setNavOpen(false), null, [navButton]);
+	const cartRef = useClickOutside(() => setCartOpen(false), null, [
+		cartButton,
+		cart,
+	]);
+
 	const [modal, openModal] = useState(false);
 	const { classes } = useStyles();
 	const form = useForm({
@@ -104,6 +112,8 @@ export default function Nav() {
 				<Container className="h-full max-w-none flex items-center">
 					<Box className="flex md:hidden items-center justify-between w-full">
 						<Burger
+							ref={setNavButton}
+							id="navButton"
 							opened={navOpen}
 							onClick={() => {
 								setNavOpen(!navOpen);
@@ -268,15 +278,47 @@ export default function Nav() {
 										);
 
 										var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
-										let api = new XMLHttpRequest();
-										api.open("GET", url, true);
-										api.send();
-										showNotification({
-											icon: <IconCheck size={16} />,
-											title: "Success!",
-											autoClose: 7000,
-											message:
-												"I've received a notification with regards to your message.\n\nI'll get back to you shortly!",
+										fetch(url).then((response) => {
+											if (response.ok) {
+												notifications.show({
+													icon: (
+														<IconCheck size={16} />
+													),
+													title: "Success!",
+													autoClose: 7000,
+													withCloseButton: true,
+													color: "green",
+													message:
+														"I've received a notification with regards to your message.\n\nI'll get back to you shortly!",
+												});
+											} else {
+												notifications.show({
+													icon: <IconX size={16} />,
+													title: "Failure!",
+													autoClose: 7000,
+													withCloseButton: true,
+													color: "red",
+													message: (
+														<span>
+															Uh oh! Something
+															went wrong.
+															<br />
+															Please try again, or
+															you can reach me
+															directly{" "}
+															<a
+																href="https://t.me/damnsope"
+																target="_blank"
+																className="no-underline text-blue-300"
+															>
+																here
+															</a>
+															. (this link opens a
+															new window)
+														</span>
+													),
+												});
+											}
 										});
 										form.reset();
 										openModal(false);
@@ -357,6 +399,7 @@ export default function Nav() {
 						)}
 					</ActionIcon> */}
 							<Button
+								ref={setCartButton}
 								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-9 h-9"
 								onClick={() => {
 									setCartOpen(!cartOpen);
@@ -389,7 +432,12 @@ export default function Nav() {
 														"blur(2px);",
 												}}
 											></Box>
-											<Cart ref={cartRef} />
+											<Cart
+												ref={(cartRef, setCart)}
+												onClose={() =>
+													setCartOpen(false)
+												}
+											/>
 										</motion.div>
 									</>
 								)}

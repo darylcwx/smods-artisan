@@ -14,9 +14,7 @@ import {
 	Box,
 } from "@mantine/core";
 import { motion } from "framer-motion";
-s;
 export default function Home() {
-	const { classes } = useStyles();
 	return (
 		<>
 			<Head>

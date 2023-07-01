@@ -36,33 +36,6 @@ export default function Watch({
 	movement,
 }) {
 	const { classes } = useStyles();
-	// const [selectedWatch, setSelectedWatch] = useState(null);
-	// const [modalOpen, setModalOpen] = useState(false);
-	// const openModal = (name) => {
-	// 	setSelectedWatch(name);
-	// 	setModalOpen(true);
-	// };
-	// const closeModal = () => {
-	// 	setModalOpen(false);
-	// };
-	// const exitedModal = () => {
-	// 	setSelectedWatch(null);
-	// };
-	// const form = useForm({
-	// 	initialValues: {
-	// 		name: "",
-	// 		telegram: "",
-	// 		message: "",
-	// 	},
-	// 	validate: {
-	// 		name: (value) =>
-	// 			value.trim().length < 1 ? "Please input a name." : null,
-	// 		telegram: (value) =>
-	// 			/^[A-Za-z0-9]+$/.test(value) && value.trim().length >= 5
-	// 				? null
-	// 				: "Please enter a valid telegram handle.",
-	// 	},
-	// });
 	const { increaseCartQuantity } = useCart();
 	return (
 		<>
