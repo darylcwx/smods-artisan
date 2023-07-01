@@ -7,22 +7,8 @@ export function useCart() {
 }
 
 export const CartProvider = (props) => {
-	const [isOpen, setIsOpen] = useState(false);
 	const [cartItems, setCartItems] = useState([]);
 
-	const openCart = () => {
-		setIsOpen(true);
-	};
-	const closeCart = () => {
-		setIsOpen(false);
-	};
-
-	// const getItemQuantity = (name) => {
-	// 	console.log("getting qty");
-	// 	const quantity =
-	// 		cartItems.find((item) => item.name === name)?.quantity || 0;
-	// 	return quantity;
-	// };
 	const increaseCartQuantity = (name, image, price) => {
 		setCartItems((currItems) => {
 			if (currItems.find((item) => item.name === name) == null) {
@@ -77,12 +63,9 @@ export const CartProvider = (props) => {
 				removeFromCart,
 				cartItems,
 				cartQuantity,
-				openCart,
-				closeCart,
 			}}
 		>
 			{props.children}
-			<Cart isOpen={isOpen} />
 		</CartContext.Provider>
 	);
 };

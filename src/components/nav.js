@@ -18,7 +18,7 @@ import {
 	Image,
 	Box,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { useClickOutside } from "@mantine/hooks";
 import {
 	IconSun,
 	IconMoonStars,
@@ -33,6 +33,7 @@ import { showNotification } from "@mantine/notifications";
 import { useHover } from "@mantine/hooks";
 import { useCart } from "@/context/cartContext.js";
 import { motion, AnimatePresence } from "framer-motion";
+import Cart from "@/components/cart.js";
 const useStyles = createStyles((theme) => ({
 	link: {
 		display: "block",
@@ -72,10 +73,12 @@ const useStyles = createStyles((theme) => ({
 const header_height = 60;
 export default function Nav() {
 	// const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-	const [opened, setOpened] = useState(false);
+	const [navOpen, setNavOpen] = useState(false);
+	const [cartOpen, setCartOpen] = useState(false);
+	const navRef = useClickOutside(() => setNavOpen(false));
+	const cartRef = useClickOutside(() => setCartOpen(false));
 	const [modal, openModal] = useState(false);
 	const { classes } = useStyles();
-	const { hovered, ref } = useHover();
 	const form = useForm({
 		initialValues: {
 			name: "",
@@ -94,20 +97,16 @@ export default function Nav() {
 				value.trim().length === 0 ? "Please enter a message." : null,
 		},
 	});
-	const { openCart, cartQuantity } = useCart();
-	const variant = {
-		hidden: {},
-	};
+	const { cartQuantity } = useCart();
 	return (
 		<>
 			<Header height={header_height} className="fixed">
 				<Container className="h-full max-w-none flex items-center">
 					<Box className="flex md:hidden items-center justify-between w-full">
 						<Burger
-							opened={opened}
+							opened={navOpen}
 							onClick={() => {
-								console.log("Toggle opened:", !opened);
-								setOpened(!opened);
+								setNavOpen(!navOpen);
 							}}
 							className="inline"
 							size="sm"
@@ -115,7 +114,7 @@ export default function Nav() {
 
 						{/* Dropdown for mobile*/}
 						<AnimatePresence>
-							{opened && (
+							{navOpen && (
 								<>
 									<motion.div
 										key="overlay"
@@ -144,6 +143,7 @@ export default function Nav() {
 											duration: 0.15,
 										}}
 										className="fixed top-[60px] left-0 pb-[60px] w-[250px] h-full justify-between flex flex-col bg-main"
+										ref={navRef}
 									>
 										<Box>
 											<Link
@@ -358,7 +358,9 @@ export default function Nav() {
 					</ActionIcon> */}
 							<Button
 								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-9 h-9"
-								onClick={openCart}
+								onClick={() => {
+									setCartOpen(!cartOpen);
+								}}
 							>
 								{<IconShoppingCart className="text-white" />}
 								{cartQuantity > 0 && (
@@ -367,6 +369,31 @@ export default function Nav() {
 									</div>
 								)}
 							</Button>
+							<AnimatePresence>
+								{cartOpen && (
+									<>
+										<motion.div
+											key="overlay"
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{
+												ease: "easeInOut",
+												duration: 0.3,
+											}}
+										>
+											<Box
+												className="fixed top-[60px] left-0 h-screen w-screen bg-black/70"
+												sx={{
+													backdropFilter:
+														"blur(2px);",
+												}}
+											></Box>
+											<Cart ref={cartRef} />
+										</motion.div>
+									</>
+								)}
+							</AnimatePresence>
 						</Group>
 					</Box>
 				</Container>

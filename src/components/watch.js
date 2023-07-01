@@ -301,14 +301,22 @@ export default function Watch({
 								>
 									Reserve 1 now
 								</Button> */}
-								<Button
-									className="bg-accent hover:bg-accent-hover"
-									onClick={() =>
-										increaseCartQuantity(name, image, price)
-									}
-								>
-									Add To Cart
-								</Button>
+								{price === " -" ? (
+									""
+								) : (
+									<Button
+										className="bg-accent hover:bg-accent-hover"
+										onClick={() =>
+											increaseCartQuantity(
+												name,
+												image,
+												price
+											)
+										}
+									>
+										Add To Cart
+									</Button>
+								)}
 							</Flex>
 						</Box>
 					</Box>
