@@ -44,6 +44,7 @@ module.exports = {
 				"accent-hover-outlined": "#EADFC3",
 				"accent-secondary": "#EAE0C3",
 				paper: "#3C3115",
+				main: "#1A1B1E",
 
 				// accent: "#3b82f6",
 				//"accent-hover": "#1d4ed8",

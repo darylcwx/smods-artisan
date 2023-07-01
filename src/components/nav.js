@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	useMantineColorScheme,
 	createStyles,
@@ -6,7 +6,6 @@ import {
 	Group,
 	Header,
 	Container,
-	Transition,
 	Paper,
 	Modal,
 	Button,
@@ -33,6 +32,7 @@ import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { useHover } from "@mantine/hooks";
 import { useCart } from "@/context/cartContext.js";
+import { motion, AnimatePresence } from "framer-motion";
 const useStyles = createStyles((theme) => ({
 	link: {
 		display: "block",
@@ -72,7 +72,7 @@ const useStyles = createStyles((theme) => ({
 const header_height = 60;
 export default function Nav() {
 	// const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-	const [opened, { toggle, close }] = useDisclosure(false);
+	const [opened, setOpened] = useState(false);
 	const [modal, openModal] = useState(false);
 	const { classes } = useStyles();
 	const { hovered, ref } = useHover();
@@ -95,6 +95,9 @@ export default function Nav() {
 		},
 	});
 	const { openCart, cartQuantity } = useCart();
+	const variant = {
+		hidden: {},
+	};
 	return (
 		<>
 			<Header height={header_height} className="fixed">
@@ -102,53 +105,90 @@ export default function Nav() {
 					<Box className="flex md:hidden items-center justify-between w-full">
 						<Burger
 							opened={opened}
-							onClick={toggle}
-							className="inline md:hidden"
+							onClick={() => {
+								console.log("Toggle opened:", !opened);
+								setOpened(!opened);
+							}}
+							className="inline"
 							size="sm"
 						/>
 
 						{/* Dropdown for mobile*/}
-						<Transition
-							transition="scale-y"
-							duration={300}
-							exitDuration={300}
-							mounted={opened}
-						>
-							{(event) => (
-								<Paper
-									className="absolute top-[60px] left-0 right-0 border-none hidden sm:block"
-									style={event}
-								>
-									<Link href="/" className={classes.link}>
-										Home
-									</Link>
-									<Link href="/shop" className={classes.link}>
-										Shop
-									</Link>
-									<Link
-										href="/about"
-										className={classes.link}
+						<AnimatePresence>
+							{opened && (
+								<>
+									<motion.div
+										key="overlay"
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+										transition={{
+											ease: "easeInOut",
+											duration: 0.3,
+										}}
 									>
-										About
-									</Link>
-									<Link href="/cart" className={classes.link}>
-										<span
-											style={{ paddingRight: "0.5rem" }}
+										<Box
+											className="fixed top-[60px] left-0 h-screen w-screen bg-black/70"
+											sx={{
+												backdropFilter: "blur(2px);",
+											}}
+										></Box>
+									</motion.div>
+									<motion.div
+										key="menu"
+										initial={{ x: -250 }}
+										animate={{ x: 0 }}
+										exit={{ x: -250 }}
+										transition={{
+											ease: "easeInOut",
+											duration: 0.15,
+										}}
+										className="fixed top-[60px] left-0 pb-[60px] w-[250px] h-full justify-between flex flex-col bg-main"
+									>
+										<Box>
+											<Link
+												href="/"
+												className={classes.link}
+											>
+												Home
+											</Link>
+											<Link
+												href="/shop"
+												className={classes.link}
+											>
+												Shop
+											</Link>
+											<Link
+												href="/about"
+												className={classes.link}
+											>
+												About
+											</Link>
+											<Link
+												href="/cart"
+												className={classes.link}
+											>
+												<span
+													style={{
+														paddingRight: "0.5rem",
+													}}
+												>
+													Cart
+												</span>
+												{<IconShoppingCart />}
+											</Link>
+										</Box>
+										<Button
+											onClick={() => openModal(true)}
+											className="h-14 w-full bg-accent hover:bg-accent-hover rounded-none"
+											rightIcon={<IconBrandTelegram />}
 										>
-											Cart
-										</span>
-										{<IconShoppingCart />}
-									</Link>
-									<Button
-										onClick={() => openModal(true)}
-										className="h-14 w-full bg-accent hover:bg-accent-hover rounded-none"
-										rightIcon={<IconBrandTelegram />}
-									>
-										Contact me!
-									</Button>
-								</Paper>
+											Contact me!
+										</Button>
+									</motion.div>
+								</>
 							)}
-						</Transition>
+						</AnimatePresence>
 						<Link href="/" className="">
 							<Image src="/svgs/v1.svg" width={48} />
 						</Link>
@@ -322,7 +362,7 @@ export default function Nav() {
 							>
 								{<IconShoppingCart className="text-white" />}
 								{cartQuantity > 0 && (
-									<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-500 w-5 h-5 translate-x-1/4 translate-y-1/4 bottom-0 right-0 rounded-full">
+									<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 translate-x-1/4 translate-y-1/4 bottom-0 right-0 rounded-full">
 										{cartQuantity}
 									</div>
 								)}
