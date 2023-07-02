@@ -10,6 +10,7 @@ import {
 	Table,
 	Text,
 } from "@mantine/core";
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { useRef, useState } from "react";
@@ -23,6 +24,13 @@ export default function cart() {
 	const { cartItems } = useCart();
 	return (
 		<>
+			<Head>
+				<title>Cart</title>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+			</Head>
 			{cartItems.length === 0 ? (
 				<Box className="h-screen flex flex-col items-center justify-center">
 					<Text>Your cart is empty 😢</Text>
@@ -41,12 +49,14 @@ export default function cart() {
 				<Container size="md" px="xl">
 					<Box className="flex flex-col h-100 justify-between">
 						<Table striped verticalSpacing="md">
-							{/* <thead>
-								<th>Product</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th>Total</th>
-							</thead> */}
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+								</tr>
+							</thead>
 							<tbody>
 								{cartItems.map((item) => (
 									<CartItem key={item.name} {...item} />

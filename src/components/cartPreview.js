@@ -115,10 +115,12 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 						<Box className="flex flex-col h-100 justify-between">
 							<Table striped verticalSpacing="md">
 								<thead>
-									<th>Product</th>
-									<th>Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
+									<tr>
+										<th>Product</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th>Total</th>
+									</tr>
 								</thead>
 								<tbody>
 									{cartItems.map((item) => (
