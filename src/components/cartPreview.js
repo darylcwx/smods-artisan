@@ -149,9 +149,9 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 								ref={telegramHandleRef}
 								error={telegramHandleError}
 							/> */}
-							<Link href="/cart" className="w-full">
+							<Link href="/cart">
 								<Button
-									className="bg-accent hover:bg-accent-hover"
+									className="bg-accent hover:bg-accent-hover w-full"
 									onClick={() => onClose()}
 								>
 									Proceed to checkout

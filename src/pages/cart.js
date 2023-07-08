@@ -29,6 +29,7 @@ export default function cart() {
 		return total + (item?.price || 0) * cartItem.quantity;
 	}, 0);
 	const handleCheckout = (cartItems) => {
+		setTelegramHandleError(null);
 		var telegramHandle = telegramHandleRef.current.value;
 		console.log(telegramHandle);
 		if (
@@ -39,6 +40,7 @@ export default function cart() {
 			setTelegramHandleError("Please enter a valid telegram handle");
 			return;
 		}
+
 		var token = "6042304491:AAG0Oh1Y9wqccUaHc51M_a07i5JZwSXX62o";
 		var chatID = "-1001815908809";
 		var text = encodeURIComponent(

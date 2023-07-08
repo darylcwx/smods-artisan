@@ -34,6 +34,7 @@ import { useForm } from "@mantine/form";
 import { useCart } from "@/context/cartContext.js";
 import { motion, AnimatePresence } from "framer-motion";
 import Cart from "@/components/cartPreview.js";
+import { useRouter } from "next/router";
 const useStyles = createStyles((theme) => ({
 	link: {
 		display: "block",
@@ -106,6 +107,7 @@ export default function Nav() {
 		},
 	});
 	const { cartQuantity } = useCart();
+	const router = useRouter();
 	return (
 		<>
 			<Header height={header_height} className="fixed">
@@ -395,50 +397,56 @@ export default function Nav() {
 								</form>
 							</Modal>
 							{/* Cart */}
-							<Button
-								ref={setCartButton}
-								className="bg-accent hover:bg-accent-hover rounded-full p-1 w-10 h-10"
-								onClick={() => {
-									setCartOpen(!cartOpen);
-								}}
-							>
-								{<IconShoppingCart className="text-white" />}
-								{cartQuantity > 0 && (
-									<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 top-1/2 left-1/2 rounded-full">
-										{cartQuantity}
-									</div>
-								)}
-							</Button>
-							<AnimatePresence>
-								{cartOpen && (
-									<>
-										<motion.div
-											key="overlay"
-											initial={{ opacity: 0 }}
-											animate={{ opacity: 1 }}
-											exit={{ opacity: 0 }}
-											transition={{
-												ease: "easeInOut",
-												duration: 0.3,
-											}}
-										>
-											<Box
-												className="fixed top-[60px] left-0 h-screen w-screen bg-black/70"
-												sx={{
-													backdropFilter:
-														"blur(2px);",
-												}}
-											></Box>
-											<Cart
-												ref={(cartRef, setCart)}
-												onClose={() =>
-													setCartOpen(false)
-												}
-											/>
-										</motion.div>
-									</>
-								)}
-							</AnimatePresence>
+							{router.pathname != "/cart" && (
+								<>
+									<Button
+										ref={setCartButton}
+										className="bg-accent hover:bg-accent-hover rounded-full p-1 w-10 h-10"
+										onClick={() => {
+											setCartOpen(!cartOpen);
+										}}
+									>
+										{
+											<IconShoppingCart className="text-white" />
+										}
+										{cartQuantity > 0 && (
+											<div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 top-1/2 left-1/2 rounded-full">
+												{cartQuantity}
+											</div>
+										)}
+									</Button>
+									<AnimatePresence>
+										{cartOpen && (
+											<>
+												<motion.div
+													key="overlay"
+													initial={{ opacity: 0 }}
+													animate={{ opacity: 1 }}
+													exit={{ opacity: 0 }}
+													transition={{
+														ease: "easeInOut",
+														duration: 0.3,
+													}}
+												>
+													<Box
+														className="fixed top-[60px] left-0 h-screen w-screen bg-black/70"
+														sx={{
+															backdropFilter:
+																"blur(2px);",
+														}}
+													></Box>
+													<Cart
+														ref={(cartRef, setCart)}
+														onClose={() =>
+															setCartOpen(false)
+														}
+													/>
+												</motion.div>
+											</>
+										)}
+									</AnimatePresence>
+								</>
+							)}
 						</Group>
 					</Box>
 				</Container>
