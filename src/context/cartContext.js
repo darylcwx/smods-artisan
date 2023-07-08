@@ -7,9 +7,7 @@ export function useCart() {
 }
 
 export const CartProvider = (props) => {
-	const [cartItems, setCartItems] = useState([
-		{ name: "001", quantity: 1, image: "001.JPG", price: 209 },
-	]);
+	const [cartItems, setCartItems] = useState([]);
 
 	const increaseCartQuantity = (name, image, price) => {
 		setCartItems((currItems) => {
