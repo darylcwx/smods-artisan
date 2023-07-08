@@ -18,7 +18,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>SA</title>
+				<title>Seiko Mods Artisan</title>
 				<meta
 					name="viewport"
 					content="width=device-width, initial-scale=1"
@@ -48,12 +48,9 @@ export default function Home() {
 					}}
 					transition={{ duration: 0.75, delay: 0.2 }}
 				>
-					<Title
-						order={1}
-						className="w-full pb-1 transition ease-in-out"
-					>
+					<Title order={1} className="w-full pb-1">
 						<span className="">Welcome to </span>
-						<span className="sm:inline block animate-index bg-gradient-to-r from-accent via-accent-secondary to-accent bg-clip-text text-transparent">
+						<span className="sm:inline block animate-index bg-gradient-to-r from-accent via-accent-secondary to-accent">
 							Seiko Mods Artisan.
 						</span>
 					</Title>
