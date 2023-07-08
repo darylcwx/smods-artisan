@@ -33,7 +33,7 @@ import Link from "next/link";
 import { useForm } from "@mantine/form";
 import { useCart } from "@/context/cartContext.js";
 import { motion, AnimatePresence } from "framer-motion";
-import Cart from "@/components/cart.js";
+import Cart from "@/components/cartPreview.js";
 const useStyles = createStyles((theme) => ({
 	link: {
 		display: "block",

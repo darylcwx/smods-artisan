@@ -1,4 +1,5 @@
 import {
+	Container,
 	Drawer,
 	Stack,
 	Group,
@@ -7,7 +8,10 @@ import {
 	createStyles,
 	useMantineTheme,
 	Table,
+	Text,
 } from "@mantine/core";
+import Head from "next/head";
+import Link from "next/link";
 import React from "react";
 import { useRef, useState } from "react";
 import { useCart } from "@/context/cartContext.js";
@@ -16,21 +20,7 @@ import { motion } from "framer-motion";
 import { notifications } from "@mantine/notifications";
 import { IconCheck, IconX, IconAt } from "@tabler/icons-react";
 import { TextInput } from "@mantine/core";
-const useStyles = createStyles((theme) => ({
-	drawer: {
-		backgroundColor: "red",
-		marginTop: "50px",
-	},
-}));
-const styles = {
-	drawer: {
-		backgroundColor: "red",
-		marginTop: "50px",
-	},
-};
-const Cart = React.forwardRef(({ onClose }, ref) => {
-	const theme = useMantineTheme();
-	const { classes } = useStyles(theme);
+export default function cart() {
 	const { cartItems } = useCart();
 	const telegramHandleRef = useRef(null);
 	const [telegramHandleError, setTelegramHandleError] = useState(null);
@@ -94,48 +84,53 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 				});
 			}
 		});
-		onClose();
 	};
 	return (
 		<>
-			<motion.div
-				key="cart"
-				initial={{ x: 600 }}
-				animate={{ x: 0 }}
-				exit={{ x: 600 }}
-				transition={{
-					ease: "easeInOut",
-					duration: 0.15,
-				}}
-				className="bg-main fixed top-[60px] right-0 h-full pb-[80px] w-[600px] p-4 overflow-auto"
-				ref={ref}
-			>
-				{cartItems.length === 0 ? (
-					<Box className="h-full flex items-center justify-center">
-						No items in cart 😢
-					</Box>
-				) : (
-					<>
-						<Box className="flex flex-col h-100 justify-between">
-							<Table striped verticalSpacing="md">
-								<thead>
+			<Head>
+				<title>Cart</title>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
+			</Head>
+			{cartItems.length === 0 ? (
+				<Box className="h-screen flex flex-col items-center justify-center">
+					<Text>Your cart is empty 😢</Text>
+					<Text>
+						Go to{" "}
+						<Link
+							href="/shop"
+							className="no-underline text-blue-400"
+						>
+							shop
+						</Link>{" "}
+						instead?
+					</Text>
+				</Box>
+			) : (
+				<Container size="md" px="xl">
+					<Box className="flex flex-col h-100 justify-between">
+						<Table striped verticalSpacing="md">
+							<thead>
+								<tr>
 									<th>Product</th>
 									<th>Price</th>
 									<th>Quantity</th>
 									<th>Total</th>
-								</thead>
-								<tbody>
-									{cartItems.map((item) => (
-										<CartItem key={item.name} {...item} />
-									))}
-								</tbody>
-							</Table>
-							<Box className="flex flex-row justify-between pt-10 pb-3">
-								<Box className="text-2xl">Total</Box>
-								<Box className="font-bold text-2xl">
-									${total}
-								</Box>
-							</Box>
+								</tr>
+							</thead>
+							<tbody>
+								{cartItems.map((item) => (
+									<CartItem key={item.name} {...item} />
+								))}
+							</tbody>
+						</Table>
+						<Box className="flex flex-row justify-between pt-10 pb-3">
+							<Box className="text-2xl">Total</Box>
+							<Box className="font-bold text-2xl">${total}</Box>
+						</Box>
+						<Box>
 							<Box className="italic pb-3">
 								For now, clicking checkout sends me a telegram
 								message. I will need your telegram handle so I
@@ -151,18 +146,10 @@ const Cart = React.forwardRef(({ onClose }, ref) => {
 								ref={telegramHandleRef}
 								error={telegramHandleError}
 							/>
-							<Button
-								className="bg-accent hover:bg-accent-hover"
-								onClick={() => handleCheckout(cartItems)}
-							>
-								Checkout
-							</Button>
 						</Box>
-					</>
-				)}
-			</motion.div>
+					</Box>
+				</Container>
+			)}
 		</>
 	);
-});
-Cart.displayName = "Cart";
-export default Cart;
+}

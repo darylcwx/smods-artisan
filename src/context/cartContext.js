@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import Cart from "@/components/cart.js";
+import Cart from "@/components/cartPreview.js";
 const CartContext = createContext({});
 
 export function useCart() {
@@ -7,7 +7,9 @@ export function useCart() {
 }
 
 export const CartProvider = (props) => {
-	const [cartItems, setCartItems] = useState([]);
+	const [cartItems, setCartItems] = useState([
+		{ name: "001", quantity: 1, image: "001.JPG", price: 209 },
+	]);
 
 	const increaseCartQuantity = (name, image, price) => {
 		setCartItems((currItems) => {
