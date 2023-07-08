@@ -10,13 +10,9 @@ import {
 } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
-import { useRef, useState } from "react";
 import { useCart } from "@/context/cartContext.js";
 import CartItem from "@/components/cartItem.js";
 import { motion } from "framer-motion";
-import { notifications } from "@mantine/notifications";
-import { IconCheck, IconX, IconAt } from "@tabler/icons-react";
-import { TextInput } from "@mantine/core";
 const useStyles = createStyles((theme) => ({
 	drawer: {
 		backgroundColor: "red",

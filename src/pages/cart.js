@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 import { notifications } from "@mantine/notifications";
 import { IconCheck, IconX, IconAt } from "@tabler/icons-react";
 import { TextInput } from "@mantine/core";
-export default function cart() {
+const Cart = () => {
 	const { cartItems } = useCart();
 	const telegramHandleRef = useRef(null);
 	const [telegramHandleError, setTelegramHandleError] = useState(null);
@@ -161,4 +161,5 @@ export default function cart() {
 			)}
 		</>
 	);
-}
+};
+export default Cart;
