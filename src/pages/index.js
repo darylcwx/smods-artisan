@@ -50,7 +50,7 @@ export default function Home() {
 				>
 					<Title order={1} className="w-full pb-1">
 						<span className="">Welcome to </span>
-						<span className="sm:inline block animate-index bg-gradient-to-r from-accent via-accent-secondary to-accent">
+						<span className="sm:inline block animate-index bg-clip-text text-transparent bg-gradient-to-r from-accent via-accent-secondary to-accent">
 							Seiko Mods Artisan.
 						</span>
 					</Title>
