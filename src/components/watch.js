@@ -72,7 +72,10 @@ export default function Watch({
 									<Box class="embla__viewport" ref={emblaRef}>
 										<Box className="embla__container flex">
 											{image.map((array) => (
-												<Box className="embla__slide flex-[0_0_100%]">
+												<Box
+													className="embla__slide flex-[0_0_100%]"
+													key={array}
+												>
 													<Image
 														src={
 															"/static/watches/" +
