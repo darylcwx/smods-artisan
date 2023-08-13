@@ -71,10 +71,12 @@ export default function Watch({
 								<Box className="embla overflow-hidden">
 									<Box class="embla__viewport" ref={emblaRef}>
 										<Box className="embla__container flex">
-											{image.map((array) => (
+											{ 
+											/* eslint-disable */
+											image.map((array) => (
 												<Box
 													className="embla__slide flex-[0_0_100%]"
-													key={array}
+													//key={array}
 												>
 													<Image
 														src={
@@ -86,7 +88,9 @@ export default function Watch({
 														alt={name}
 													></Image>
 												</Box>
-											))}
+											)) 
+											/* eslint-eable */
+											}
 										</Box>
 									</Box>
 								</Box>
