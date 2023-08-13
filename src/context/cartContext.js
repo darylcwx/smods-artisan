@@ -10,6 +10,7 @@ export const CartProvider = (props) => {
 	const [cartItems, setCartItems] = useState([]);
 
 	const increaseCartQuantity = (name, image, price) => {
+		if (typeof image !== "string") image = image[0];
 		setCartItems((currItems) => {
 			if (currItems.find((item) => item.name === name) == null) {
 				return [...currItems, { name, quantity: 1, image, price }];

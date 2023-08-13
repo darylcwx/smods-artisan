@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState, useEffect, useMemo } from "react";
 import {
 	createStyles,
@@ -16,7 +16,13 @@ import {
 	Textarea,
 	Group,
 	Box,
+	ActionIcon,
 } from "@mantine/core";
+import {
+	IconChevronCompactLeft,
+	IconChevronCompactRight,
+} from "@tabler/icons-react";
+import useEmblaCarousel from "embla-carousel-react";
 import { useForm } from "@mantine/form";
 import { useCart } from "@/context/cartContext.js";
 const useStyles = createStyles((theme) => ({}));
@@ -37,6 +43,14 @@ export default function Watch({
 }) {
 	const { classes } = useStyles();
 	const { increaseCartQuantity } = useCart();
+	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+	const scrollPrev = useCallback(() => {
+		if (emblaApi) emblaApi.scrollPrev();
+	}, [emblaApi]);
+
+	const scrollNext = useCallback(() => {
+		if (emblaApi) emblaApi.scrollNext();
+	}, [emblaApi]);
 	return (
 		<>
 			<Paper
@@ -44,12 +58,50 @@ export default function Watch({
 				key={name}
 			>
 				<Box className="flex flex-col justify-start h-full">
-					<Image
-						src={"/static/watches/" + image}
-						fit="cover"
-						className="rounded-t-xl overflow-hidden"
-						alt={name}
-					></Image>
+					<>
+						{typeof image === "string" ? (
+							<Image
+								src={"/static/watches/" + image}
+								fit="cover"
+								className="rounded-t-xl overflow-hidden"
+								alt={name}
+							></Image>
+						) : (
+							<Box className="relative">
+								<Box className="embla overflow-hidden">
+									<Box class="embla__viewport" ref={emblaRef}>
+										<Box className="embla__container flex">
+											{image.map((array) => (
+												<Box className="embla__slide flex-[0_0_100%]">
+													<Image
+														src={
+															"/static/watches/" +
+															array
+														}
+														fit="cover"
+														className="rounded-t-xl overflow-hidden"
+														alt={name}
+													></Image>
+												</Box>
+											))}
+										</Box>
+									</Box>
+								</Box>
+								<Box
+									className="embla__prev absolute flex top-0 h-full items-center group"
+									onClick={scrollPrev}
+								>
+									<IconChevronCompactLeft className="text-accent group-hover:scale-150 duration-200" />
+								</Box>
+								<Box
+									className="embla__next absolute right-0 flex top-0 h-full items-center group"
+									onClick={scrollNext}
+								>
+									<IconChevronCompactRight className="text-accent group-hover:scale-150 duration-200" />
+								</Box>
+							</Box>
+						)}
+					</>
 					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">
 						<Box>
 							<Tooltip

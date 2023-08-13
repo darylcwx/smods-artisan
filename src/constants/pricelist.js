@@ -1,6 +1,6 @@
 const priceList = {
-	regular: 209,
-	gmt: 299,
-	ladies: 199,
+	regular: 239,
+	gmt: 349,
+	ladies: 249,
 };
 export default priceList;

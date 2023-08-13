@@ -15,114 +15,13 @@ import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/components/watch.js";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
-import priceList from "@/constants/pricelist.js";
+import priceList from "@/constants/pricelist";
+import watches from "@/constants/watches";
 const useStyles = createStyles((theme) => ({
 	contact: {
 		textDecoration: "none",
 	},
 }));
-
-const watches = [
-	{
-		name: "001",
-		price: priceList.regular,
-		image: "001.JPG",
-		insert: "Embossed Black Submariner",
-		shell: "Standard 316L oyster case",
-		crown: "Standard 316L crown",
-		strap: "Rubber oyster strap",
-		clasp: "Standard 316L clasp, center gloss finish",
-		crystal: "Flat sapphire",
-		cRing: "",
-		dial: "Seiko Marine Master",
-		hands: "Mercedes hands",
-		movement: "NH35A",
-	},
-	{
-		name: "003",
-		price: priceList.regular,
-		image: "003.JPG",
-		insert: "Black Submariner w additional decals",
-		shell: "Standard 316L oyster case",
-		crown: "Standard 316L crown",
-		strap: "Standard 316L oyster strap",
-		clasp: "Standard 316L clasp",
-		crystal: "Flat sapphire crystal",
-		cRing: "Built-in rehaut",
-		dial: "Seiko slanted double bars in blue",
-		hands: "Sword hands",
-		movement: "NH35A with white date wheel",
-	},
-	{
-		name: "301",
-		price: priceList.regular,
-		image: "301.JPG",
-		insert: "",
-		shell: "Case resembling Patek Aquanaut",
-		crown: "Crown resembling Patek Aquanaut",
-		strap: "Strap resembling Patek Aquanaut",
-		clasp: "Butterfly clasp",
-		crystal: "Flat sapphire",
-		cRing: "",
-		dial: "Seiko dial resembling Patek Aquanaut w Date",
-		hands: "Sword hands",
-		movement: "NH35A",
-	},
-	{
-		name: "601",
-		price: priceList.regular,
-		image: "601.JPG",
-		insert: "Ceramic Black-Brown 12 hour GMT bezel insert",
-		shell: "Standard 316L oyster case",
-		crown: "Seiko gold crown",
-		strap: "Silver and gold jubilee strap",
-		clasp: "Silver and gold seiko clasp",
-		crystal: "Flat sapphire crystal",
-		cRing: "Built-in rehaut",
-		dial: "Seiko Automatic Diver's",
-		hands: "Syringe hands",
-		movement: "NH35A with black date wheel",
-	},
-	{
-		name: "701",
-		price: priceList.regular,
-		image: "701.jpeg",
-		insert: "Embossed Black Submariner",
-		shell: "SKX007 case in black",
-		crown: "Seiko crown",
-		strap: "Rubber strap",
-		clasp: "Buckle",
-		crystal: "Double domed with blue AR",
-		cRing: "White + Black",
-		dial: "Off-White stealth Seiko Day Date",
-		hands: "Black mercedes hands",
-		movement: "NH36A",
-	},
-	{
-		name: "F01",
-		price: priceList.ladies,
-		image: "F01.JPG",
-		insert: "Fluted bezel",
-		shell: "Standard 316L 36mm oyster case",
-		crown: "Standard 316L crown",
-		strap: "Standard 316L jubilee strap",
-		clasp: "Standard 316L clasp",
-		crystal: "Double domed with blue AR",
-		cRing: "White + Black",
-		dial: "Off-White stealth Seiko Day Date",
-		hands: "Black mercedes hands",
-		movement: "NH36A",
-	},
-	{
-		name: "R001 (NFS)",
-		price: " -",
-		image: "R001.jpeg",
-		insert: "Embossed Black Submariner",
-		shell: "SKX007 case in black",
-		strap: "Rubber strap",
-		clasp: "Rose gold clasp",
-	},
-];
 export default function Shop() {
 	const { classes } = useStyles();
 	const [scroll, setScrollPosition] = useState(0);
