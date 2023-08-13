@@ -71,26 +71,22 @@ export default function Watch({
 								<Box className="embla overflow-hidden">
 									<Box class="embla__viewport" ref={emblaRef}>
 										<Box className="embla__container flex">
-											{
-												/* eslint-disable */
-												image.map((array) => (
-													<Box
-														className="embla__slide flex-[0_0_100%]"
-														//key={array}
-													>
-														<Image
-															src={
-																"/static/watches/" +
-																array
-															}
-															fit="cover"
-															className="rounded-t-xl overflow-hidden"
-															alt={name}
-														></Image>
-													</Box>
-												))
-												/* eslint-eable */
-											}
+											{image.map((array) => (
+												<Box
+													className="embla__slide flex-[0_0_100%]"
+													key={array}
+												>
+													<Image
+														src={
+															"/static/watches/" +
+															array
+														}
+														fit="cover"
+														className="rounded-t-xl overflow-hidden"
+														alt={name}
+													></Image>
+												</Box>
+											))}
 										</Box>
 									</Box>
 								</Box>
