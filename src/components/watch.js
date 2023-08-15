@@ -19,6 +19,8 @@ import {
 	ActionIcon,
 } from "@mantine/core";
 import {
+	IconChevronLeft,
+	IconChevronRight,
 	IconChevronCompactLeft,
 	IconChevronCompactRight,
 } from "@tabler/icons-react";
@@ -59,50 +61,61 @@ export default function Watch({
 			>
 				<Box className="flex flex-col justify-start h-full">
 					<>
-						{typeof image === "string" ? (
+						{Array.isArray(image) ? (
+							<Box className="relative">
+								<Box className="embla overflow-hidden">
+									<Box
+										className="embla__viewport"
+										ref={emblaRef}
+									>
+										<Box className="embla__container flex">
+											{image.map((item) => {
+												return (
+													<Box
+														className="embla__slide flex-[0_0_100%]"
+														key={item}
+													>
+														<Image
+															src={
+																"/static/watches/" +
+																item
+															}
+															fit="cover"
+															className="rounded-t-xl overflow-hidden"
+															alt={item}
+														></Image>
+													</Box>
+												);
+											})}
+										</Box>
+									</Box>
+								</Box>
+								<Box
+									className="embla__prev absolute flex top-0 -left-1 h-full items-center group"
+									onClick={scrollPrev}
+								>
+									<IconChevronLeft
+										size={36}
+										className="text-accent group-hover:scale-150 duration-200"
+									/>
+								</Box>
+								<Box
+									className="embla__next absolute right-0 flex top-0 -right-1 h-full items-center group"
+									onClick={scrollNext}
+								>
+									<IconChevronRight
+										size={36}
+										className="text-accent group-hover:scale-150 duration-200"
+									/>
+								</Box>
+							</Box>
+						) : (
 							<Image
 								src={"/static/watches/" + image}
 								fit="cover"
 								className="rounded-t-xl overflow-hidden"
 								alt={name}
 							></Image>
-						) : (
-							<Box className="relative">
-								<Box className="embla overflow-hidden">
-									<Box class="embla__viewport" ref={emblaRef}>
-										<Box className="embla__container flex">
-											{image.map((array) => (
-												<Box
-													className="embla__slide flex-[0_0_100%]"
-													key={array}
-												>
-													<Image
-														src={
-															"/static/watches/" +
-															array
-														}
-														fit="cover"
-														className="rounded-t-xl overflow-hidden"
-														alt={name}
-													></Image>
-												</Box>
-											))}
-										</Box>
-									</Box>
-								</Box>
-								<Box
-									className="embla__prev absolute flex top-0 h-full items-center group"
-									onClick={scrollPrev}
-								>
-									<IconChevronCompactLeft className="text-accent group-hover:scale-150 duration-200" />
-								</Box>
-								<Box
-									className="embla__next absolute right-0 flex top-0 h-full items-center group"
-									onClick={scrollNext}
-								>
-									<IconChevronCompactRight className="text-accent group-hover:scale-150 duration-200" />
-								</Box>
-							</Box>
 						)}
 					</>
 					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">

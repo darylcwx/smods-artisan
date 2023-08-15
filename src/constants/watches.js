@@ -16,7 +16,7 @@ const watches = [
 	{
 		name: "105",
 		price: priceList.regular,
-		image: ["105.JPG", "105-f.JPG"],
+		image: ["105.jpg", "105-f.jpg"],
 		insert: "Fluted bezel",
 		shell: "41mm case",
 		crown: "Standard crown",
@@ -32,7 +32,7 @@ const watches = [
 	{
 		name: "104",
 		price: priceList.regular,
-		image: ["104.JPG", "104-f.JPG"],
+		image: ["104.jpg", "104-f.jpg"],
 		insert: "Fluted bezel",
 		shell: "41mm case",
 		crown: "Standard crown",
@@ -48,7 +48,7 @@ const watches = [
 	{
 		name: "F01",
 		price: priceList.ladies,
-		image: "F01.JPG",
+		image: "F01.jpg",
 		insert: "Fluted bezel",
 		shell: "36mm oyster case",
 		crown: "Standard crown",
@@ -64,7 +64,7 @@ const watches = [
 	{
 		name: "103",
 		price: priceList.regular,
-		image: "103.JPG",
+		image: "103.jpg",
 		insert: "Embossed Black Submariner",
 		shell: "Standard case",
 		crown: "Standard crown",
@@ -80,7 +80,7 @@ const watches = [
 	{
 		name: "301",
 		price: priceList.regular,
-		image: "301.JPG",
+		image: "301.jpg",
 		insert: "",
 		shell: "Case resembling Patek Aquanaut",
 		crown: "Standard crown",
@@ -96,7 +96,7 @@ const watches = [
 	{
 		name: "102",
 		price: priceList.regular,
-		image: "102.JPG",
+		image: "102.jpg",
 		insert: "Black Submariner w additional markers",
 		shell: "Standard case",
 		crown: "Standard crown",
@@ -112,7 +112,7 @@ const watches = [
 	{
 		name: "101",
 		price: priceList.regular,
-		image: "101.JPG",
+		image: "101.jpg",
 		insert: "Ceramic black-brown 12-hour GMT bezel insert",
 		shell: "Standard case",
 		crown: "Seiko gold crown",
