@@ -80,6 +80,7 @@ export default function Watch({
 																"/static/watches/" +
 																item
 															}
+															priority
 															width={0}
 															height={0}
 															sizes="100vw"
@@ -114,6 +115,7 @@ export default function Watch({
 						) : (
 							<Image
 								src={"/static/watches/" + image}
+								priority
 								width={0}
 								height={0}
 								sizes="100vw"
