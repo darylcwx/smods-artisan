@@ -8,7 +8,6 @@ import {
 	Flex,
 	Container,
 	SimpleGrid,
-	Image,
 	Tooltip,
 	Button,
 	Modal,
@@ -18,6 +17,7 @@ import {
 	Box,
 	ActionIcon,
 } from "@mantine/core";
+import Image from "next/image";
 import {
 	IconChevronLeft,
 	IconChevronRight,
@@ -80,8 +80,10 @@ export default function Watch({
 																"/static/watches/" +
 																item
 															}
-															fit="cover"
-															className="rounded-t-xl overflow-hidden"
+															width={0}
+															height={0}
+															sizes="100vw"
+															className="w-full h-auto rounded-t-xl"
 															alt={item}
 														></Image>
 													</Box>
@@ -112,8 +114,10 @@ export default function Watch({
 						) : (
 							<Image
 								src={"/static/watches/" + image}
-								fit="cover"
-								className="rounded-t-xl overflow-hidden"
+								width={0}
+								height={0}
+								sizes="100vw"
+								className="w-full h-auto rounded-t-xl"
 								alt={name}
 							></Image>
 						)}
