@@ -1,9 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const uri =
-	"mongodb+srv://darylcwx:AGJi9wT3dEAJJyhC@sma.kxioqz5.mongodb.net/test?retryWrites=true&w=majority";
-
+const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, {
 	serverApi: {
 		version: ServerApiVersion.v1,
@@ -24,4 +22,3 @@ const connectToDB = async () => {
 };
 
 export default connectToDB;
-//export default connection;
