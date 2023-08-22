@@ -17,6 +17,7 @@ import Watch from "@/components/watch.js";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
 import priceList from "@/constants/pricelist";
 import watches from "@/constants/watches";
+import handler from "@/pages/api/getAll";
 const useStyles = createStyles((theme) => ({
 	contact: {
 		textDecoration: "none",
@@ -25,6 +26,7 @@ const useStyles = createStyles((theme) => ({
 export default function Shop() {
 	const { classes } = useStyles();
 	const [scroll, setScrollPosition] = useState(0);
+	const [data, setData] = useState([]);
 	useEffect(() => {
 		const handleScroll = (event) => {
 			setScrollPosition(window.scrollY);
@@ -38,6 +40,22 @@ export default function Shop() {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	});
+
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		const res = await fetch("http://localhost:3000/api/getAll", {
+	// 			method: "GET",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 		});
+	// 		const jsonData = await res.json();
+	// 		console.log(JSON.stringify(jsonData));
+	// 		setData(jsonData.data);
+	// 	}
+	// 	fetchDate();
+	// 	//console.log(fetchDate());
+	// }, []);
 	return (
 		<>
 			<Head>
