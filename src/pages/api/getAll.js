@@ -1,15 +1,14 @@
 import connectToDB from "../../middleware/connection";
 
-export default async (req, res) => {
+const getAll = async (req, res) => {
 	try {
 		const client = await connectToDB();
 		const db = client.db("SMA");
-		const movies = await db.collection("Watches").find({}).toArray();
-		// res.statusCode = 200;
-		// res.setHeader("Content-Type", "application/json");
-		res.json(movies);
+		const watches = await db.collection("Watches").find({}).toArray();
+		return watches;
 	} catch (error) {
 		console.error(error);
-		res.json(error);
+		return [];
 	}
 };
+export default getAll;

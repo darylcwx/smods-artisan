@@ -15,18 +15,35 @@ import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/components/watch.js";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
-import priceList from "@/constants/pricelist";
-import watches from "@/constants/watches";
-import handler from "@/pages/api/getAll";
+import getAll from "@/pages/api/getAll";
+import getPrices from "@/pages/api/getPrices";
 const useStyles = createStyles((theme) => ({
 	contact: {
 		textDecoration: "none",
 	},
 }));
-export default function Shop() {
+
+export async function getServerSideProps() {
+	const watches = await getAll();
+	const pricesData = await getPrices();
+	const priceObject = {};
+	pricesData.forEach((price) => {
+		priceObject[price.name] = price.price;
+	});
+	for (const watch of watches) {
+		watch.price = priceObject[watch.price];
+	}
+	console.log(priceObject);
+	return {
+		props: {
+			watches: JSON.parse(JSON.stringify(watches)),
+			prices: JSON.parse(JSON.stringify(priceObject)),
+		},
+	};
+}
+export default function Shop({ watches, prices }) {
 	const { classes } = useStyles();
 	const [scroll, setScrollPosition] = useState(0);
-	const [data, setData] = useState([]);
 	useEffect(() => {
 		const handleScroll = (event) => {
 			setScrollPosition(window.scrollY);
@@ -40,22 +57,6 @@ export default function Shop() {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	});
-
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		const res = await fetch("http://localhost:3000/api/getAll", {
-	// 			method: "GET",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 		});
-	// 		const jsonData = await res.json();
-	// 		console.log(JSON.stringify(jsonData));
-	// 		setData(jsonData.data);
-	// 	}
-	// 	fetchDate();
-	// 	//console.log(fetchDate());
-	// }, []);
 	return (
 		<>
 			<Head>
@@ -161,7 +162,7 @@ export default function Shop() {
 								<br></br>
 								<br></br>
 								Ladies' watches will be priced at $
-								{priceList.ladies}.
+								{prices.ladies}.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -189,10 +190,10 @@ export default function Shop() {
 								<br></br>
 								However, if you'd like just the GMT bezel with 3
 								hands, that's fine too! It'll be classified as
-								part of the normal range at ${priceList.regular}
-								.<br></br>
+								part of the normal range at ${prices.regular}.
 								<br></br>
-								Functional GMTs are priced at ${priceList.gmt}.
+								<br></br>
+								Functional GMTs are priced at ${prices.gmt}.
 							</Text>
 						</Popover.Dropdown>
 					</Popover>
@@ -276,7 +277,7 @@ export default function Shop() {
 					className="pb-6"
 				>
 					{watches.map((watch) => (
-						<Watch key={watch} {...watch} />
+						<Watch key={watch.name} {...watch} />
 					))}
 				</SimpleGrid>
 			</Container>
