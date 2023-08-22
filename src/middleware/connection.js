@@ -1,7 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const uri = process.env.MONGODB_URI
+// Vercel's env variables
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, {
 	serverApi: {
 		version: ServerApiVersion.v1,
@@ -11,9 +10,7 @@ const client = new MongoClient(uri, {
 });
 const connectToDB = async () => {
 	try {
-		// Connect the client to the server
 		await client.connect();
-		// Send a ping to confirm a successful connection
 		console.log("Successfully connected to MongoDB!");
 		return client;
 	} catch (error) {
