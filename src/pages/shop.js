@@ -23,49 +23,31 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-// SSR for calling APIs
-// export async function getServerSideProps() {
-// 	const watches = await getAll();
-// 	const pricesData = await getPrices();
-// 	const priceObject = {};
-// 	pricesData.forEach((price) => {
-// 		priceObject[price.name] = price.price;
-// 	});
-// 	for (const watch of watches) {
-// 		watch.price = priceObject[watch.price];
-// 	}
-// 	console.log(priceObject);
-// 	return {
-// 		props: {
-// 			watches: JSON.parse(JSON.stringify(watches)),
-// 			prices: JSON.parse(JSON.stringify(priceObject)),
-// 		},
-// 	};
-// }
-
+//const priceObject = { regular: 239, ladies: 249, NFS: " NFS" };
+// SSR
+export async function getServerSideProps() {
+	const watches = await getAll();
+	console.log(watches);
+	const pricesData = await getPrices();
+	const priceObject = {};
+	pricesData.forEach((price) => {
+		priceObject[price.name] = price.price;
+	});
+	for (const watch of watches) {
+		watch.price = priceObject[watch.price];
+	}
+	return {
+		props: {
+			watches: JSON.parse(JSON.stringify(watches)),
+			prices: JSON.parse(JSON.stringify(priceObject)),
+		},
+	};
+}
 export default function Shop({ watches, prices }) {
 	const { classes } = useStyles();
 	const [scroll, setScrollPosition] = useState(0);
 	const [items, setItems] = useState([]);
 
-	useEffect(() => {
-		// Fetch data from the API endpoint
-		async function fetchData() {
-			try {
-				const response = await fetch("/api/getAllItems");
-				if (response.ok) {
-					const data = await response.json();
-					setItems(data.items);
-				} else {
-					console.error("Failed to fetch data");
-				}
-			} catch (error) {
-				console.error("An error occurred:", error);
-			}
-		}
-
-		fetchData();
-	}, []);
 	useEffect(() => {
 		const handleScroll = (event) => {
 			setScrollPosition(window.scrollY);

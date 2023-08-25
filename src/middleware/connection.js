@@ -8,9 +8,9 @@ const client = new MongoClient(uri, {
 		deprecationErrors: true,
 	},
 });
-export default async function connectToDB() {
+export default function connectToDB() {
 	try {
-		await client.connect();
+		client.connect();
 		console.log("Successfully connected to MongoDB!");
 		return client;
 	} catch (error) {
