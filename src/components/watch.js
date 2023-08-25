@@ -102,6 +102,7 @@ export default function Watch({
 															sizes="100vw"
 															className="w-full h-auto rounded-t-xl"
 															alt={item}
+															withPlaceholder
 														></Image>
 													</Box>
 												);
@@ -137,6 +138,7 @@ export default function Watch({
 								sizes="100vw"
 								className="w-full h-auto rounded-t-xl"
 								alt={name}
+								withPlaceholder
 							></Image>
 						)}
 						<Box className="absolute right-2 top-2">

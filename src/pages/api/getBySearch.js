@@ -22,7 +22,6 @@ export default async function handler(req, res) {
 				],
 			})
 			.toArray();
-		console.log(watches);
 		return res.status(200).json(watches);
 	} catch (error) {
 		console.error("An error occurred:", error);
