@@ -23,11 +23,13 @@ import {
 	IconChevronRight,
 	IconChevronCompactLeft,
 	IconChevronCompactRight,
+	IconHeartFilled,
 } from "@tabler/icons-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useForm } from "@mantine/form";
 import { useCart } from "@/context/cartContext.js";
 const useStyles = createStyles((theme) => ({}));
+
 export default function Watch({
 	name,
 	price,
@@ -42,10 +44,13 @@ export default function Watch({
 	dial,
 	hands,
 	movement,
+	date,
+	likes,
 }) {
 	const { classes } = useStyles();
 	const { increaseCartQuantity } = useCart();
 	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+	let [likeCount, setLikeCount] = useState(likes);
 	const scrollPrev = useCallback(() => {
 		if (emblaApi) emblaApi.scrollPrev();
 	}, [emblaApi]);
@@ -53,10 +58,21 @@ export default function Watch({
 	const scrollNext = useCallback(() => {
 		if (emblaApi) emblaApi.scrollNext();
 	}, [emblaApi]);
+
+	const handleLike = async (watch) => {
+		const res = await fetch("/api/like", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(watch),
+		});
+		const data = await res.json();
+		setLikeCount(likeCount + 1);
+		return;
+	};
 	return (
 		<>
 			<Paper
-				className="p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
+				className="relative p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
 				key={name}
 			>
 				<Box className="flex flex-col justify-start h-full">
@@ -123,7 +139,18 @@ export default function Watch({
 								alt={name}
 							></Image>
 						)}
+						<Box className="absolute right-2 top-2">
+							<IconHeartFilled
+								style={{ color: "red" }}
+								size={20}
+								onClick={() => handleLike(name)}
+							/>
+							<Text className="absolute w-full -bottom-2 text-center text-white text-xs">
+								{likeCount}
+							</Text>
+						</Box>
 					</>
+
 					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">
 						<Box>
 							<Tooltip

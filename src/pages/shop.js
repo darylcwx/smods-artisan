@@ -6,10 +6,11 @@ import {
 	Button,
 	Box,
 	Popover,
-	NativeSelect,
+	Select,
 	SimpleGrid,
 	Image,
 	List,
+	TextInput,
 } from "@mantine/core";
 import Link from "next/link";
 import Head from "next/head";
@@ -17,17 +18,16 @@ import Watch from "@/components/watch.js";
 import { nprogress, NavigationProgress } from "@mantine/nprogress";
 import getAll from "@/pages/api/getAll";
 import getPrices from "@/pages/api/getPrices";
+
 const useStyles = createStyles((theme) => ({
 	contact: {
 		textDecoration: "none",
 	},
 }));
 
-//const priceObject = { regular: 239, ladies: 249, NFS: " NFS" };
 // SSR
 export async function getServerSideProps() {
 	const watches = await getAll();
-	console.log(watches);
 	const pricesData = await getPrices();
 	const priceObject = {};
 	pricesData.forEach((price) => {
@@ -47,6 +47,22 @@ export default function Shop({ watches, prices }) {
 	const { classes } = useStyles();
 	const [scroll, setScrollPosition] = useState(0);
 	const [items, setItems] = useState([]);
+	const [search, setSearch] = useState("");
+	const [searchRes, setSearchRes] = useState([]);
+	useEffect(() => {
+		const handleSearch = async () => {
+			await fetch("/api/getBySearch", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(search),
+			})
+				.then((res) => res.json())
+				.then((data) => setSearchRes(data));
+
+			return;
+		};
+		handleSearch();
+	}, [search]);
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -257,10 +273,18 @@ export default function Shop({ watches, prices }) {
 						</Popover.Dropdown>
 					</Popover>
 				</Box>
-				{/* <Box className="pb-10">
-					Filter by:
-					<input />
-				</Box> */}
+				<Box className="mb-6 flex row justify-end w-full p-3 bg-accent text-white rounded-md">
+					{/* <Select placeholder="Filter by" data={[]}></Select> */}
+					<Box className=""></Box>
+					<Box className="flex items-center">
+						<Text pr="sm">Search:</Text>
+						<TextInput
+							className=""
+							onChange={() => setSearch(event.target.value)}
+							placeholder="jubilee"
+						/>
+					</Box>
+				</Box>
 				<SimpleGrid
 					cols={3}
 					spacing="xl"
@@ -280,9 +304,13 @@ export default function Shop({ watches, prices }) {
 					]}
 					className="pb-6"
 				>
-					{watches.map((watch) => (
-						<Watch key={watch.name} {...watch} />
-					))}
+					{search
+						? searchRes.map((watch) => (
+								<Watch key={watch.name} {...watch} />
+						  ))
+						: watches.map((watch) => (
+								<Watch key={watch.name} {...watch} />
+						  ))}
 				</SimpleGrid>
 			</Container>
 		</>

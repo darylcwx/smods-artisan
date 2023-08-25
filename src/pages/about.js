@@ -61,16 +61,16 @@ export default function Home() {
 					<motion.div variants={item}>
 						<Text pb="xs">
 							Welcome to Smods Artisan. Smods stands for Seiko
-							Mods, and therefore the services I can provide is a
-							unique-to-you custom modded Seiko, with all parts of
-							your choosing.
+							Mods, and the service I provide is a unique-to-you
+							custom modded Seiko, with all parts of your
+							choosing.
 						</Text>
 
 						<Text pb="xl">
 							Each watch is carefully assembled to ensure that it
 							meets high standards for quality and reliability.
-							Whether you're looking for a template or a unique
-							and personalized timepiece, there have something for
+							Whether you're looking for a template or a unique,
+							personalized timepiece, there have something for
 							everyone.
 						</Text>
 					</motion.div>
@@ -79,18 +79,10 @@ export default function Home() {
 					</motion.div>
 					<motion.div variants={item}>
 						<Text pb="xs">
-							My journey as a watchmaker began as a hobby,
-							crafting unique timepieces for family and friends.
-							The positive response I received to my work
-							encouraged me to explore the opportunity to bring my
-							passion for watchmaking to a wider audience.
-						</Text>
-						<Text pb="xl">
-							Driven by a desire to offer high-quality,
-							custom-made watches at an affordable price, I
-							decided to specialize in the assembly of
-							one-of-a-kind timepieces for individuals seeking a
-							truly personalized accessory.
+							My journey as a watchmaker began as a hobby. The
+							positive response I received to my work encouraged
+							me to explore the opportunity to bring my passion
+							for watchmaking to a wider audience.
 						</Text>
 					</motion.div>
 					<motion.div variants={item}>
@@ -100,9 +92,8 @@ export default function Home() {
 						<Text pb="xl">
 							<List>
 								<List.Item>
-									As a professional custom watchmaker, I stand
-									behind the craftsmanship of every watch I
-									create with a 6-month warranty.
+									I stand behind the craftsmanship of every
+									watch I create with a 6-month warranty.
 								</List.Item>
 								<List.Item>
 									I enjoying providing and creating designs
@@ -116,8 +107,12 @@ export default function Home() {
 									apart from the competition.
 								</List.Item>
 								<List.Item>
-									I value my customers' loyalty and offer a
-									10% discount to returning buyers.
+									I use glidelock clasps, allowing for fine
+									adjustment of your bracelet length
+								</List.Item>
+								<List.Item>
+									I value loyalty and offer a 10% discount to
+									returning customers.
 								</List.Item>
 							</List>
 						</Text>
@@ -159,13 +154,11 @@ export default function Home() {
 											Where are your parts from?
 										</Accordion.Control>
 										<Accordion.Panel>
-											I source my parts from a variety of
-											reputable suppliers in the
+											I source my parts from the
 											aftermarket industry. I carefully
 											select my suppliers to ensure that
-											they provide high-quality parts that
-											meet strict standards for quality
-											and reliability.
+											they provide high-quality parts for
+											quality and reliability.
 											<br></br>
 											<br></br>
 											<Image
@@ -175,13 +168,11 @@ export default function Home() {
 												alt="lume"
 											></Image>
 											<br></br>
-											<br></br> I use different movements
-											depending on requirements, that
-											makes the replacement or compatible
-											movements for the original watch
-											brand. This ensures that my watches
-											are powered by reliable and accurate
-											mechanisms.
+											<br></br> I use different NHxx
+											movements for different
+											requirements, which ensures that my
+											watches are powered by reliable and
+											accurate mechanisms.
 											<br></br>
 											<br></br>I have zero affiliation
 											with Seiko.
@@ -197,18 +188,15 @@ export default function Home() {
 											order?
 										</Accordion.Control>
 										<Accordion.Panel>
-											I typically need about a month to
-											build a watch. This is due to
-											sourcing and procuring of parts, as
-											well as taking the time to carefully
-											assemble each watch to ensure that
-											it meets the standards for quality
-											and reliability.
+											I typically need about 3 weeks to
+											fulfil. This is due to sourcing and
+											procuring of parts, then carefully
+											assembling each watch. I want to
+											ensure that you receive a watch that
+											is not only beautiful, but also a
+											functional and durable timepiece.
 											<br></br>
-											<br></br>I want to ensure that you
-											receive a watch that is not only
-											beautiful but also a functional and
-											durable timepiece. I apologize for
+											<br></br>Therefore, I apologize for
 											any inconvenience this may cause and
 											I will keep you updated on the
 											progress of your watch.
@@ -230,14 +218,11 @@ export default function Home() {
 											to do so.
 											<br></br>
 											<br></br>
-											As such, I might or might not charge
-											a small premium for this service. I
-											understand that this may be an
-											additional cost for you, but I
-											believe that the end result will be
-											a unique and exclusive timepiece,
-											tailored to your personal style and
-											preferences.
+											As such, there is a small premium
+											for this service. This end result of
+											this additional cost is a unique and
+											exclusive timepiece, tailored to
+											your personal style and preferences.
 											<br></br>
 											<br></br>
 											Feel free to check these links for
@@ -324,9 +309,12 @@ export default function Home() {
 												however, does not cover wear and
 												tear.
 												<br></br>
-												<br></br> In the event of an
-												issue or defect, depending on
-												the situation, I will:
+												<br></br>
+												<b>
+													In the unlikely event of an
+													issue or defect, depending
+													on the situation, I will:
+												</b>
 											</Text>
 											<List type="ordered">
 												<List.Item>
@@ -343,20 +331,15 @@ export default function Home() {
 												</List.Item>
 											</List>
 											<br></br>
-											This warranty does not cover:
+											<b>This warranty does not cover:</b>
 											<br></br>
 											<List>
 												<List.Item>
 													Improper care, negligence,
-													normal wear and tear, or the
+													wear and tear, or the
 													natural breakdown of colors
 													and materials over extended
 													time and use.
-												</List.Item>
-												<List.Item>
-													Watches that have been
-													damaged by unauthorized
-													repair or modification.
 												</List.Item>
 											</List>
 										</Accordion.Panel>
@@ -440,8 +423,8 @@ export default function Home() {
 												You may use the provided spring
 												bar tool to remove the strap
 												from the clasp, then use a
-												scissors to cut off extended
-												rubber to your preferred length.
+												scissors to cut off extra rubber
+												to your preferred length.
 											</Text>
 										</Accordion.Panel>
 									</Accordion.Item>
