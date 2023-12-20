@@ -6,11 +6,10 @@ import {
   Button,
   Box,
   Popover,
-  Select,
   SimpleGrid,
-  Image,
   List,
   TextInput,
+  Loader,
 } from "@mantine/core";
 import Link from "next/link";
 import Head from "next/head";
@@ -25,10 +24,8 @@ const useStyles = createStyles((theme) => ({
 export default function Shop() {
   const [watches, setWatches] = useState([]);
   const [prices, setPrices] = useState([]);
-  const { classes } = useStyles();
-  const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchRes, setSearchRes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async (endpoint) => {
     try {
@@ -54,9 +51,8 @@ export default function Shop() {
       setPrices(priceData);
     };
     fetchAllData();
+    setIsLoading(false);
   }, []);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const handleSearch = async () => {
@@ -262,31 +258,44 @@ export default function Shop() {
             />
           </Box>
         </Box>
-        <SimpleGrid
-          cols={3}
-          spacing="xl"
-          verticalSpacing="xl"
-          breakpoints={[
-            {
-              maxWidth: "md",
-              cols: 2,
-              spacing: "xl",
-              verticalSpacing: "xl",
-            },
-            {
-              maxWidth: "sm",
-              cols: 1,
-              verticalSpacing: "xl",
-            },
-          ]}
-          className="pb-6">
-          {/* {search
-            ? searchRes.map((watch) => <Watch key={watch.name} {...watch} />)
-            : */}
-          {watches.map((watch) => (
-            <Watch key={watch.name} {...watch} />
-          ))}
-        </SimpleGrid>
+        {isLoading ? (
+          <>
+            <Box className="flex flex-col place-items-center gap-2">
+              <Text>Hang on! Retrieving the watches...</Text>
+              <Loader color="white" type="bars" />
+            </Box>
+          </>
+        ) : watches.length === 0 ? (
+          <>
+            {" "}
+            <Box className="flex flex-col place-items-center gap-2">
+              <Text>Something went wrong.</Text>
+            </Box>
+          </>
+        ) : (
+          <SimpleGrid
+            cols={3}
+            spacing="xl"
+            verticalSpacing="xl"
+            breakpoints={[
+              {
+                maxWidth: "md",
+                cols: 2,
+                spacing: "xl",
+                verticalSpacing: "xl",
+              },
+              {
+                maxWidth: "sm",
+                cols: 1,
+                verticalSpacing: "xl",
+              },
+            ]}
+            className="pb-6">
+            {watches.map((watch) => (
+              <Watch key={watch.name} {...watch} />
+            ))}
+          </SimpleGrid>
+        )}
       </Container>
     </>
   );
