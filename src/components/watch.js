@@ -1,248 +1,176 @@
 import React, { useCallback } from "react";
 import { useState, useEffect, useMemo } from "react";
 import {
-	createStyles,
-	Paper,
-	Text,
-	Title,
-	Flex,
-	Container,
-	SimpleGrid,
-	Tooltip,
-	Button,
-	Modal,
-	TextInput,
-	Textarea,
-	Group,
-	Box,
-	ActionIcon,
+  createStyles,
+  Paper,
+  Text,
+  Title,
+  Flex,
+  Tooltip,
+  Button,
+  Box,
 } from "@mantine/core";
 import Image from "next/image";
 import {
-	IconChevronLeft,
-	IconChevronRight,
-	IconChevronCompactLeft,
-	IconChevronCompactRight,
-	IconHeartFilled,
+  IconChevronLeft,
+  IconChevronRight,
+  IconHeartFilled,
 } from "@tabler/icons-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useForm } from "@mantine/form";
 import { useCart } from "@/context/cartContext.js";
 const useStyles = createStyles((theme) => ({}));
 
 export default function Watch({
-	name,
-	price,
-	image,
-	insert,
-	shell,
-	crown,
-	strap,
-	clasp,
-	crystal,
-	cRing,
-	dial,
-	hands,
-	movement,
-	date,
-	likes,
+  name,
+  price,
+  image,
+  insert,
+  shell,
+  crown,
+  strap,
+  clasp,
+  crystal,
+  cRing,
+  dial,
+  hands,
+  movement,
+  date,
+  likes,
 }) {
-	const { classes } = useStyles();
-	const { increaseCartQuantity } = useCart();
-	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-	let [likeCount, setLikeCount] = useState(likes);
-	const scrollPrev = useCallback(() => {
-		if (emblaApi) emblaApi.scrollPrev();
-	}, [emblaApi]);
+  const { classes } = useStyles();
+  const { increaseCartQuantity } = useCart();
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  let [likeCount, setLikeCount] = useState(likes);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-	const scrollNext = useCallback(() => {
-		if (emblaApi) emblaApi.scrollNext();
-	}, [emblaApi]);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
-	const handleLike = async (watch) => {
-		const res = await fetch("/api/like", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(watch),
-		});
-		const data = await res.json();
-		setLikeCount(likeCount + 1);
-		return;
-	};
-	return (
-		<>
-			<Paper
-				className="relative p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
-				key={name}
-			>
-				<Box className="flex flex-col justify-start h-full">
-					<>
-						{Array.isArray(image) ? (
-							<Box className="relative">
-								<Box className="embla overflow-hidden">
-									<Box
-										className="embla__viewport"
-										ref={emblaRef}
-									>
-										<Box className="embla__container flex">
-											{image.map((item) => {
-												return (
-													<Box
-														className="embla__slide flex-[0_0_100%]"
-														key={item}
-													>
-														<Image
-															src={
-																"/static/watches/" +
-																item
-															}
-															priority
-															width={0}
-															height={0}
-															sizes="100vw"
-															className="w-full h-auto rounded-t-xl"
-															alt={item}
-															withPlaceholder
-														></Image>
-													</Box>
-												);
-											})}
-										</Box>
-									</Box>
-								</Box>
-								<Box
-									className="embla__prev absolute flex top-0 -left-1 h-full items-center group"
-									onClick={scrollPrev}
-								>
-									<IconChevronLeft
-										size={36}
-										className="text-accent group-hover:scale-150 duration-200"
-									/>
-								</Box>
-								<Box
-									className="embla__next absolute right-0 flex top-0 -right-1 h-full items-center group"
-									onClick={scrollNext}
-								>
-									<IconChevronRight
-										size={36}
-										className="text-accent group-hover:scale-150 duration-200"
-									/>
-								</Box>
-							</Box>
-						) : (
-							<Image
-								src={"/static/watches/" + image}
-								priority
-								width={0}
-								height={0}
-								sizes="100vw"
-								className="w-full h-auto rounded-t-xl"
-								alt={name}
-								withPlaceholder
-							></Image>
-						)}
-						<Box className="absolute right-2 top-2">
-							<IconHeartFilled
-								style={{ color: "red" }}
-								size={20}
-								onClick={() => handleLike(name)}
-							/>
-							<Text className="absolute w-full -bottom-2 text-center text-white text-xs">
-								{likeCount}
-							</Text>
-						</Box>
-					</>
+  const handleLike = async (watch) => {
+    const res = await fetch("/api/like", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(watch),
+    });
+    const data = await res.json();
+    setLikeCount(likeCount + 1);
+    return;
+  };
+  return (
+    <>
+      <Paper
+        className="relative p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
+        key={name}>
+        <Box className="flex flex-col justify-start h-full">
+          <>
+            {Array.isArray(image) ? (
+              <Box className="relative">
+                <Box className="embla overflow-hidden">
+                  <Box className="embla__viewport" ref={emblaRef}>
+                    <Box className="embla__container flex">
+                      {image.map((item) => {
+                        return (
+                          <Box
+                            className="embla__slide flex-[0_0_100%]"
+                            key={item}>
+                            <Image
+                              src={"/static/watches/" + item}
+                              priority
+                              width={0}
+                              height={0}
+                              sizes="100vw"
+                              className="w-full h-auto rounded-t-xl"
+                              alt={item}></Image>
+                          </Box>
+                        );
+                      })}
+                    </Box>
+                  </Box>
+                </Box>
+                <Box
+                  className="embla__prev absolute flex top-0 -left-1 h-full items-center group"
+                  onClick={scrollPrev}>
+                  <IconChevronLeft
+                    size={36}
+                    className="text-accent group-hover:scale-150 duration-200"
+                  />
+                </Box>
+                <Box
+                  className="embla__next absolute right-0 flex top-0 -right-1 h-full items-center group"
+                  onClick={scrollNext}>
+                  <IconChevronRight
+                    size={36}
+                    className="text-accent group-hover:scale-150 duration-200"
+                  />
+                </Box>
+              </Box>
+            ) : (
+              <Image
+                src={"/static/watches/" + image}
+                priority
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-auto rounded-t-xl"
+                alt={name}></Image>
+            )}
+            <Box className="absolute right-2 top-2">
+              <IconHeartFilled
+                className="text-accent"
+                size={20}
+                onClick={() => handleLike(name)}
+              />
+              <Text className="absolute w-full -bottom-2 text-center text-white text-xs">
+                {likeCount}
+              </Text>
+            </Box>
+          </>
 
-					<Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">
-						<Box>
-							<Tooltip
-								label="Name"
-								position="bottom-start"
-								withArrow
-							>
-								<Title order={1}>"{name}"</Title>
-							</Tooltip>
-							<Tooltip
-								label="Bezel Insert"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{insert}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Case"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{shell}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Crown"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{crown}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Strap"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{strap}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Clasp"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{clasp}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Chapter Ring"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{cRing}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Crystal"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{crystal}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Dial"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{dial}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Hands"
-								position="bottom-start"
-								withArrow
-							>
-								<Text size="sm">{hands}</Text>
-							</Tooltip>
-							<Tooltip
-								label="Movement"
-								position="bottom-start"
-								withArrow
-							>
-								<Text className={classes.category} size="sm">
-									{movement}
-								</Text>
-							</Tooltip>
-						</Box>
-						<Box>
-							<Flex
-								justify="space-between"
-								align="center"
-								mt="md"
-							>
-								<Text size="xl">${price}</Text>
-								{/* <Modal
+          <Box className="m-0 p-6 rounded-b-xxl flex grow flex-col justify-between">
+            <Box>
+              <Tooltip label="Name" position="bottom-start" withArrow>
+                <Title order={1}>"{name}"</Title>
+              </Tooltip>
+              <Tooltip label="Bezel Insert" position="bottom-start" withArrow>
+                <Text size="sm">{insert}</Text>
+              </Tooltip>
+              <Tooltip label="Case" position="bottom-start" withArrow>
+                <Text size="sm">{shell}</Text>
+              </Tooltip>
+              <Tooltip label="Crown" position="bottom-start" withArrow>
+                <Text size="sm">{crown}</Text>
+              </Tooltip>
+              <Tooltip label="Strap" position="bottom-start" withArrow>
+                <Text size="sm">{strap}</Text>
+              </Tooltip>
+              <Tooltip label="Clasp" position="bottom-start" withArrow>
+                <Text size="sm">{clasp}</Text>
+              </Tooltip>
+              <Tooltip label="Chapter Ring" position="bottom-start" withArrow>
+                <Text size="sm">{cRing}</Text>
+              </Tooltip>
+              <Tooltip label="Crystal" position="bottom-start" withArrow>
+                <Text size="sm">{crystal}</Text>
+              </Tooltip>
+              <Tooltip label="Dial" position="bottom-start" withArrow>
+                <Text size="sm">{dial}</Text>
+              </Tooltip>
+              <Tooltip label="Hands" position="bottom-start" withArrow>
+                <Text size="sm">{hands}</Text>
+              </Tooltip>
+              <Tooltip label="Movement" position="bottom-start" withArrow>
+                <Text className={classes.category} size="sm">
+                  {movement}
+                </Text>
+              </Tooltip>
+            </Box>
+            <Box>
+              <Flex justify="space-between" align="center" mt="md">
+                <Text size="xl">${price}</Text>
+                {/* <Modal
 									overlayProps={{
 										opacity: 0.15,
 										blur: 2,
@@ -377,27 +305,20 @@ export default function Watch({
 								>
 									Reserve 1 now
 								</Button> */}
-								{price === " -" ? (
-									""
-								) : (
-									<Button
-										className="bg-accent hover:bg-accent-hover"
-										onClick={() =>
-											increaseCartQuantity(
-												name,
-												image,
-												price
-											)
-										}
-									>
-										Add To Cart
-									</Button>
-								)}
-							</Flex>
-						</Box>
-					</Box>
-				</Box>
-			</Paper>
-		</>
-	);
+                {price === " -" ? (
+                  ""
+                ) : (
+                  <Button
+                    className="bg-accent hover:bg-accent-hover"
+                    onClick={() => increaseCartQuantity(name, image, price)}>
+                    Add To Cart
+                  </Button>
+                )}
+              </Flex>
+            </Box>
+          </Box>
+        </Box>
+      </Paper>
+    </>
+  );
 }
