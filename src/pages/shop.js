@@ -49,9 +49,9 @@ export default function Shop() {
       }));
       setWatches(updatedWatchData);
       setPrices(priceData);
+      setIsLoading(false);
     };
     fetchAllData();
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -261,7 +261,7 @@ export default function Shop() {
         {isLoading ? (
           <>
             <Box className="flex flex-col place-items-center gap-2">
-              <Text>Hang on! Retrieving the watches...</Text>
+              <Text>Hang on! Retrieving data...</Text>
               <Loader color="white" type="bars" />
             </Box>
           </>
