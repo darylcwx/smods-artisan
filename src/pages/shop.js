@@ -10,6 +10,7 @@ import {
   List,
   TextInput,
   Loader,
+  NativeSelect,
 } from "@mantine/core";
 import Link from "next/link";
 import Head from "next/head";
@@ -26,6 +27,9 @@ export default function Shop() {
   const [prices, setPrices] = useState([]);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState(null);
+  const [error, setError] = useState(false);
 
   const fetchData = async (endpoint) => {
     try {
@@ -43,6 +47,12 @@ export default function Shop() {
     const fetchAllData = async () => {
       const watchData = await fetchData("api/getWatches");
       const priceData = await fetchData("api/getPrices");
+
+      if (watchData === undefined || priceData === undefined) {
+        setIsLoading(false);
+        setError(true);
+        return;
+      }
       const updatedWatchData = watchData.map((watch) => ({
         ...watch,
         price: priceData[watch.priceCat],
@@ -68,6 +78,11 @@ export default function Shop() {
     };
     handleSearch();
   }, [search]);
+
+  const handleSort = async (sort) => {
+    console.log(sort);
+    return;
+  };
 
   return (
     <>
@@ -158,10 +173,8 @@ export default function Shop() {
 
             <Popover.Dropdown>
               <Text size="md">
-                I made my first 36mm watch recently! Check out F01 below!
-                <br></br>
-                <br></br>
-                Ladies' watches will be priced at ${prices.ladies}.
+                Check out F01 below! Ladies' watches will be priced at $
+                {prices.ladies}.
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -176,20 +189,13 @@ export default function Shop() {
             </Popover.Target>
             <Popover.Dropdown>
               <Text size="md">
-                As stated, they are not displayed here (yet) but I am able to
-                build them.
-                <br></br>
-                <br></br>
                 For GMT models, I offer the option of having an actual GMT
-                movement with the fourth GMT hand (other modders primarily only
-                do the GMT bezel insert without the GMT hand nor the function).
-                <br></br>
+                movement. Functional GMTs are priced at ${prices.gmt}.<br></br>
                 <br></br>
                 However, if you'd like just the GMT bezel with 3 hands, that's
                 fine too! It'll be classified as part of the normal range at $
                 {prices.regular}.<br></br>
                 <br></br>
-                Functional GMTs are priced at ${prices.gmt}.
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -204,8 +210,8 @@ export default function Shop() {
             </Popover.Target>
             <Popover.Dropdown>
               <Text size="md">
-                I'm currently still exploring the intricacies of a chronograph
-                movement. Stay tuned for more!
+                I've recently built a chronograph! Check out 401 below.
+                Chronographs are priced at ${prices.regular}
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -230,12 +236,12 @@ export default function Shop() {
                 respective cards in the following order:
                 <ol>
                   <li>Bezel Insert</li>
-                  <li>Cases</li>
+                  <li>Case</li>
                   <li>Crown</li>
                   <li>Strap</li>
                   <li>Clasp</li>
-                  <li>Crystal</li>
                   <li>Chapter Ring</li>
+                  <li>Crystal</li>
                   <li>Dial</li>
                   <li>Hands</li>
                   <li>Movement</li>
@@ -246,11 +252,36 @@ export default function Shop() {
             </Popover.Dropdown>
           </Popover>
         </Box>
-        <Box className="mb-6 flex row justify-end w-full p-3 bg-accent text-white rounded-md">
+        <Box className="mb-6 flex row justify-between w-full p-2 bg-accent text-white rounded-md">
           {/* <Select placeholder="Filter by" data={[]}></Select> */}
-          <Box className=""></Box>
-          <Box className="flex items-center">
-            <Text pr="sm">Search:</Text>
+          <div className="flex">
+            <Box className="flex flex-col justify-start">
+              <div className="text-sm font-semibold">Filter by:</div>
+              <NativeSelect
+                value={filter}
+                onChange={(e) => setSearch(e.currentTarget.value)}
+                data={[
+                  { label: "Ladies", value: "ladies" },
+                  { label: "GMT", value: "GMT" },
+                  { label: "Oyster strap", value: "oyster" },
+                  { label: "Jubilee strap", value: "jubilee" },
+                  { labe: "Rubber strap", value: "rubber" },
+                ]}></NativeSelect>
+            </Box>
+            <Box className="flex flex-col justify-start pl-2">
+              <div className="text-sm font-semibold">Sort by:</div>
+              <NativeSelect
+                value={sort}
+                onChange={(e) => handleSort(e.currentTarget.value)}
+                data={[
+                  { label: "Name", value: "name" },
+                  { label: "Likes", value: "likes" },
+                  { label: "Price", value: "price" },
+                ]}></NativeSelect>
+            </Box>
+          </div>
+          <Box className="flex flex-col justify-start">
+            <Text className="text-sm font-semibold">Search:</Text>
             <TextInput
               className=""
               onChange={() => setSearch(event.target.value)}
@@ -265,7 +296,7 @@ export default function Shop() {
               <Loader color="white" type="bars" />
             </Box>
           </>
-        ) : watches.length === 0 ? (
+        ) : error ? (
           <>
             {" "}
             <Box className="flex flex-col place-items-center gap-2">
@@ -282,11 +313,6 @@ export default function Shop() {
                 maxWidth: "md",
                 cols: 2,
                 spacing: "xl",
-                verticalSpacing: "xl",
-              },
-              {
-                maxWidth: "sm",
-                cols: 1,
                 verticalSpacing: "xl",
               },
             ]}

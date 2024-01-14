@@ -162,9 +162,11 @@ export default function Home() {
                       <Title order={3}>Oyster Straps</Title>
                       <Text mb="md">
                         You may use a 12mm flathead screwdriver to remove
-                        bracelet links if necessary, and thereafter adjust the
-                        glidelock on the clasp to your preferred length.
-                        <br />
+                        bracelet links if necessary. Thereafter, you may adjust
+                        the glidelock on the clasp to your preferred length.
+                        <Image
+                          src="static/background/glidelock1.JPG"
+                          alt="glidelock"></Image>
                         <Link
                           className={classes.contact}
                           href="https://www.youtube.com/watch?v=Jxsw_PMRV6o&ab_channel=DavidSW"
