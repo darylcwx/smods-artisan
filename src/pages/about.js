@@ -279,7 +279,7 @@ export default function Home() {
                       <br></br>
                     </Accordion.Panel>
                   </Accordion.Item>
-                  <Accordion.Item value="5" className="bg-accent-hover">
+                  <Accordion.Item value="6" className="bg-accent-hover">
                     <Accordion.Control className="py-2 text-white">
                       What is your warranty policy?
                     </Accordion.Control>
