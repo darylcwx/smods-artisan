@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { IconChevronRight } from "@tabler/icons-react";
 import {
-  MediaQuery,
-  createStyles,
   Container,
   Button,
   Group,

@@ -76,7 +76,7 @@ export default function Add() {
       body: JSON.stringify(watch),
     });
     const data = await res.json();
-    console.log(data)
+    console.log(data);
     setShowConfirm(false);
   };
   return (

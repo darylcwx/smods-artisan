@@ -16,12 +16,6 @@ import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/components/watch.js";
 
-const useStyles = createStyles((theme) => ({
-  contact: {
-    textDecoration: "none",
-  },
-}));
-
 export default function Shop() {
   const [watches, setWatches] = useState([]);
   const [prices, setPrices] = useState([]);
@@ -43,6 +37,7 @@ export default function Shop() {
     }
   };
 
+  //TODO - reuse watch context once available
   useEffect(() => {
     const fetchAllData = async () => {
       const watchData = await fetchData("api/getWatches");
@@ -58,6 +53,7 @@ export default function Shop() {
         price: priceData[watch.priceCat],
       }));
       setWatches(updatedWatchData);
+      localStorage.setItem("watches", JSON.stringify(updatedWatchData));
       setPrices(priceData);
       setIsLoading(false);
     };
@@ -73,7 +69,7 @@ export default function Shop() {
       })
         .then((res) => res.json())
         .then((data) => setWatches(data.data));
-
+      
       return;
     };
     handleSearch();
@@ -312,6 +308,12 @@ export default function Shop() {
               {
                 maxWidth: "md",
                 cols: 2,
+                spacing: "xl",
+                verticalSpacing: "xl",
+              },
+              {
+                maxWidth: "sm",
+                cols: 1,
                 spacing: "xl",
                 verticalSpacing: "xl",
               },
