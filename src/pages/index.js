@@ -58,8 +58,8 @@ export default function Home() {
           }}
           transition={{ duration: 0.75, delay: 0.4 }}>
           <Text size="lg" className="pb-4 w-full sm:w-3/4">
-            I take pride in handcrafting high-quality, exclusive yet affordable
-            timepieces using only the finest aftermarket parts.
+            We handcraft high-quality, exclusive, yet affordable timepieces
+            using the finest aftermarket parts.
           </Text>
         </motion.div>
         <motion.div

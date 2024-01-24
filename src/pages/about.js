@@ -63,7 +63,7 @@ export default function Home() {
             <Title pt="xl">History</Title>
           </motion.div>
           <motion.div variants={item}>
-            <Text pb="xs">
+            <Text className="pt-2">
               My journey as a watchmaker began as a hobby. The positive response
               I received to my work encouraged me to explore the opportunity to
               bring my passion for watchmaking to a wider audience.
@@ -73,36 +73,32 @@ export default function Home() {
             <Title pt="xl">Why me?</Title>
           </motion.div>
           <motion.div variants={item}>
-            <Text pb="xl">
-              <List>
-                <List.Item>
-                  I stand behind the craftsmanship of every watch I create with
-                  a 6-month warranty.
-                </List.Item>
-                <List.Item>
-                  I enjoying creating custom designs, allowing you to stand out
-                  from the crowd.
-                </List.Item>
-                <List.Item>
-                  I offer the unique option of a fourth and functional GMT hand.
-                </List.Item>
-                <List.Item>
-                  I use glidelock clasps, allowing for fine adjustment of your
-                  bracelet length
-                </List.Item>
-                <List.Item>
-                  I value loyalty and offer a 10% discount to returning
-                  customers.
-                </List.Item>
-              </List>
-            </Text>
+            <List className="py-2">
+              <List.Item className="pr-6">
+                I stand behind the craftsmanship of every watch I create with a
+                6-month warranty.
+              </List.Item>
+              <List.Item className="pr-6">
+                I enjoying creating custom designs, allowing you to stand out
+                from the crowd.
+              </List.Item>
+              <List.Item className="pr-6">
+                I offer the unique option of a fourth and functional GMT hand.
+              </List.Item>
+              <List.Item className="pr-6">
+                I use glidelock clasps, allowing for fine adjustment of your
+                bracelet length
+              </List.Item>
+              <List.Item className="pr-6">
+                I value loyalty and offer a 10% discount to returning customers.
+              </List.Item>
+            </List>
           </motion.div>
           <motion.div variants={item}>
-            <Grid id="faq-grid">
+            <Grid id="faq-grid" className="py-4">
               <Col
                 span={12}
                 sm={6}
-                py="xl"
                 order={1}
                 orderSm={2}
                 className="flex items-center">
@@ -110,7 +106,7 @@ export default function Home() {
                   src="static/background/movement.JPG"
                   alt="movement"></Image>
               </Col>
-              <Col span={12} sm={6} py="xl" order={2} orderSm={1}>
+              <Col span={12} sm={6} order={2} orderSm={1}>
                 <Title order={2} px="sm" pb="sm">
                   Frequently Asked Questions
                 </Title>
@@ -124,7 +120,7 @@ export default function Home() {
                     },
                   }}>
                   <Accordion.Item value="1" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       How do I adjust the day and date and/or time?
                     </Accordion.Control>
                     <Accordion.Panel>
@@ -155,39 +151,41 @@ export default function Home() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="2" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       How do I adjust strap length?
                     </Accordion.Control>
                     <Accordion.Panel>
-                      <Title order={3}>Oyster Straps</Title>
+                      <Title order={1}>Metal Straps</Title>
                       <Text mb="md">
-                        You may use a 12mm flathead screwdriver to remove
-                        bracelet links if necessary. Thereafter, you may adjust
-                        the glidelock on the clasp to your preferred length.
+                        <small className="text-red-400 flex pb-2">
+                          Applicable to both oyster and jubilee straps.
+                        </small>
                         <Image
                           src="static/background/glidelock1.JPG"
-                          alt="glidelock"></Image>
+                          alt="glidelock"
+                        />
+                        <div className="pt-2">
+                          Use a 12mm flathead screwdriver to remove bracelet
+                          links if necessary. Then, adjust the glidelock on the
+                          clasp to your preferred length.
+                        </div>
                         <Link
                           className={classes.contact}
                           href="https://www.youtube.com/watch?v=Jxsw_PMRV6o&ab_channel=DavidSW"
                           target="_blank">
-                          Here's a quick video tutorial
+                          Video example
                         </Link>
                       </Text>
-                      <Title order={3}>Jubilee Straps</Title>
+                      <Title order={2}>Rubber Straps</Title>
                       <Text mb="md">
-                        Same as above, I use glidelock clasps too!
-                      </Text>
-                      <Title order={3}>Rubber Straps</Title>
-                      <Text mb="md">
-                        You may use a spring bar tool to remove the strap from
-                        the clasp, then use a scissors to cut off extra rubber
-                        to your preferred length.
+                        Use a spring bar tool to remove the strap from the
+                        clasp, then use a scissors to cut off extra rubber to
+                        your preferred length.
                       </Text>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="3" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       Where are your parts from?
                     </Accordion.Control>
                     <Accordion.Panel>
@@ -205,7 +203,7 @@ export default function Home() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="4" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       How long do I need to wait to receive a timepiece upon
                       placing an order?
                     </Accordion.Control>
@@ -219,7 +217,7 @@ export default function Home() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="5" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       Are there any more available designs?
                     </Accordion.Control>
                     <Accordion.Panel>
@@ -280,7 +278,7 @@ export default function Home() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="6" className="bg-accent-hover">
-                    <Accordion.Control className="py-2 text-white">
+                    <Accordion.Control className="text-white">
                       What is your warranty policy?
                     </Accordion.Control>
                     <Accordion.Panel>
