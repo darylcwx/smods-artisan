@@ -6,10 +6,8 @@ import {
   Group,
   Header,
   Container,
-  Paper,
   Modal,
   Button,
-  ActionIcon,
   TextInput,
   Textarea,
   SimpleGrid,
@@ -20,20 +18,15 @@ import {
 } from "@mantine/core";
 import { useClickOutside } from "@mantine/hooks";
 import {
-  IconSun,
-  IconMoonStars,
   IconCheck,
   IconX,
   IconAt,
   IconBrandTelegram,
-  IconShoppingCart,
 } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
-import { useCart } from "@/context/cartContext.js";
 import { motion, AnimatePresence } from "framer-motion";
-import Cart from "@/components/cartPreview.js";
 import { useRouter } from "next/router";
 const useStyles = createStyles((theme) => ({
   link: {
@@ -74,18 +67,10 @@ const useStyles = createStyles((theme) => ({
 const header_height = 60;
 export default function Nav() {
   const [navOpen, setNavOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
 
   // Set button as state for use-click-outside hook
   const [navButton, setNavButton] = useState(null);
-  const [cartButton, setCartButton] = useState(null);
-  const [cart, setCart] = useState(null);
   const navRef = useClickOutside(() => setNavOpen(false), null, [navButton]);
-  const cartRef = useClickOutside(() => setCartOpen(false), null, [
-    cartButton,
-    cart,
-  ]);
-
   const [modal, openModal] = useState(false);
   const { classes } = useStyles();
   const form = useForm({
@@ -106,7 +91,6 @@ export default function Nav() {
         value.trim().length === 0 ? "Please enter a message." : null,
     },
   });
-  const { cartQuantity } = useCart();
   const router = useRouter();
   return (
     <>
@@ -163,19 +147,6 @@ export default function Nav() {
                       <Link href="/about" className={classes.link}>
                         About
                       </Link>
-                      {/* <Link
-												href="/cart"
-												className={classes.link}
-											>
-												<span
-													style={{
-														paddingRight: "0.5rem",
-													}}
-												>
-													Cart
-												</span>
-												{<IconShoppingCart />}
-											</Link> */}
                     </Box>
                     <Button
                       onClick={() => openModal(true)}
@@ -203,45 +174,6 @@ export default function Nav() {
               <Link href="/shop" className={classes.link}>
                 Shop
               </Link>
-              {/* Shop list of items? 
-							<Menu shadow="md" width={200} ref={ref} trigger="hover">
-							<Menu.Target>
-								<Link href="/shop" className={classes.link}>
-									Shop
-								</Link>
-							</Menu.Target>
-							<Menu.Dropdown>
-								<Menu.Item>
-									<Link
-										href={{
-											pathname: "/shop",
-											query: { filter: "Bezel Inserts" },
-										}}
-										className={classes.link}
-									>
-										Bezel Inserts
-									</Link>
-								</Menu.Item>
-								<Menu.Item>
-									<Link
-										href={{
-											pathname: "/shop",
-											query: { filter: "Chapter Rings" },
-										}}
-										className={classes.link}
-									>
-										Chapter Rings
-									</Link>
-								</Menu.Item>
-								<Menu.Item>Cases</Menu.Item>
-								<Menu.Item>Crowns</Menu.Item>
-								<Menu.Item>Hands</Menu.Item>
-								<Menu.Item>Dials</Menu.Item>
-								<Menu.Item>Movements</Menu.Item>
-								<Menu.Item>Straps</Menu.Item>
-								<Menu.Item>Clasps</Menu.Item>
-							</Menu.Dropdown>
-						</Menu> */}
               <Link href="/about" className={classes.link}>
                 About
               </Link>
@@ -259,15 +191,13 @@ export default function Nav() {
                 zIndex={1001}>
                 <form
                   onSubmit={form.onSubmit((values) => {
-                    var token =
-                      "6042304491:AAG0Oh1Y9wqccUaHc51M_a07i5JZwSXX62o";
-                    var chatID = "-1001815908809";
-
-                    var text = encodeURIComponent(
+                    const token = process.env.TELEGRAM_TOKEN;
+                    const chatID = process.env.TELEGRAM_CHAT_ID;
+                    const text = encodeURIComponent(
                       `Name: ${values.name}\nTele: @${values.telegram}\nSubject: ${values.subject}\nMessage: ${values.message}`
                     );
 
-                    var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
+                    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
                     fetch(url).then((response) => {
                       if (response.ok) {
                         notifications.show({
@@ -365,49 +295,6 @@ export default function Nav() {
                   </Group>
                 </form>
               </Modal>
-              {/* Cart */}
-              {/* {router.pathname != "/cart" && (
-                <>
-                  <Button
-                    ref={setCartButton}
-                    className="bg-accent hover:bg-accent-hover rounded-full p-1 w-10 h-10"
-                    onClick={() => {
-                      setCartOpen(!cartOpen);
-                    }}>
-                    {<IconShoppingCart className="text-white" />}
-                    {cartQuantity > 0 && (
-                      <div className="text-white text-sm p-1 justify-center flex items-center absolute bg-rose-600 w-5 h-5 top-1/2 left-1/2 rounded-full">
-                        {cartQuantity}
-                      </div>
-                    )}
-                  </Button>
-                  <AnimatePresence>
-                    {cartOpen && (
-                      <>
-                        <motion.div
-                          key="overlay"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{
-                            ease: "easeInOut",
-                            duration: 0.3,
-                          }}>
-                          <Box
-                            className="fixed top-[60px] left-0 h-screen w-screen bg-black/70"
-                            sx={{
-                              backdropFilter: "blur(2px);",
-                            }}></Box>
-                          <Cart
-                            ref={(cartRef, setCart)}
-                            onClose={() => setCartOpen(false)}
-                          />
-                        </motion.div>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </>
-              )} */}
             </Group>
           </Box>
         </Container>

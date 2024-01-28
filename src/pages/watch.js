@@ -4,20 +4,25 @@ import {
   Text,
   Tooltip,
   Title,
-  Grid,
   Button,
   Box,
+  Modal,
+  TextInput,
+  Textarea,
+  Group,
 } from "@mantine/core";
 import Image from "next/image";
 import {
   IconChevronLeft,
   IconChevronRight,
+  IconAt,
   IconHeartFilled,
 } from "@tabler/icons-react";
 import Head from "next/head";
 import useEmblaCarousel from "embla-carousel-react";
 import { useRouter } from "next/router";
-import { waitUntilSymbol } from "next/dist/server/web/spec-extension/fetch-event";
+import { notifications } from "@mantine/notifications";
+import { IconCheck, IconX } from "@tabler/icons-react";
 
 export default function Watch() {
   const router = useRouter();
@@ -32,7 +37,67 @@ export default function Watch() {
   const [watch, setWatch] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [teleHandle, setTeleHandle] = useState("");
+  const [message, setMessage] = useState("");
+  const [showError, setShowError] = useState(false);
 
+  const handleClick = () => {
+    setShowError(false);
+    setMessage(
+      `Hi! I saw watch no. ${watch.name} ("${watch.description}") on your site and I'm interested to know more and perhaps get my own watch. I have a few questions first 🤓🤓`
+    );
+    setShowModal(true);
+  };
+
+  const handleConfirm = () => {
+    setShowError(false);
+    if (teleHandle === "" || message === "") {
+      setShowError(true);
+      return;
+    }
+    const token = process.env.TELEGRAM_TOKEN;
+    const chatID = process.env.TELEGRAM_CHAT_ID;
+    console.log(token, chatID);
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${message}`;
+    fetch(url).then((response) => {
+      if (response.ok) {
+        notifications.show({
+          icon: <IconCheck size={16} />,
+          title: "Success!",
+          autoClose: 7000,
+          withCloseButton: true,
+          color: "green",
+          message:
+            "I've received a notification with regards to your message.\n\nI'll get back to you shortly!",
+        });
+      } else {
+        setShowModal(false);
+        notifications.show({
+          icon: <IconX size={16} />,
+          title: "Failure!",
+          autoClose: 7000,
+          withCloseButton: true,
+          color: "red",
+          message: (
+            <span>
+              Uh oh! Something went wrong.
+              <br />
+              Please try again, or you can reach me directly{" "}
+              <a
+                href="https://t.me/damnsope"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline text-blue-300">
+                here
+              </a>
+              . (this link opens a new window)
+            </span>
+          ),
+        });
+      }
+    });
+  };
   useEffect(() => {
     if (router.isReady) {
       const watchName = router.query.id;
@@ -42,7 +107,6 @@ export default function Watch() {
       if (data != null) {
         const parsedData = JSON.parse(data);
         const w = parsedData.find((x) => x.name === watchName);
-        console.log(w);
         setWatch(w);
         setIsLoading(false);
       } else {
@@ -71,7 +135,7 @@ export default function Watch() {
     console.log(watch);
   }, []);
   return (
-    <>
+    <Box className="relative">
       <Head>
         <title>Seiko Mods Artisan</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,7 +152,7 @@ export default function Watch() {
                 {Array.isArray(watch.image) ? (
                   <Box className="relative">
                     <Box
-                      className="embla overflow-hidden  max-w-2xl"
+                      className="embla overflow-hidden max-w-2xl"
                       ref={emblaRef}>
                       <Box className="embla__container flex">
                         {watch.image.map((item) => {
@@ -142,10 +206,20 @@ export default function Watch() {
               <Box id="details" className="w-80 px-4 flex flex-col">
                 <Box>
                   <Tooltip label="Name" position="bottom-start" withArrow>
-                    <Title order={1}>{watch.name}</Title>
+                    <Title order={1} className="pt-2 sm:pt-0">
+                      {watch.name}
+                    </Title>
                   </Tooltip>
-                  <Text size="sm"></Text>
-                  <Box className="pt-4">
+                  <Tooltip
+                    label="Description"
+                    position="bottom-start"
+                    withArrow>
+                    <Text size="lg">
+                      {watch.description ? '"' + watch.description + '"' : ""}
+                    </Text>
+                  </Tooltip>
+
+                  <Box className="pt-2">
                     <Tooltip
                       label="Bezel Insert"
                       position="bottom-start"
@@ -196,7 +270,9 @@ export default function Watch() {
                   <Text className="pl-2 text-white">{watch.likes}</Text>
                 </Box>
                 <Box className="pt-4">
-                  <Button className="bg-accent hover:bg-accent-hover w-full">
+                  <Button
+                    className="bg-accent hover:bg-accent-hover w-full"
+                    onClick={handleClick}>
                     I want this one!
                   </Button>
                 </Box>
@@ -205,6 +281,54 @@ export default function Watch() {
           </Box>
         )}
       </Container>
-    </>
+      {showModal && (
+        <Modal
+          transition="pop"
+          opened={showModal}
+          size="md"
+          onClose={() => setShowModal(false)}
+          centered
+          zIndex={1001}>
+          <TextInput
+            label="Telegram"
+            placeholder="Your telegram handle"
+            name="telegram"
+            variant="filled"
+            icon={<IconAt size={16} />}
+            withAsterisk
+            onChange={(e) => setTeleHandle(e.target.value)}
+            value={teleHandle}
+          />
+
+          <Textarea
+            mt="md"
+            label="Message"
+            placeholder="Your message"
+            maxRows={10}
+            minRows={5}
+            autosize
+            name="message"
+            variant="filled"
+            withAsterisk
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+          />
+          {showError && (
+            <Text size="sm" className="text-red-500 flex justify-center pt-2">
+              Please enter your telegram handle and/or message!
+            </Text>
+          )}
+          <Group position="center" mt="sm">
+            <Button
+              type="submit"
+              size="md"
+              className="bg-accent hover:bg-accent-hover"
+              onClick={handleConfirm}>
+              Send message
+            </Button>
+          </Group>
+        </Modal>
+      )}
+    </Box>
   );
 }

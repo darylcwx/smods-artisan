@@ -1,8 +1,10 @@
+require("dotenv").config();
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import Nav from "@/components/nav.js";
 import "../styles/globals.css";
+
 export default function App({ Component, pageProps }) {
   return (
     <>

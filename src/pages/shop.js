@@ -69,7 +69,7 @@ export default function Shop() {
       })
         .then((res) => res.json())
         .then((data) => setWatches(data.data));
-      
+
       return;
     };
     handleSearch();
@@ -89,19 +89,12 @@ export default function Shop() {
       </Head>
       <Container p="xl" size="md">
         <Text ta="center" fw={500}>
-          Please note the watches displayed here are those personally built so
-          far. This means it doesn't include watches that I{" "}
-          <span className={"underline"}>can</span> build.
+          Here are the watches I have personally built so far. They do not
+          include watches that I <span className={"underline"}>can</span> build.
         </Text>
-        <Text ta="center" c="dimmed" mb="lg">
-          In the near future, there will be more models — seikoNauts, seikOaks,
-          open balance wheels, skeleton dials, and female models personally made
-          and thereafter displayed here.
-        </Text>
-        <Text ta="center" mb="xl">
-          Also, more often than not, I don't get stock orders from what is
-          displayed here, so don't be shy, drop me a text to discuss what exact
-          parts or the exact watch you'd like! 😀
+        <Text ta="center" c="dimmed" mb="xl">
+          This is only a portfolio, so you can still drop me a text to discuss
+          the exact parts or the exact watch you'd like! 😀
         </Text>
         <Box className="flex row justify-center items-center gap-2 flex-wrap pb-6">
           <Popover width={450} position="bottom" withArrow>
@@ -115,15 +108,12 @@ export default function Shop() {
             </Popover.Target>
             <Popover.Dropdown>
               <Text size="md">
-                As mentioned above, the watches displayed here are only those
-                personally built so far. Depending on the intricacy, parts
-                involved, and availability of said parts, I might be able to
-                build them.
+                As mentioned, I might be able to build other watches not
+                displayed here.
                 <br></br>
                 <br></br>
                 Feel free to check these links for design inspiration. I might
-                be able to build a watch you like from any of these other
-                modders.
+                be able to build a watch you like made by fellow modders.
                 <List>
                   <List.Item>
                     <Link
@@ -190,8 +180,7 @@ export default function Shop() {
                 <br></br>
                 However, if you'd like just the GMT bezel with 3 hands, that's
                 fine too! It'll be classified as part of the normal range at $
-                {prices.regular}.<br></br>
-                <br></br>
+                {prices.regular}.
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -211,42 +200,7 @@ export default function Shop() {
               </Text>
             </Popover.Dropdown>
           </Popover>
-          <Popover width={450} position="bottom" withArrow>
-            <Popover.Target>
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-accent border-accent hover:bg-accent/10">
-                What am I looking at?
-              </Button>
-            </Popover.Target>
-            <Popover.Dropdown>
-              <Text size="md">
-                Each watch belongs to a certain category seen in the first
-                number of its code. Watches starting with 'R' are repair jobs,
-                whereby the components listed are the only parts{" "}
-                <b>I personally </b>
-                replaced or changed.
-                <br></br>
-                <br></br>Details of each watch will be displayed in their
-                respective cards in the following order:
-                <ol>
-                  <li>Bezel Insert</li>
-                  <li>Case</li>
-                  <li>Crown</li>
-                  <li>Strap</li>
-                  <li>Clasp</li>
-                  <li>Chapter Ring</li>
-                  <li>Crystal</li>
-                  <li>Dial</li>
-                  <li>Hands</li>
-                  <li>Movement</li>
-                </ol>
-                You can also hover over the details to see which watch part it
-                refers to.
-              </Text>
-            </Popover.Dropdown>
-          </Popover>
+          <Popover width={450} position="bottom" withArrow></Popover>
         </Box>
         <Box className="mb-6 flex row justify-between w-full p-2 bg-accent text-white rounded-md">
           {/* <Select placeholder="Filter by" data={[]}></Select> */}
@@ -254,14 +208,15 @@ export default function Shop() {
             <Box className="flex flex-col justify-start">
               <div className="text-sm font-semibold">Filter by:</div>
               <NativeSelect
-                value={filter}
+                value={search}
                 onChange={(e) => setSearch(e.currentTarget.value)}
                 data={[
+                  { label: "-", value: "" },
                   { label: "Ladies", value: "ladies" },
                   { label: "GMT", value: "GMT" },
                   { label: "Oyster strap", value: "oyster" },
                   { label: "Jubilee strap", value: "jubilee" },
-                  { labe: "Rubber strap", value: "rubber" },
+                  { label: "Rubber strap", value: "rubber" },
                 ]}></NativeSelect>
             </Box>
             <Box className="flex flex-col justify-start pl-2">
@@ -296,7 +251,7 @@ export default function Shop() {
           <>
             {" "}
             <Box className="flex flex-col place-items-center gap-2">
-              <Text>Something went wrong.</Text>
+              <Text>Something went wrong. Please try again later!</Text>
             </Box>
           </>
         ) : (

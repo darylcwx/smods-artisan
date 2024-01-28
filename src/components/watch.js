@@ -46,7 +46,7 @@ export default function Watch(watch) {
   return (
     <>
       <Paper
-        className="relative p-0 rounded-xxl shadow-2xl transition ease-in-out hover:shadow-white/50 hover:scale-105 hover:duration-200"
+        className="bg-neutral-950 relative p-0 rounded-xxl shadow-lg transition ease-in-out hover:shadow-neutral-200/50 hover:scale-105 hover:duration-200"
         key={watch.name}
         onClick={handleClick}>
         <Box className="flex flex-col justify-start h-full">
@@ -101,9 +101,14 @@ export default function Watch(watch) {
               className="w-full h-auto rounded-t-xl"
               alt={watch.name}></Image>
           )}
-          <Box className="m-0 px-6 py-4 rounded-b-xxl flex grow flex-col justify-between">
+          <Box className="m-0 px-6 py-2 rounded-b-xxl flex grow flex-col justify-between">
             <Box className="flex justify-between">
-              <Title order={1}>{watch.name}</Title>
+              <Box>
+                <Title order={1}>{watch.name}</Title>
+                <Text className="" size="md">
+                  {watch.description ? '"' + watch.description + '"' : ""}
+                </Text>
+              </Box>
               <Box className="flex items-center">
                 <IconHeartFilled
                   className="text-accent"
