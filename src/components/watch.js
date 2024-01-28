@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 export default function Watch(watch) {
   const router = useRouter();
+  
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -102,21 +103,22 @@ export default function Watch(watch) {
               alt={watch.name}></Image>
           )}
           <Box className="m-0 px-6 py-2 rounded-b-xxl flex grow flex-col justify-between">
-            <Box className="flex justify-between">
-              <Box>
+            <Box className="flex flex-col">
+              <Box className="flex items-center justify-between">
                 <Title order={1}>{watch.name}</Title>
-                <Text className="" size="md">
-                  {watch.description ? '"' + watch.description + '"' : ""}
-                </Text>
+                <Box className="flex">
+                  <IconHeartFilled
+                    className="text-accent"
+                    size={24}
+                    onClick={() => handleLike(watch.name)}
+                  />
+                  <Text className="pl-2 text-white">{likeCount}</Text>
+                </Box>
               </Box>
-              <Box className="flex items-center">
-                <IconHeartFilled
-                  className="text-accent"
-                  size={24}
-                  onClick={() => handleLike(watch.name)}
-                />
-                <Text className="pl-2 text-white">{likeCount}</Text>
-              </Box>
+
+              <Text className="" size="md">
+                {watch.description ? '"' + watch.description + '"' : ""}
+              </Text>
             </Box>
           </Box>
         </Box>

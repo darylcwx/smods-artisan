@@ -1,7 +1,6 @@
 import connectToDB from "../../middleware/connection";
 export default async function handler(req, res) {
   const content = req.body;
-  console.log(content);
   try {
     const client = await connectToDB();
     const db = client.db("SMA");

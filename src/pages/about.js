@@ -159,15 +159,18 @@ export default function Home() {
                       <Text mb="md">
                         <small className="text-red-400 flex pb-2">
                           Applicable to both oyster and jubilee straps.
-                        </small>
+                        </small>{" "}
+                        <div className="pt-2">
+                          Use a 12mm flathead screwdriver to remove bracelet
+                          links if necessary.
+                        </div>
                         <Image
                           src="static/background/glidelock1.JPG"
                           alt="glidelock"
                         />
                         <div className="pt-2">
-                          Use a 12mm flathead screwdriver to remove bracelet
-                          links if necessary. Then, adjust the glidelock on the
-                          clasp to your preferred length.
+                          Then, adjust the glidelock on the clasp to your
+                          preferred length.
                         </div>
                         <Link
                           className={classes.contact}

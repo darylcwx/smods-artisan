@@ -194,7 +194,7 @@ export default function Nav() {
                     const token = process.env.TELEGRAM_TOKEN;
                     const chatID = process.env.TELEGRAM_CHAT_ID;
                     const text = encodeURIComponent(
-                      `Name: ${values.name}\nTele: @${values.telegram}\nSubject: ${values.subject}\nMessage: ${values.message}`
+                      `Name: ${values.name}\nTelegram: @${values.telegram}\nSubject: ${values.subject}\nMessage: ${values.message}`
                     );
 
                     const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;

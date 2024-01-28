@@ -26,6 +26,7 @@ import { IconCheck, IconX } from "@tabler/icons-react";
 
 export default function Watch() {
   const router = useRouter();
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -42,6 +43,33 @@ export default function Watch() {
   const [message, setMessage] = useState("");
   const [showError, setShowError] = useState(false);
 
+  const handleLike = async (watchName) => {
+    // API
+    const res = await fetch("/api/like", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(watchName),
+    });
+    const data = await res.json();
+
+    // Update localStorage
+    const watches = localStorage.getItem("watches");
+    if (watches != null) {
+      const parsedData = JSON.parse(watches);
+      const updatedData = parsedData.map((w) =>
+        w.name === watchName ? { ...w, likes: w.likes + 1 } : w
+      );
+      localStorage.setItem("watches", JSON.stringify(updatedData));
+
+      const w = updatedData.find((x) => x.name === watchName);
+      setWatch(w);
+    } else {
+      setWatch((w) =>
+        w.name === watchName ? { ...w, likes: w.likes + 1 } : w
+      );
+    }
+  };
+
   const handleClick = () => {
     setShowError(false);
     setMessage(
@@ -56,12 +84,15 @@ export default function Watch() {
       setShowError(true);
       return;
     }
-    const token = process.env.TELEGRAM_TOKEN;
-    const chatID = process.env.TELEGRAM_CHAT_ID;
-    console.log(token, chatID);
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${message}`;
+    const token = process.env.NEXT_PUBLIC_TELEGRAM_TOKEN;
+    const chatID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+    const text = encodeURIComponent(
+      `Telegram: @${teleHandle}\nInterested in: ${watch.name} (${watch.description})\nMessage: ${message}`
+    );
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
     fetch(url).then((response) => {
       if (response.ok) {
+        setShowModal(false);
         notifications.show({
           icon: <IconCheck size={16} />,
           title: "Success!",
@@ -101,13 +132,12 @@ export default function Watch() {
   useEffect(() => {
     if (router.isReady) {
       const watchName = router.query.id;
-      console.log(watchName);
       const data = localStorage.getItem("watches");
-      console.log(data);
       if (data != null) {
         const parsedData = JSON.parse(data);
         const w = parsedData.find((x) => x.name === watchName);
         setWatch(w);
+        console.log(w);
         setIsLoading(false);
       } else {
         const fetchWatch = async () => {
@@ -117,6 +147,7 @@ export default function Watch() {
               const data = await res.json();
               const w = data.data[0];
               setWatch(w);
+
               setIsLoading(false);
             }
           } catch (error) {
@@ -131,9 +162,6 @@ export default function Watch() {
     }
   }, [router.isReady, router.query.id]);
 
-  useEffect(() => {
-    console.log(watch);
-  }, []);
   return (
     <Box className="relative">
       <Head>
@@ -152,7 +180,7 @@ export default function Watch() {
                 {Array.isArray(watch.image) ? (
                   <Box className="relative">
                     <Box
-                      className="embla overflow-hidden max-w-2xl"
+                      className="embla overflow-hidden max-w-xl"
                       ref={emblaRef}>
                       <Box className="embla__container flex">
                         {watch.image.map((item) => {
@@ -163,9 +191,9 @@ export default function Watch() {
                               <Image
                                 src={"/static/watches/" + item}
                                 priority
-                                width={800}
+                                width={0}
                                 height={0}
-                                quality={100}
+                                sizes="100vw"
                                 className="w-full h-auto rounded-xl"
                                 alt={item}></Image>
                             </Box>
@@ -196,7 +224,7 @@ export default function Watch() {
                       src={"/static/watches/" + watch.image}
                       width={800}
                       height={0}
-                      quality={100}
+                      sizes="100vw"
                       className="w-full h-auto rounded-xl"
                       alt={watch.name}
                     />
@@ -205,11 +233,21 @@ export default function Watch() {
               </Box>
               <Box id="details" className="w-80 px-4 flex flex-col">
                 <Box>
-                  <Tooltip label="Name" position="bottom-start" withArrow>
-                    <Title order={1} className="pt-2 sm:pt-0">
-                      {watch.name}
-                    </Title>
-                  </Tooltip>
+                  <Box className="flex items-center justify-between">
+                    <Tooltip label="Name" position="bottom-start" withArrow>
+                      <Title order={1} className="pt-2 sm:pt-0">
+                        {watch.name}
+                      </Title>
+                    </Tooltip>
+                    <Box className="flex items-center">
+                      <IconHeartFilled
+                        className="text-accent"
+                        size={24}
+                        onClick={() => handleLike(watch.name)}
+                      />
+                      <Text className="pl-2 text-white">{watch.likes}</Text>
+                    </Box>
+                  </Box>
                   <Tooltip
                     label="Description"
                     position="bottom-start"
@@ -261,14 +299,7 @@ export default function Watch() {
                   </Box>
                 </Box>
                 <Box className="flex-grow"></Box>
-                <Box className="flex items-center">
-                  <IconHeartFilled
-                    className="text-accent"
-                    size={24}
-                    onClick={() => handleLike(watch.name)}
-                  />
-                  <Text className="pl-2 text-white">{watch.likes}</Text>
-                </Box>
+
                 <Box className="pt-4">
                   <Button
                     className="bg-accent hover:bg-accent-hover w-full"

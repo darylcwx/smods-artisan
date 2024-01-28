@@ -21,7 +21,6 @@ export default function Shop() {
   const [prices, setPrices] = useState([]);
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [filter, setFilter] = useState("");
   const [sort, setSort] = useState(null);
   const [error, setError] = useState(false);
 
@@ -77,6 +76,10 @@ export default function Shop() {
 
   const handleSort = async (sort) => {
     console.log(sort);
+    if (sort === "name") {
+    } else if (sort === "likes") {
+    } else if (sort === "recent") {
+    }
     return;
   };
 
@@ -196,7 +199,7 @@ export default function Shop() {
             <Popover.Dropdown>
               <Text size="md">
                 I've recently built a chronograph! Check out 401 below.
-                Chronographs are priced at ${prices.regular}
+                Chronographs are priced at ${prices.regular}.
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -227,7 +230,7 @@ export default function Shop() {
                 data={[
                   { label: "Name", value: "name" },
                   { label: "Likes", value: "likes" },
-                  { label: "Price", value: "price" },
+                  { label: "Recency", value: "recent" },
                 ]}></NativeSelect>
             </Box>
           </div>
