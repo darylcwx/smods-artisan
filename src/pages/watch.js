@@ -137,7 +137,6 @@ export default function Watch() {
         const parsedData = JSON.parse(data);
         const w = parsedData.find((x) => x.name === watchName);
         setWatch(w);
-        console.log(w);
         setIsLoading(false);
       } else {
         const fetchWatch = async () => {

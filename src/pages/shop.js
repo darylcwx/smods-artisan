@@ -4,6 +4,7 @@ import {
   Container,
   Text,
   Button,
+  ActionIcon,
   Box,
   Popover,
   SimpleGrid,
@@ -12,6 +13,8 @@ import {
   Loader,
   NativeSelect,
 } from "@mantine/core";
+import { IconSortAscending, IconSortDescending } from "@tabler/icons-react";
+
 import Link from "next/link";
 import Head from "next/head";
 import Watch from "@/components/watch.js";
@@ -19,9 +22,12 @@ import Watch from "@/components/watch.js";
 export default function Shop() {
   const [watches, setWatches] = useState([]);
   const [prices, setPrices] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
+  const [sortByDesc, setSortByDesc] = useState(true);
   const [search, setSearch] = useState("");
+
   const [isLoading, setIsLoading] = useState(true);
-  const [sort, setSort] = useState(null);
   const [error, setError] = useState(false);
 
   const fetchData = async (endpoint) => {
@@ -36,52 +42,98 @@ export default function Shop() {
     }
   };
 
-  //TODO - reuse watch context once available
-  useEffect(() => {
-    const fetchAllData = async () => {
-      const watchData = await fetchData("api/getWatches");
-      const priceData = await fetchData("api/getPrices");
+  const fetchAllData = async () => {
+    try {
+      if (!localStorage.getItem("watches")) {
+        const watchData = await fetchData("api/getWatches");
+        const priceData = await fetchData("api/getPrices");
 
-      if (watchData === undefined || priceData === undefined) {
+        if (!watchData || !priceData) {
+          setIsLoading(false);
+          setError(true);
+          return;
+        }
+
+        const updatedWatchData = watchData.map((watch) => ({
+          ...watch,
+          price: priceData[watch.priceCat],
+        }));
+
+        const updatedAndSortedWatchData = handleSort(updatedWatchData, "date");
+        setWatches(updatedAndSortedWatchData);
+        localStorage.setItem(
+          "watches",
+          JSON.stringify(updatedAndSortedWatchData)
+        );
+        setPrices(priceData);
         setIsLoading(false);
-        setError(true);
-        return;
+      } else {
+        const watches = JSON.parse(localStorage.getItem("watches"));
+        setWatches(watches);
+        setIsLoading(false);
       }
-      const updatedWatchData = watchData.map((watch) => ({
-        ...watch,
-        price: priceData[watch.priceCat],
-      }));
-      setWatches(updatedWatchData);
-      localStorage.setItem("watches", JSON.stringify(updatedWatchData));
-      setPrices(priceData);
+    } catch (error) {
+      console.error(error);
       setIsLoading(false);
-    };
+      setError(true);
+    }
+  };
+
+  const handleSearch = async (search) => {
+    if (!localStorage.getItem("watches")) {
+      await fetchAllData();
+    }
+    const watches = JSON.parse(localStorage.getItem("watches"));
+    const searched = watches.filter((watchObject) =>
+      Object.values(watchObject).some(
+        (value) =>
+          typeof value === "string" &&
+          value.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+    const sorted = handleSort(searched, "date");
+    setWatches(sorted);
+  };
+
+  const handleSort = (watches, sort) => {
+    if (!watches || !Array.isArray(watches)) return watches;
+    const sorted = [...watches];
+    sorted.sort((a, b) => {
+      if (sort === "name") {
+        return b.name.localeCompare(a.name);
+      } else if (sort === "likes") {
+        return b.likes - a.likes;
+      } else if (sort === "date") {
+        return new Date(b.date) - new Date(a.date);
+      }
+      return 0;
+    });
+    return sorted;
+  };
+
+  useEffect(() => {
     fetchAllData();
+    setSort("date");
   }, []);
 
   useEffect(() => {
-    const handleSearch = async () => {
-      await fetch("/api/getBySearch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(search),
-      })
-        .then((res) => res.json())
-        .then((data) => setWatches(data.data));
+    handleSearch(filter);
+  }, [filter]);
 
-      return;
-    };
-    handleSearch();
+  useEffect(() => {
+    setWatches((watches) => handleSort(watches, sort));
+  }, [sort]);
+
+  useEffect(() => {
+    setWatches((watches) => {
+      const sorted = [...watches];
+      return sorted.reverse();
+    });
+  }, [sortByDesc]);
+
+  useEffect(() => {
+    handleSearch(search);
   }, [search]);
-
-  const handleSort = async (sort) => {
-    console.log(sort);
-    if (sort === "name") {
-    } else if (sort === "likes") {
-    } else if (sort === "recent") {
-    }
-    return;
-  };
 
   return (
     <>
@@ -211,8 +263,8 @@ export default function Shop() {
             <Box className="flex flex-col justify-start">
               <div className="text-sm font-semibold">Filter by:</div>
               <NativeSelect
-                value={search}
-                onChange={(e) => setSearch(e.currentTarget.value)}
+                value={filter}
+                onChange={(e) => setFilter(e.currentTarget.value)}
                 data={[
                   { label: "-", value: "" },
                   { label: "Ladies", value: "ladies" },
@@ -222,23 +274,43 @@ export default function Shop() {
                   { label: "Rubber strap", value: "rubber" },
                 ]}></NativeSelect>
             </Box>
-            <Box className="flex flex-col justify-start pl-2">
+            <Box className="flex flex-col justify-start pl-3">
               <div className="text-sm font-semibold">Sort by:</div>
-              <NativeSelect
-                value={sort}
-                onChange={(e) => handleSort(e.currentTarget.value)}
-                data={[
-                  { label: "Name", value: "name" },
-                  { label: "Likes", value: "likes" },
-                  { label: "Recency", value: "recent" },
-                ]}></NativeSelect>
+              <Box className="flex">
+                <NativeSelect
+                  value={sort}
+                  onChange={(e) => setSort(e.currentTarget.value)}
+                  data={[
+                    { label: "Name", value: "name" },
+                    { label: "Likes", value: "likes" },
+                    { label: "Date", value: "date" },
+                  ]}></NativeSelect>
+                <ActionIcon variant="filled" className="h-auto ml-0.5">
+                  {sortByDesc ? (
+                    <IconSortDescending
+                      size={18}
+                      className=""
+                      onClick={() => setSortByDesc(!sortByDesc)}
+                    />
+                  ) : (
+                    <IconSortAscending
+                      size={18}
+                      className=""
+                      onClick={() => setSortByDesc(!sortByDesc)}
+                    />
+                  )}
+                </ActionIcon>
+              </Box>
             </Box>
           </div>
           <Box className="flex flex-col justify-start">
             <Text className="text-sm font-semibold">Search:</Text>
             <TextInput
               className=""
-              onChange={() => setSearch(event.target.value)}
+              onChange={(e) => {
+                setFilter("-");
+                handleSearch(e.target.value);
+              }}
               placeholder="jubilee"
             />
           </Box>
