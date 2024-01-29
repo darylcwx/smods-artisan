@@ -12,7 +12,9 @@ import {
   TextInput,
   Loader,
   NativeSelect,
+  Skeleton,
 } from "@mantine/core";
+import SkeletonWatchComponent from "../components/skeletonWatchComponent.js";
 import { IconSortAscending, IconSortDescending } from "@tabler/icons-react";
 
 import Link from "next/link";
@@ -261,7 +263,7 @@ export default function Shop() {
           {/* <Select placeholder="Filter by" data={[]}></Select> */}
           <div className="flex">
             <Box className="flex flex-col justify-start">
-              <div className="text-sm font-semibold">Filter by:</div>
+              <div className="text-sm font-semibold pb-0.5">Filter by:</div>
               <NativeSelect
                 value={filter}
                 onChange={(e) => setFilter(e.currentTarget.value)}
@@ -275,7 +277,7 @@ export default function Shop() {
                 ]}></NativeSelect>
             </Box>
             <Box className="flex flex-col justify-start pl-3">
-              <div className="text-sm font-semibold">Sort by:</div>
+              <div className="text-sm font-semibold pb-0.5">Sort by:</div>
               <Box className="flex">
                 <NativeSelect
                   value={sort}
@@ -285,7 +287,7 @@ export default function Shop() {
                     { label: "Likes", value: "likes" },
                     { label: "Date", value: "date" },
                   ]}></NativeSelect>
-                <ActionIcon variant="filled" className="h-auto ml-0.5">
+                <ActionIcon className="h-auto ml-0.5 bg-[#25262B] hover:bg-[#343A40]">
                   {sortByDesc ? (
                     <IconSortDescending
                       size={18}
@@ -304,7 +306,7 @@ export default function Shop() {
             </Box>
           </div>
           <Box className="flex flex-col justify-start">
-            <Text className="text-sm font-semibold">Search:</Text>
+            <Text className="text-sm font-semibold pb-0.5">Search:</Text>
             <TextInput
               className=""
               onChange={(e) => {
@@ -317,10 +319,30 @@ export default function Shop() {
         </Box>
         {isLoading ? (
           <>
-            <Box className="flex flex-col place-items-center gap-2">
-              <Text>Hang on! Retrieving data...</Text>
-              <Loader color="white" type="bars" />
-            </Box>
+            <SimpleGrid
+              cols={3}
+              spacing="xl"
+              verticalSpacing="xl"
+              breakpoints={[
+                {
+                  maxWidth: "md",
+                  cols: 2,
+                  spacing: "xl",
+                  verticalSpacing: "xl",
+                },
+                {
+                  maxWidth: "sm",
+                  cols: 1,
+                  spacing: "xl",
+                  verticalSpacing: "xl",
+                },
+              ]}
+              className="pb-6">
+              <SkeletonWatchComponent />
+              <SkeletonWatchComponent />
+              <SkeletonWatchComponent />
+              <SkeletonWatchComponent />
+            </SimpleGrid>
           </>
         ) : error ? (
           <>

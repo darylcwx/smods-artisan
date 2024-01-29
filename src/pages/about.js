@@ -53,7 +53,7 @@ export default function Home() {
           </motion.div>
           <motion.div variants={item}>
             <Text pb="xs">Welcome to Seiko Mods Artisan.</Text>
-            <Text pb="xl">
+            <Text>
               I provide custom modded Seikos, with most parts of your choosing.
               Whether you're looking for a template or a unique, personalized
               timepiece, there is something for everyone.
@@ -83,9 +83,6 @@ export default function Home() {
                 from the crowd.
               </List.Item>
               <List.Item className="pr-6">
-                I offer the unique option of a fourth and functional GMT hand.
-              </List.Item>
-              <List.Item className="pr-6">
                 I use glidelock clasps, allowing for fine adjustment of your
                 bracelet length
               </List.Item>
@@ -95,21 +92,16 @@ export default function Home() {
             </List>
           </motion.div>
           <motion.div variants={item}>
+            <Title order={2} pt="xl">
+              Frequently Asked Questions
+            </Title>
             <Grid id="faq-grid" className="py-4">
-              <Col
-                span={12}
-                sm={6}
-                order={1}
-                orderSm={2}
-                className="flex items-center">
+              <Col span={12} sm={6} order={1} orderSm={2} className="flex">
                 <Image
                   src="static/background/movement.JPG"
                   alt="movement"></Image>
               </Col>
               <Col span={12} sm={6} order={2} orderSm={1}>
-                <Title order={2} px="sm" pb="sm">
-                  Frequently Asked Questions
-                </Title>
                 <Accordion
                   chevronPosition="right"
                   defaultValue="0"
@@ -135,18 +127,15 @@ export default function Home() {
                       </Text>
                       <Title order={3}>Position 1</Title>
                       <Text mb="md">
-                        At position 0 after unscrewing, pulling 1 click out will
-                        allow you to set the
-                        <b> day</b> and <b>date</b>.<br></br>- Turning clockwise
-                        will set the
-                        <b> day</b> (only NH36 movements)
-                        <br></br>- Turning counterclockwise will set the{" "}
-                        <b>date</b>
+                        At position 0 after unscrewing, pull the crown out by 1
+                        click.<br></br>- Turning clockwise sets the
+                        <b> day</b> for NH36 movements, or the <b>24H hand</b>{" "}
+                        for GMT movements
+                        <br></br>- Turning counterclockwise sets the <b>date</b>
                       </Text>
                       <Title order={3}>Position 2</Title>
                       <Text mb="md">
-                        At 2 clicks out, you can set the
-                        <b> time</b>.
+                        Pulling the crown out by 2 clicks sets the <b>time</b>.
                       </Text>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -160,24 +149,28 @@ export default function Home() {
                         <small className="text-red-400 flex pb-2">
                           Applicable to both oyster and jubilee straps.
                         </small>{" "}
-                        <div className="pt-2">
+                        <li>
                           Use a 12mm flathead screwdriver to remove bracelet
                           links if necessary.
-                        </div>
-                        <Image
-                          src="static/background/glidelock1.JPG"
-                          alt="glidelock"
-                        />
+                        </li>
                         <div className="pt-2">
-                          Then, adjust the glidelock on the clasp to your
-                          preferred length.
+                          <Image
+                            src="static/background/glidelock1.jpg"
+                            alt="glidelock"
+                          />
+                          <li>
+                            Then, adjust the glidelock on the clasp to your
+                            preferred length.
+                          </li>
                         </div>
-                        <Link
-                          className={classes.contact}
-                          href="https://www.youtube.com/watch?v=Jxsw_PMRV6o&ab_channel=DavidSW"
-                          target="_blank">
-                          Video example
-                        </Link>
+                        <li>
+                          <Link
+                            className={classes.contact}
+                            href="https://www.youtube.com/watch?v=lcAdJGR9v0I"
+                            target="_blank">
+                            YouTube video example
+                          </Link>
+                        </li>
                       </Text>
                       <Title order={2}>Rubber Straps</Title>
                       <Text mb="md">
@@ -211,12 +204,8 @@ export default function Home() {
                       placing an order?
                     </Accordion.Control>
                     <Accordion.Panel>
-                      I typically need about 3 weeks to fulfil. This is mainly
-                      due to sourcing and procuring of parts that may come from
-                      different parts of the world.
-                      <br></br>
-                      <br></br>The good news is, I will keep you updated on the
-                      progress of your watch!
+                      I typically need about 2 weeks to fulfil an order. This
+                      may vary due to unforeseen circumstances.
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="5" className="bg-accent-hover">
@@ -224,12 +213,6 @@ export default function Home() {
                       Are there any more available designs?
                     </Accordion.Control>
                     <Accordion.Panel>
-                      I will be elated to build your dream watch. However,
-                      sourcing for the exact parts may require extra time and
-                      effort. As such, there may be small premium for this
-                      service.
-                      <br></br>
-                      <br></br>
                       Feel free to check these links for inspiration. I might be
                       able to build a watch you like from any of these other
                       modders.
@@ -299,7 +282,7 @@ export default function Home() {
                       </Text>
                       <List type="ordered">
                         <List.Item>
-                          Replacement affected parts with new or spare parts{" "}
+                          Replace affected parts with new or spare parts
                         </List.Item>
                         <List.Item>Offer a 1:1 exchange</List.Item>
                         <List.Item>
@@ -312,9 +295,9 @@ export default function Home() {
                       <br></br>
                       <List>
                         <List.Item>
-                          Improper care, negligence, wear and tear, or the
-                          natural breakdown of colors and materials over
-                          extended time and use.
+                          Improper care, negligence, wear and tear (bracelet
+                          scratches etc.), or the natural breakdown of colors
+                          and materials over extended time and use.
                         </List.Item>
                       </List>
                     </Accordion.Panel>
