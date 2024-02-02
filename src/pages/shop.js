@@ -67,11 +67,14 @@ export default function Shop() {
           "watches",
           JSON.stringify(updatedAndSortedWatchData)
         );
+        localStorage.setItem("prices", JSON.stringify(priceData));
         setPrices(priceData);
         setIsLoading(false);
       } else {
         const watches = JSON.parse(localStorage.getItem("watches"));
+        const prices = JSON.parse(localStorage.getItem("prices"));
         setWatches(watches);
+        setPrices(prices);
         setIsLoading(false);
       }
     } catch (error) {
