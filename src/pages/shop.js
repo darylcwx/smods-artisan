@@ -46,7 +46,7 @@ export default function Shop() {
 
   const fetchAllData = async () => {
     try {
-      if (!localStorage.getItem("watches")) {
+      if (!localStorage.getItem("watches") || !localStorage.getItem("prices")) {
         const watchData = await fetchData("api/getWatches");
         const priceData = await fetchData("api/getPrices");
 
