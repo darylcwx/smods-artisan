@@ -88,7 +88,6 @@ export default function Shop() {
     if (!localStorage.getItem("watches")) {
       await fetchAllData();
     }
-    const watches = JSON.parse(localStorage.getItem("watches"));
     const searched = watches.filter((watchObject) =>
       Object.values(watchObject).some(
         (value) =>

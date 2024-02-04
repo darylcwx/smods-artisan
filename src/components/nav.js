@@ -8,9 +8,10 @@ import {
   Container,
   Modal,
   Button,
-  TextInput,
-  Textarea,
+  Text,
   SimpleGrid,
+  Tooltip,
+  NativeSelect,
   Title,
   Menu,
   Image,
@@ -18,10 +19,8 @@ import {
 } from "@mantine/core";
 import { useClickOutside } from "@mantine/hooks";
 import {
-  IconCheck,
-  IconX,
-  IconAt,
   IconBrandTelegram,
+  IconBrandWhatsapp,
 } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import Link from "next/link";
@@ -73,24 +72,14 @@ export default function Nav() {
   const navRef = useClickOutside(() => setNavOpen(false), null, [navButton]);
   const [modal, openModal] = useState(false);
   const { classes } = useStyles();
-  const form = useForm({
-    initialValues: {
-      name: "",
-      telegram: "",
-      subject: "",
-      message: "",
-    },
-    validate: {
-      name: (value) =>
-        value.trim().length < 1 ? "Please input a name." : null,
-      telegram: (value) =>
-        /^[A-Za-z0-9]+$/.test(value) && value.trim().length >= 5
-          ? null
-          : "Please enter a valid telegram handle.",
-      message: (value) =>
-        value.trim().length === 0 ? "Please enter a message." : null,
-    },
-  });
+
+  const handleTelegram = () => {
+    window.open("https://t.me/damnsope", "_blank");
+  };
+  const handleWhatsApp = () => {
+    window.open("https://wa.me/6583225795", "_blank");
+  };
+
   const router = useRouter();
   return (
     <>
@@ -150,8 +139,7 @@ export default function Nav() {
                     </Box>
                     <Button
                       onClick={() => openModal(true)}
-                      className="h-14 w-full bg-accent hover:bg-accent-hover rounded-none"
-                      rightIcon={<IconBrandTelegram />}>
+                      className="h-14 w-full bg-accent hover:bg-accent-hover rounded-none">
                       Contact me!
                     </Button>
                   </motion.div>
@@ -189,111 +177,31 @@ export default function Nav() {
                 onClose={() => openModal(false)}
                 centered
                 zIndex={1001}>
-                <form
-                  onSubmit={form.onSubmit((values) => {
-                    const token = process.env.TELEGRAM_TOKEN;
-                    const chatID = process.env.TELEGRAM_CHAT_ID;
-                    const text = encodeURIComponent(
-                      `Name: ${values.name}\nTelegram: @${values.telegram}\nSubject: ${values.subject}\nMessage: ${values.message}`
-                    );
-
-                    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
-                    fetch(url).then((response) => {
-                      if (response.ok) {
-                        notifications.show({
-                          icon: <IconCheck size={16} />,
-                          title: "Success!",
-                          autoClose: 7000,
-                          withCloseButton: true,
-                          color: "green",
-                          message:
-                            "I've received a notification with regards to your message.\n\nI'll get back to you shortly!",
-                        });
-                      } else {
-                        notifications.show({
-                          icon: <IconX size={16} />,
-                          title: "Failure!",
-                          autoClose: 7000,
-                          withCloseButton: true,
-                          color: "red",
-                          message: (
-                            <span>
-                              Uh oh! Something went wrong.
-                              <br />
-                              Please try again, or you can reach me directly{" "}
-                              <a
-                                href="https://t.me/damnsope"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="no-underline text-blue-300">
-                                here
-                              </a>
-                              . (this link opens a new window)
-                            </span>
-                          ),
-                        });
-                      }
-                    });
-                    form.reset();
-                    openModal(false);
-                  })}>
+                <Box>
                   <Title size="h2" align="center">
                     Ask me anything!
                   </Title>
-
-                  <SimpleGrid
-                    cols={2}
-                    mt="xl"
-                    breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-                    <TextInput
-                      label="Name"
-                      placeholder="Your name"
-                      name="name"
-                      variant="filled"
-                      withAsterisk
-                      {...form.getInputProps("name")}
-                    />
-                    <TextInput
-                      label="Telegram"
-                      placeholder="Your telegram handle"
-                      name="telegram"
-                      variant="filled"
-                      icon={<IconAt size={16} />}
-                      withAsterisk
-                      {...form.getInputProps("telegram")}
-                    />
-                  </SimpleGrid>
-
-                  <TextInput
-                    label="Subject"
-                    placeholder="Subject"
-                    mt="md"
-                    name="subject"
+                  <small className="text-red-400 flex w-full justify-center">
+                    Buttons open a chat in a new tab
+                  </small>
+                </Box>
+                <Box className="flex flex-col mt-4">
+                  <Button
                     variant="filled"
-                    {...form.getInputProps("subject")}
-                  />
-                  <Textarea
-                    mt="md"
-                    label="Message"
-                    placeholder="Your message"
-                    maxRows={10}
-                    minRows={5}
-                    autosize
-                    name="message"
-                    variant="filled"
-                    withAsterisk
-                    {...form.getInputProps("message")}
-                  />
+                    className="bg-[#2AABEE] h-16 hover:bg-[#229ED9]"
+                    leftIcon={<IconBrandTelegram />}
+                    onClick={handleTelegram}>
+                    Chat on Telegram
+                  </Button>
 
-                  <Group position="center" mt="xl">
-                    <Button
-                      type="submit"
-                      size="md"
-                      className="bg-accent hover:bg-accent-hover">
-                      Send message
-                    </Button>
-                  </Group>
-                </form>
+                  <Button
+                    variant="filled"
+                    className="bg-[#25D366] h-16 mt-4 hover:bg-[#128C7E]"
+                    leftIcon={<IconBrandWhatsapp />}
+                    onClick={handleWhatsApp}>
+                    Chat on WhatsApp
+                  </Button>
+                </Box>
               </Modal>
             </Group>
           </Box>
