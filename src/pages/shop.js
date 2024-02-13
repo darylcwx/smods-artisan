@@ -46,37 +46,30 @@ export default function Shop() {
 
   const fetchAllData = async () => {
     try {
-      if (!localStorage.getItem("watches") || !localStorage.getItem("prices")) {
-        const watchData = await fetchData("api/getWatches");
-        const priceData = await fetchData("api/getPrices");
+      const watchData = await fetchData("api/getWatches");
+      const priceData = await fetchData("api/getPrices");
 
-        if (!watchData || !priceData) {
-          setIsLoading(false);
-          setError(true);
-          return;
-        }
-
-        const updatedWatchData = watchData.map((watch) => ({
-          ...watch,
-          price: priceData[watch.priceCat],
-        }));
-
-        const updatedAndSortedWatchData = handleSort(updatedWatchData, "date");
-        setWatches(updatedAndSortedWatchData);
-        localStorage.setItem(
-          "watches",
-          JSON.stringify(updatedAndSortedWatchData)
-        );
-        localStorage.setItem("prices", JSON.stringify(priceData));
-        setPrices(priceData);
+      if (!watchData || !priceData) {
         setIsLoading(false);
-      } else {
-        const watches = JSON.parse(localStorage.getItem("watches"));
-        const prices = JSON.parse(localStorage.getItem("prices"));
-        setWatches(watches);
-        setPrices(prices);
-        setIsLoading(false);
+        setError(true);
+        return;
       }
+
+      const updatedWatchData = watchData.map((watch) => ({
+        ...watch,
+        price: priceData[watch.priceCat],
+      }));
+
+      const updatedAndSortedWatchData = handleSort(updatedWatchData, "date");
+      localStorage.setItem(
+        "watches",
+        JSON.stringify(updatedAndSortedWatchData)
+      );
+      localStorage.setItem("prices", JSON.stringify(priceData));
+      setWatches(updatedAndSortedWatchData);
+      setPrices(priceData);
+      setIsLoading(false);
+      setSort("date");
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -84,19 +77,19 @@ export default function Shop() {
     }
   };
 
-  const handleSearch = async (search) => {
-    if (!localStorage.getItem("watches")) {
-      await fetchAllData();
+  const handleSearch = (search) => {
+    if (localStorage.getItem("watches")) {
+      const watchData = JSON.parse(localStorage.getItem("watches"));
+      const searched = watchData.filter((watchObject) =>
+        Object.values(watchObject).some(
+          (value) =>
+            typeof value === "string" &&
+            value.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+      const sorted = handleSort(searched, "date");
+      setWatches(sorted);
     }
-    const searched = watches.filter((watchObject) =>
-      Object.values(watchObject).some(
-        (value) =>
-          typeof value === "string" &&
-          value.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-    const sorted = handleSort(searched, "date");
-    setWatches(sorted);
   };
 
   const handleSort = (watches, sort) => {
@@ -116,8 +109,17 @@ export default function Shop() {
   };
 
   useEffect(() => {
-    fetchAllData();
-    setSort("date");
+    if (!localStorage.getItem("watches") || !localStorage.getItem("prices")) {
+      fetchAllData();
+    } else {
+      const watchData = JSON.parse(localStorage.getItem("watches"));
+      const priceData = JSON.parse(localStorage.getItem("prices"));
+      console.log(watchData, priceData);
+      setWatches(watchData);
+      setPrices(priceData);
+      setIsLoading(false);
+      setSort("date");
+    }
   }, []);
 
   useEffect(() => {
@@ -261,9 +263,9 @@ export default function Shop() {
           </Popover>
           <Popover width={450} position="bottom" withArrow></Popover>
         </Box>
-        <Box className="mb-6 flex row justify-between w-full p-2 bg-accent text-white rounded-md">
+        <Box className="mb-6 sm:flex row justify-between w-full p-2 bg-accent text-white rounded-md">
           {/* <Select placeholder="Filter by" data={[]}></Select> */}
-          <div className="flex">
+          <div className="flex justify-between">
             <Box className="flex flex-col justify-start">
               <div className="text-sm font-semibold pb-0.5">Filter by:</div>
               <NativeSelect
@@ -340,6 +342,7 @@ export default function Shop() {
                 },
               ]}
               className="pb-6">
+              <SkeletonWatchComponent />
               <SkeletonWatchComponent />
               <SkeletonWatchComponent />
               <SkeletonWatchComponent />
