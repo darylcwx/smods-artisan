@@ -49,34 +49,39 @@ export default function Home() {
       <Container size="md" px="xl">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.div variants={item}>
-            <Title pt="xl">Hello!</Title>
+            <Title order={2} pt="xl">
+              Hello!
+            </Title>
           </motion.div>
           <motion.div variants={item}>
             <Text pb="xs">Welcome to Seiko Mods Artisan.</Text>
             <Text>
-              I provide custom modded Seikos, with most parts of your choosing.
-              Whether you're looking for a template or a unique, personalized
-              timepiece, there is something for everyone.
+              My name is Daryl, and I build custom modded Seikos with parts of
+              your choosing. Whether you're looking for a template or a unique,
+              personalized timepiece, there is something for everyone.
             </Text>
           </motion.div>
           <motion.div variants={item}>
-            <Title pt="xl">History</Title>
+            <Title order={2} pt="xl">
+              History
+            </Title>
           </motion.div>
           <motion.div variants={item}>
             <Text className="pt-2">
               My journey as a watchmaker began as a hobby. The positive response
-              I received to my work encouraged me to explore the opportunity to
+              I received for my work encouraged me to explore the opportunity to
               bring my passion for watchmaking to a wider audience.
             </Text>
           </motion.div>
           <motion.div variants={item}>
-            <Title pt="xl">Why me?</Title>
+            <Title order={2} pt="xl">
+              Why me?
+            </Title>
           </motion.div>
           <motion.div variants={item}>
             <List className="py-2">
               <List.Item className="pr-6">
-                I stand behind the craftsmanship of every watch I create with a
-                6-month warranty.
+                I use high-quality parts from reputable suppliers.
               </List.Item>
               <List.Item className="pr-6">
                 I enjoying creating custom designs, allowing you to stand out
@@ -84,10 +89,11 @@ export default function Home() {
               </List.Item>
               <List.Item className="pr-6">
                 I use glidelock clasps, allowing for fine adjustment of your
-                bracelet length
+                bracelet length.
               </List.Item>
               <List.Item className="pr-6">
-                I value loyalty and offer a 10% discount to returning customers.
+                All watches come with a professional wooden box and a 6 month
+                warranty.
               </List.Item>
             </List>
           </motion.div>
