@@ -153,12 +153,12 @@ export default function Shop() {
           Here are the watches I have personally built so far. They do not
           include watches that I <span className={"underline"}>can</span> build.
         </Text>
-        <Text ta="center" c="dimmed" mb="xl">
+        <Text ta="center" c="dimmed" mb="md">
           This is only a portfolio, so you can still drop me a text to discuss
           the exact parts or the exact watch you'd like! 😀
         </Text>
-        <Box className="flex row justify-center items-center gap-2 flex-wrap pb-6">
-          <Popover width={450} position="bottom" withArrow>
+        <Box className="flex row justify-center items-center gap-2 flex-wrap pb-4">
+          <Popover width={400} position="bottom" withArrow shadow="md">
             <Popover.Target>
               <Button
                 variant="outline"
@@ -168,9 +168,8 @@ export default function Shop() {
               </Button>
             </Popover.Target>
             <Popover.Dropdown>
-              <Text size="md">
-                As mentioned, I might be able to build other watches not
-                displayed here.
+              <Text size="sm">
+                If you find a picture of a watch you'd like, send it to me!
                 <br></br>
                 <br></br>
                 Feel free to check these links for design inspiration. I might
@@ -178,54 +177,67 @@ export default function Shop() {
                 <List>
                   <List.Item>
                     <Link
+                      className="text-accent no-underline text-sm"
                       href="https://www.instagram.com/seikomods"
                       target="_blank">
-                      @seikomods
+                      @seikomods (IG)
                     </Link>
                   </List.Item>
                   <List.Item>
                     <Link
-                      href="https://www.instagram.com/bbmod_france/"
+                      className="text-accent no-underline text-sm"
+                      href="https://www.instagram.com/doctorseiko/"
                       target="_blank">
-                      @bbmod_france
+                      @doctorseiko (IG)
                     </Link>
                   </List.Item>
                   <List.Item>
                     <Link
-                      href="https://www.instagram.com/bbmod_watches"
+                      className="text-accent no-underline text-sm"
+                      href="https://www.instagram.com/seiko_mods"
                       target="_blank">
-                      @bbmod_watches
+                      @seiko_mods (IG)
                     </Link>
                   </List.Item>
                   <List.Item>
                     <Link
+                      className="text-accent no-underline text-sm"
                       href="https://www.instagram.com/jack_hypoxia/?hl=en"
                       target="_blank">
-                      @jack_hypoxia
+                      @jack_hypoxia (IG)
+                    </Link>
+                  </List.Item>
+                  <List.Item>
+                    <Link
+                      className="text-accent no-underline text-sm"
+                      href="https://www.pinterest.com/Four_Forty_Four_PM/seiko-mods-by-four_forty_four_pm/"
+                      target="_blank">
+                      @Four_Forty_Four_PM (Pinterest)
                     </Link>
                   </List.Item>
                 </List>
               </Text>
             </Popover.Dropdown>
           </Popover>
-          <Popover width={450} position="bottom" withArrow>
+          <Popover width={450} position="bottom" withArrow shadow="md">
             <Popover.Target>
               <Button
                 variant="outline"
                 size="sm"
                 className="text-accent border-accent hover:bg-accent/10">
-                Ladies version?
+                Ladies?
               </Button>
             </Popover.Target>
 
             <Popover.Dropdown>
-              <Text size="md">
-                Check out F01 below! Ladies' watches will be priced at $
-                {prices.ladies}.
+              <Text size="sm">
+                Check out F01 below! Ladies' watches will be priced at{" "}
+                {prices.ladies}. I also offer the option of a crown clasp,
+                albeit it comes with a crown too. (PM for more details)
               </Text>
             </Popover.Dropdown>
           </Popover>
-          <Popover width={450} position="bottom" withArrow>
+          <Popover width={450} position="bottom" withArrow shadow="md">
             <Popover.Target>
               <Button
                 variant="outline"
@@ -235,29 +247,33 @@ export default function Shop() {
               </Button>
             </Popover.Target>
             <Popover.Dropdown>
-              <Text size="md">
-                For GMT models, I offer the option of having an actual GMT
-                movement. Functional GMTs are priced at ${prices.gmt}.<br></br>
+              <Text size="sm">
+                For GMT models, I offer the option of having a GMT movement (4
+                hands). Functional GMTs are priced at {prices.gmt}.<br></br>
                 <br></br>
                 However, if you'd like just the GMT bezel with 3 hands, that's
-                fine too! It'll be classified as part of the normal range at $
+                fine too! It'll be classified as part of the normal range at{" "}
                 {prices.regular}.
               </Text>
             </Popover.Dropdown>
           </Popover>
-          <Popover width={450} position="bottom" withArrow>
+          <Popover width={450} position="bottom" withArrow shadow="md">
             <Popover.Target>
               <Button
                 variant="outline"
                 size="sm"
                 className="text-accent border-accent hover:bg-accent/10">
-                Daytona/Chronographs?
+                Prices?
               </Button>
             </Popover.Target>
             <Popover.Dropdown>
-              <Text size="md">
-                I've recently built a chronograph! Check out 401 below.
-                Chronographs are priced at ${prices.regular}.
+              <Text size="sm">
+                Most watches are priced at {prices.regular} due to the standard
+                NH35 Automatic movement.<br></br>
+                <br></br>
+                GMTs are priced at {prices.gmt}, while ladies' watches are
+                priced at {prices.ladies}. Skeleton/Open hearts are different
+                movements too, so they will be priced at {prices.regular}.
               </Text>
             </Popover.Dropdown>
           </Popover>
@@ -267,7 +283,9 @@ export default function Shop() {
           {/* <Select placeholder="Filter by" data={[]}></Select> */}
           <div className="flex justify-between">
             <Box className="flex flex-col justify-start">
-              <div className="text-sm font-semibold pb-0.5">Filter by:</div>
+              <div className="text-sm font-bold text-neutral-800">
+                Filter by:
+              </div>
               <NativeSelect
                 value={filter}
                 onChange={(e) => setFilter(e.currentTarget.value)}
@@ -281,7 +299,7 @@ export default function Shop() {
                 ]}></NativeSelect>
             </Box>
             <Box className="flex flex-col justify-start pl-3">
-              <div className="text-sm font-semibold pb-0.5">Sort by:</div>
+              <div className="text-sm font-bold text-neutral-800">Sort by:</div>
               <Box className="flex">
                 <NativeSelect
                   value={sort}
@@ -309,15 +327,15 @@ export default function Shop() {
               </Box>
             </Box>
           </div>
-          <Box className="flex flex-col justify-start">
-            <Text className="text-sm font-semibold pb-0.5">Search:</Text>
+          <Box className="flex flex-col justify-start pt-2 sm:pt-0">
+            <Text className="text-sm font-bold text-neutral-800">Search:</Text>
             <TextInput
               className=""
               onChange={(e) => {
                 setFilter("-");
                 handleSearch(e.target.value);
               }}
-              placeholder="jubilee"
+              placeholder="Jubilee / Pepsi / Rose gold"
             />
           </Box>
         </Box>

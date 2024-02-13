@@ -18,10 +18,7 @@ import {
   Box,
 } from "@mantine/core";
 import { useClickOutside } from "@mantine/hooks";
-import {
-  IconBrandTelegram,
-  IconBrandWhatsapp,
-} from "@tabler/icons-react";
+import { IconBrandTelegram, IconBrandWhatsapp } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import Link from "next/link";
 import { useForm } from "@mantine/form";
@@ -178,14 +175,11 @@ export default function Nav() {
                 centered
                 zIndex={1001}>
                 <Box>
-                  <Title size="h2" align="center">
+                  <Title size="h2" align="center" className="pb-4">
                     Ask me anything!
                   </Title>
-                  <small className="text-red-400 flex w-full justify-center">
-                    Buttons open a chat in a new tab
-                  </small>
                 </Box>
-                <Box className="flex flex-col mt-4">
+                <Box className="flex flex-col">
                   <Button
                     variant="filled"
                     className="bg-[#2AABEE] h-16 hover:bg-[#229ED9]"
